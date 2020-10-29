@@ -77,6 +77,17 @@
     position: relative;
 }
 
+#test {
+    position: absolute;
+    top: 65%;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: rgb(219, 12, 12);
+    pointer-events: none;
+    transition: .5s;
+}
+
 .login-box .user-box span {
     position: absolute;
     top: 7%;

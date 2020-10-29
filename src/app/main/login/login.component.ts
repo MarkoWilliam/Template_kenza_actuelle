@@ -20,6 +20,23 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('email')
   }
 
+  get message() {
+    return this.registrationForm.get('message');
+  }
+
+  public registrationForm = this.formBuilder.group({
+    message: ['', [Validators.maxLength(70),
+    Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$')
+    ]],
+  });
+
+  public errorMessages = {
+    message: [
+      { type: 'required', message: 'Email is required' },
+      { type: 'pattern', message: 'Votre email n\'est pas valider' }
+    ],
+  };
+
   /**
    * Constructor
    *
