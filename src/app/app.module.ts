@@ -35,19 +35,25 @@ import { EmployerModule } from './main/employer/employer.module';
 import { AnalyticsDashboardModule } from './main/dashboards/analytics/analytics.module';
 import { AdminComponent } from './main/admin/admin.component';
 import { AdminModule } from './main/admin/admin.module';
+import { LoginComponent } from './main/login/login.component';
+import { LoginModule } from './main/login/login.module';
+import { AccueilComponent } from './main/accueil/accueil.component';
+import { AccueilModule } from './main/accueil/accueil.module';
 
 
 const appRoutes: Routes = [
     {
-        path      : '**',
-        redirectTo: 'sample'
-    }
+        path      : ' **',
+        redirectTo: 'analytique'
+    },
     
 ];
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        //AccueilComponent,
+       // LoginComponent
     ],
     imports     : [
         BrowserModule,
@@ -81,7 +87,9 @@ const appRoutes: Routes = [
         UtilisateurModule,
         EmployerModule,
         AnalyticsDashboardModule,
-        AdminModule
+        AdminModule,
+        LoginModule,
+        AccueilModule
     ],
     bootstrap   : [
         AppComponent

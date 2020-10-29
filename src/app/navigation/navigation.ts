@@ -10,7 +10,6 @@ export const navigation: FuseNavigation[] = [
             {
                 id       : 'dashboard',
                 title    : 'Dashboard',
-                translate: 'NAV.SAMPLE.TITLE',
                 type     : 'item',
                 icon     : 'dashboard',
                 url      : '/analytique',
@@ -37,6 +36,20 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'account_circle',
                 url      : '/employer',
+            },
+            {
+                id       : 'login',
+                title    : 'Login',
+                type     : 'item',
+                icon     : 'account_circle',
+                url      : '/login',
+            },
+            {
+                id       : 'principale',
+                title    : 'Principale',
+                type     : 'item',
+                icon     : 'account_circle',
+                url      : '/accueil',
             },
         ]
     },
