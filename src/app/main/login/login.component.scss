@@ -25,10 +25,6 @@
     width: 150px;
 }
 
-.margin {
-    margin-top: 55px;
-}
-
 .back {
     width: 100%;
     background: url('/assets/images/backgrounds/dark-material-bg.jpg') no-repeat;
@@ -49,7 +45,7 @@
 }
 
 .text_log {
-    margin-top: 25px;
+    margin-top: 45px;
     margin-left: auto;
     margin-right: auto;
     margin-left: 60px;
@@ -59,7 +55,7 @@
 
 .login-box {
     position: absolute;
-    top: 50%;
+    top: 55%;
     left: 50%;
     width: 400px;
     padding: 40px;
@@ -79,6 +75,17 @@
 
 .login-box .user-box {
     position: relative;
+}
+
+.login-box .user-box span {
+    position: absolute;
+    top: 7%;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: rgb(219, 12, 12);
+    pointer-events: none;
+    transition: .5s;
 }
 
 .login-box .user-box input {
@@ -234,4 +241,26 @@
 
 .text_or {
     margin-left: 125px;
+}
+
+.margin_tex {
+    margin-left: 50px;
+    margin-top: 10px;
+}
+
+#text_cliq {
+    margin-left: 60px;
+}
+
+input.ng-valid {
+    border-left: 5px solid red;
+}
+
+input.ng-valid {
+    border-left: 5px solid green;
+}
+
+.error {
+    color: red;
+    margin-top: -15px;
 }

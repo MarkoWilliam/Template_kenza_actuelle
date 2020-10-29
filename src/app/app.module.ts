@@ -39,6 +39,7 @@ import { LoginComponent } from './main/login/login.component';
 import { LoginModule } from './main/login/login.module';
 import { AccueilComponent } from './main/accueil/accueil.component';
 import { AccueilModule } from './main/accueil/accueil.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 const appRoutes: Routes = [
@@ -76,6 +77,8 @@ const appRoutes: Routes = [
         FuseSharedModule,
         FuseSidebarModule,
         FuseThemeOptionsModule,
+        FormsModule,
+        ReactiveFormsModule,
 
         // App modules
         LayoutModule,

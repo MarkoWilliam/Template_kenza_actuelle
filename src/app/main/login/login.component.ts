@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'; 
-
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FuseConfigService } from '@fuse/services/config.service';
  
 
@@ -10,7 +10,15 @@ import { FuseConfigService } from '@fuse/services/config.service';
 })
 export class LoginComponent implements OnInit {
 
+  loginForm= new FormGroup({
+    email: new FormControl('', Validators.required),
+    password: new FormControl('')
+  })
  
+
+  get email() {
+    return this.loginForm.get('email')
+  }
 
   /**
    * Constructor
@@ -18,6 +26,7 @@ export class LoginComponent implements OnInit {
    * @param {FuseConfigService} _fuseConfigService 
    */
   constructor(
+      private formBuilder: FormBuilder,
       private _fuseConfigService: FuseConfigService,
   )
   {
@@ -49,6 +58,10 @@ export class LoginComponent implements OnInit {
    */
   ngOnInit(): void
   {
+  
+  }
+
+  login() {
   
   }
 
