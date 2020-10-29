@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core'; 
 
 import { FuseConfigService } from '@fuse/services/config.service';
-import { fuseAnimations } from '@fuse/animations';
+ 
 
 @Component({
   selector: 'app-login',
@@ -11,17 +10,15 @@ import { fuseAnimations } from '@fuse/animations';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm: FormGroup;
+ 
 
   /**
    * Constructor
    *
-   * @param {FuseConfigService} _fuseConfigService
-   * @param {FormBuilder} _formBuilder
+   * @param {FuseConfigService} _fuseConfigService 
    */
   constructor(
       private _fuseConfigService: FuseConfigService,
-      private _formBuilder: FormBuilder
   )
   {
       // Apparition du menu ou pas
@@ -52,10 +49,7 @@ export class LoginComponent implements OnInit {
    */
   ngOnInit(): void
   {
-      this.loginForm = this._formBuilder.group({
-          email   : ['', [Validators.required, Validators.email]],
-          password: ['', Validators.required]
-      });
+  
   }
 
 }
