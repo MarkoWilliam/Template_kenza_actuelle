@@ -44,7 +44,7 @@ import { AccueilModule } from './main/accueil/accueil.module';
 const appRoutes: Routes = [
     {
         path      : ' **',
-        redirectTo: 'analytique'
+        redirectTo: 'login'
     },
     
 ];
