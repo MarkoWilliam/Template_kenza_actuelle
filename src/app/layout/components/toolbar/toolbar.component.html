@@ -4,8 +4,7 @@
 
         <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
 
-            <button mat-icon-button class="navbar-toggle-button"
-                    *ngIf="!hiddenNavbar && !rightNavbar" (click)="toggleSidebarOpen('navbar')" fxHide.gt-md>
+            <button mat-icon-button class="navbar-toggle-button" *ngIf="!hiddenNavbar && !rightNavbar" (click)="toggleSidebarOpen('navbar')" fxHide.gt-md>
                 <mat-icon class="secondary-text">menu</mat-icon>
             </button>
 
@@ -13,7 +12,7 @@
 
             <div fxLayout="row" fxLayoutAlign="start center" *ngIf="horizontalNavbar">
                 <div class="logo ml-16">
-                    <img class="logo-icon" src="assets/images/logos/fuse.svg">
+                    <img class="logo-icon" src="../../../../../../assets/img/kenzaLogo.PNG">
                 </div>
             </div>
 
@@ -25,11 +24,10 @@
 
         <div class="" fxFlex="0 1 auto" fxLayout="row" fxLayoutAlign="start center">
 
-            <button mat-button [matMenuTriggerFor]="userMenu"
-                    class="user-button">
+            <button mat-button [matMenuTriggerFor]="userMenu" class="user-button">
                 <div fxLayout="row" fxLayoutAlign="center center">
-                    <img class="avatar mr-0 mr-sm-16" src="assets/images/avatars/Velazquez.jpg">
-                    <span class="username mr-12" fxHide fxShow.gt-sm>Charlie Adams</span>
+                    <img class="avatar mr-0 mr-sm-16" src="../../../../../../assets/img/portrait.jpg">
+                    <span class="username mr-12" fxHide fxShow.gt-sm>Anie Abelah</span>
                     <mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
                 </div>
             </button>
@@ -46,9 +44,9 @@
                     <span>Inbox</span>
                 </button>
 
-                <button mat-menu-item class="">
+                <button mat-menu-item class="" (click)="deconnexion()">
                     <mat-icon>exit_to_app</mat-icon>
-                    <span>Logout</span>
+                    <span >Logout</span>
                 </button>
 
             </mat-menu>
@@ -59,7 +57,7 @@
 
             <div class="toolbar-separator"></div> -->
 
-           <!--  <button mat-button fxHide fxShow.gt-xs
+            <!--  <button mat-button fxHide fxShow.gt-xs
                     class="language-button"
                     [matMenuTriggerFor]="languageMenu">
                 <div fxLayout="row" fxLayoutAlign="center center">
@@ -68,7 +66,7 @@
                 </div>
             </button> -->
 
-           <!--  <mat-menu #languageMenu="matMenu" [overlapTrigger]="false">
+            <!--  <mat-menu #languageMenu="matMenu" [overlapTrigger]="false">
 
                 <button mat-menu-item *ngFor="let lang of languages" (click)="setLanguage(lang)">
                     <span fxLayout="row" fxLayoutAlign="start center">

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'; 
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { FuseConfigService } from '@fuse/services/config.service';
  
 
@@ -45,6 +46,7 @@ export class LoginComponent implements OnInit {
   constructor(
       private formBuilder: FormBuilder,
       private _fuseConfigService: FuseConfigService,
+      public router: Router,
   )
   {
       // Apparition du menu ou pas
@@ -80,6 +82,10 @@ export class LoginComponent implements OnInit {
 
   login() {
   
+  }
+
+  Manu() {
+    this.router.navigate(['/analytique'])
   }
 
 }

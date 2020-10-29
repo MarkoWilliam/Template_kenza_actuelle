@@ -38,13 +38,6 @@ export const navigation: FuseNavigation[] = [
                 url      : '/employer',
             },
             {
-                id       : 'login',
-                title    : 'Login',
-                type     : 'item',
-                icon     : 'account_circle',
-                url      : '/login',
-            },
-            {
                 id       : 'principale',
                 title    : 'Principale',
                 type     : 'item',
@@ -89,6 +82,21 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',                
                 url      : '/notification',               
             }
+        ]
+    },
+    {
+        id       : 'deconnecter',
+        title    : 'Sortir',
+        translate: 'NAV.APPLICATIONS',
+        type     : 'group',
+        children : [
+            {
+                id       : 'deconnecter',
+                title    : 'Déconnecter',                
+                type     : 'item',  
+                icon     : 'power_settings_new',              
+                url      : '/login',               
+            },
         ]
     }
     
