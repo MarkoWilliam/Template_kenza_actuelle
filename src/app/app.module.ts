@@ -44,7 +44,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
     {
-        path      : ' **',
+        path      : '**',
         redirectTo: 'login'
     },
     
