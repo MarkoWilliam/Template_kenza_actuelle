@@ -80,7 +80,7 @@ export const navigation: FuseNavigation[] = [
                 id       : 'chat',
                 title    : 'Push Notification',                
                 type     : 'item',                
-                url      : '/notification',               
+                url      : '/notification',            
             }
         ]
     },

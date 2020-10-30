@@ -27,7 +27,7 @@ import { NotificationModule } from 'app/main/notification/notification.module';
 //import { NotificationComponent } from './main/notification/notification.component';
 //import { EventComponent } from './main/event/event.component';
 //import { ProduitsComponent } from './main/produits/produits.component';
-
+//import { CryptHttpService } from 'ngx-http-crypt';
 import { UtilisateurComponent } from './main/utilisateur/utilisateur.component';
 import { UtilisateurModule } from './main/utilisateur/utilisateur.module';
 import { EmployerComponent } from './main/employer/employer.component';
@@ -40,6 +40,9 @@ import { LoginModule } from './main/login/login.module';
 import { AccueilComponent } from './main/accueil/accueil.component';
 import { AccueilModule } from './main/accueil/accueil.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GlobaleService } from './main/service/globale.service';
+import { InscriptionComponent } from './main/inscription/inscription.component';
+import { InscriptionModule } from './main/inscription/inscription.module';
 
 
 const appRoutes: Routes = [
@@ -53,6 +56,7 @@ const appRoutes: Routes = [
 @NgModule({
     declarations: [
         AppComponent,
+       // InscriptionComponent,
         //AccueilComponent,
        // LoginComponent
     ],
@@ -92,10 +96,15 @@ const appRoutes: Routes = [
         AnalyticsDashboardModule,
         AdminModule,
         LoginModule,
-        AccueilModule
+        AccueilModule,
+        InscriptionModule,
     ],
     bootstrap   : [
         AppComponent
+    ],
+    providers: [
+        GlobaleService
+        //CryptHttpService
     ]
 })
 export class AppModule
