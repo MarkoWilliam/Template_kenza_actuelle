@@ -4,7 +4,7 @@
 
     <div id="login">
         <div class="logo">
-            <img id="img_logo" src="../../../assets/img/logo_kenza_principale.png">
+            <img id="img_logo" src="assets/img/logo_kenza_principale.png">
         </div>
 
         <div class="text_log">
@@ -24,7 +24,7 @@
                 <form [formGroup]="registrationForm" autocomplete="off">
                     <div class="user-box">
 
-                        <input type="text" formControlName="message" inputmode="Email">
+                        <input [(ngModel)]="modelCLient.email" type="text" formControlName="message" inputmode="Email">
                         <div class="error" id="test" *ngFor="let error of errorMessages.message">
                             <ng-container *ngIf="message.hasError(error.type) && (message.dirty || message.touched)">
                                 <small class="error-message">{{error.message}}</small>
@@ -35,8 +35,13 @@
 
                     </div>
                     <div class="user-box">
-                        <input type="password">
-                        <label>Password</label>
+                        <input [(ngModel)]="modelCLient.password" type="password" formControlName="pass" inputmode="password">
+                        <div class="error" id="test" *ngFor="let error of errorMessages.message">
+                            <ng-container *ngIf="pass.hasError(error.type) && (pass.dirty || pass.touched)">
+                                <small class="error-message">{{error.pass}}</small>
+                            </ng-container>
+                        </div>
+                        <label position="floating">password</label>
                     </div>
                     <div>
                         <input type="checkbox" />
@@ -45,7 +50,7 @@
                     </label>
                     </div>
                     <div class="btn_log">
-                        <button id="btn_with" mat-raised-button (click)="Manu()">Connexion</button>
+                        <button id="btn_with" mat-raised-button (click)="loginUser()">Connexion</button>
                     </div>
 
                     <div class="text_or">

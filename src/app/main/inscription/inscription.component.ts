@@ -107,11 +107,12 @@ export class InscriptionComponent implements OnInit {
 
   registerEntrer() {
 
-      this.servInscr.creationUser(this.modelCLient).subscribe( data => {
+      this.servInscr.creationUser(this.modelCLient).subscribe( results => {
         // const alertpesan = data.body.data;
         // console.log('Maessage de data', this.modelCLient);
-        if (data.res) {
-          console.log('Message de data', data.res);
+        if (results) {
+          console.log('Message de data', results);
+          this.router.navigate(['/login']);
         }
         else {
           console.log("Il y a une erreur");

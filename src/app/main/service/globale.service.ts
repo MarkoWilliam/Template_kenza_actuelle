@@ -10,6 +10,7 @@ export class GlobaleService {
 
   private ListerUser = 'user';
   private CreationUser = 'auth/register';
+  private LoginUser = 'auth/login';
   private lien: Lien = new Lien();
 
   constructor(private http: HttpClient) { }
@@ -23,5 +24,11 @@ export class GlobaleService {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     return this.http.post(this.lien.lienCmd + `${this.CreationUser}`,ModelCLient, {headers, observe:'response'});
+  }
+
+  Loginuser(ModelCLient: object): Observable<any> {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(this.lien.lienCmd + `${this.LoginUser}`,ModelCLient, {headers, observe:'response'});
   }
 }
