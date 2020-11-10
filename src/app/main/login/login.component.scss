@@ -255,12 +255,19 @@
 }
 
 .margin_tex {
-    margin-left: 50px;
-    margin-top: 10px;
+    // margin-left: 50px;
+    // margin-top: 10px;
+    width: 100%;
+}
+
+.text_compte {
+    text-align: center;
 }
 
 #text_cliq {
-    margin-left: 60px;
+    width: 45%;
+    background-color: #585c5c;
+    color: white;
 }
 
 input.ng-valid {

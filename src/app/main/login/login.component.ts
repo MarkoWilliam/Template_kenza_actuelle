@@ -3,7 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { FuseConfigService } from '@fuse/services/config.service';
 import { GlobaleService } from '../service/globale.service';
-import { ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr'; 
+import { error } from 'console';
 
 @Component({
   selector: 'app-login',
@@ -94,7 +95,6 @@ export class LoginComponent implements OnInit {
    */
   ngOnInit(): void
   {
- 
   }
 
   login() {
@@ -106,23 +106,35 @@ export class LoginComponent implements OnInit {
   }
 
   Inscription() {
-    this.router.navigate(['/inscription']);
+    this.router.navigate(['/inscription'], {skipLocationChange: true});
   }
 
   loginUser() {
-    this.servInscr.Loginuser(this.modelCLient).subscribe(results => {
-      if(results != null) {
-        console.log("C'est ok", results)
-        this.router.navigate(['/analytique']);
-      } else {
-        console.log("Il y a une erreur");
-      }
-    })
+
+ 
+      this.servInscr.Loginuser(this.modelCLient).subscribe(results => {
+
+      
+        if(results != null) {
+          console.log("C'est ok", results)
+          this.router.navigate(['/analytique'], {skipLocationChange: true});
+          this.toastr.success('avec succès', 'Authentification'); 
+        }  else {
+          console.log("Erruer");
+          this.toastr.error('Login ou mot de passe incorrectes !', 'Erreur'); 
+        }   
+         
+      });
+
+    
+      // this.toastr.error('Login ou mot de passe incorrectes !', 'Erreur'); 
+ 
+
   }
 
 
   showSuccess() {
-    this.toastr.success('Hello world!', 'Toastr fun!');
+    this.toastr.success('avec succès', 'Authentification');
   }
  
 }

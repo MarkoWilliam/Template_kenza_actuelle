@@ -60,7 +60,13 @@ const appRoutes: Routes = [
         BrowserAnimationsModule,
         HttpClientModule,
         RouterModule.forRoot(appRoutes),
-        ToastrModule.forRoot(),
+        // RouterModule.forRoot(appRoutes, { useHash: true }),
+        ToastrModule.forRoot({
+            timeOut: 1400,
+            progressBar: true,
+            progressAnimation: 'increasing',
+            preventDuplicates: true
+        }),
         TranslateModule.forRoot(),
 
         // Material moment date module

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FuseConfigService } from '@fuse/services/config.service';
+import { ToastrService } from 'ngx-toastr';
 import { GlobaleService } from '../service/globale.service';
-// import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-inscription',
   templateUrl: './inscription.component.html',
@@ -66,6 +66,7 @@ export class InscriptionComponent implements OnInit {
    * @param {FuseConfigService} _fuseConfigService 
    */
   constructor(
+      private toastr: ToastrService,
       private formBuilder: FormBuilder,
       private _fuseConfigService: FuseConfigService,
       private router: Router,
@@ -111,19 +112,22 @@ export class InscriptionComponent implements OnInit {
         // const alertpesan = data.body.data;
         // console.log('Maessage de data', this.modelCLient);
         if (results) {
-          console.log('Message de data', results);
+          console.log('Message rerour', results);
           this.router.navigate(['/login']);
+          this.toastr.success('enregistrer', 'Donnée');
         }
         else {
           console.log("Il y a une erreur");
+          this.toastr.warning('Déja utiliser par une autre utilisateur', 'Email');
         }
       });
-    
+      // this.toastr.warning('Déja utiliser par une autre utilisateur', 'Email');
   }
 
 
-//   showToaster(){
-//     this.toastr.success("Hello, I'm the toastr message.")
-// }
+  retour() {
+    this.router.navigate(['/login']);
+  }
+
 
 }

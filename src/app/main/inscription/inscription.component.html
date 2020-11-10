@@ -11,73 +11,85 @@
             <!-- <p> connectez-vous à votre compte</p> -->
         </div>
         <br>
-        <br>
-
-        <br>
 
 
-        <div class="margin">
 
-            <div class="login-box">
 
-                <form [formGroup]="registrationForm" autocomplete="off">
-                    <div class="user-box">
 
-                        <input [(ngModel)]="modelCLient.nom" type="text" formControlName="name" inputmode="text">
-                        <div class="error" id="test" *ngFor="let error of errorMessages.name">
-                            <ng-container *ngIf="name.hasError(error.type) && (name.dirty || name.touched)">
-                                <small class="error-message">{{error.message}}</small>
-                            </ng-container>
-                        </div>
-                        <label position="floating">Nom</label>
+        <div class="login-box">
 
+            <form [formGroup]="registrationForm" autocomplete="off">
+                <div class="user-box">
+
+                    <input [(ngModel)]="modelCLient.nom" type="text" formControlName="name" inputmode="text">
+                    <div class="error" id="test" *ngFor="let error of errorMessages.name">
+                        <ng-container *ngIf="name.hasError(error.type) && (name.dirty || name.touched)">
+                            <small class="error-message">{{error.message}}</small>
+                        </ng-container>
                     </div>
+                    <label position="floating">Nom</label>
 
-                    <div class="user-box">
+                </div>
 
-                        <input [(ngModel)]="modelCLient.email" type="email" formControlName="message" inputmode="email">
-                        <div class="error" id="test" *ngFor="let error of errorMessages.message">
-                            <ng-container *ngIf="message.hasError(error.type) && (message.dirty || message.touched)">
-                                <small class="error-message">{{error.message}}</small>
-                            </ng-container>
-                        </div>
-                        <label position="floating">Email</label>
+                <div class="user-box">
 
+                    <input [(ngModel)]="modelCLient.email" type="email" formControlName="message" inputmode="email">
+                    <div class="error" id="test" *ngFor="let error of errorMessages.message">
+                        <ng-container *ngIf="message.hasError(error.type) && (message.dirty || message.touched)">
+                            <small class="error-message">{{error.message}}</small>
+                        </ng-container>
                     </div>
+                    <label position="floating">Email</label>
 
-                    <div class="user-box">
+                </div>
 
-                        <input [(ngModel)]="modelCLient.password" type="password" formControlName="pass" inputmode="password">
-                        <div class="error" id="test" *ngFor="let error of errorMessages.message">
-                            <ng-container *ngIf="pass.hasError(error.type) && (pass.dirty || pass.touched)">
-                                <small class="error-message">{{error.pass}}</small>
-                            </ng-container>
-                        </div>
-                        <label position="floating">password</label>
+                <div class="user-box">
 
+                    <input [(ngModel)]="modelCLient.password" type="password" formControlName="pass" inputmode="password">
+                    <div class="error" id="test" *ngFor="let error of errorMessages.message">
+                        <ng-container *ngIf="pass.hasError(error.type) && (pass.dirty || pass.touched)">
+                            <small class="error-message">{{error.pass}}</small>
+                        </ng-container>
                     </div>
+                    <label position="floating">password</label>
 
-                    <!-- {{#if message}}
+                </div>
+
+                <!-- {{#if message}}
                     <h4 class="alert alert-danger mt-4">{{message}} </h4>
                     {{/if}} -->
 
-                    <div class="btn_log">
+                <!-- <div class="btn_log">
                         <button id="btn_with" mat-raised-button [disabled]="!registrationForm.valid" type="submit" (click)="registerEntrer()">Save</button>
-                    </div>
+                    </div> -->
+                <div class="btn-retour">
+                    <table>
+                        <thead>
+                            <th>
+                                <button id="btn_goole" mat-raised-button (click)="retour()"> 
+                                        Retoure
+                                </button>
+                            </th>
+                            <th>
+                                <button id="btn_facebook" mat-raised-button [disabled]="!registrationForm.valid" type="submit" (click)="registerEntrer()">Save</button>
+
+                            </th>
+                        </thead>
+                    </table>
+                </div>
 
 
 
 
 
 
-
-                </form>
-            </div>
+            </form>
         </div>
-        <!-- <button id="btn_with" mat-raised-button (click)="showToaster()">Save</button> -->
-
-
     </div>
+    <!-- <button id="btn_with" mat-raised-button (click)="showToaster()">Save</button> -->
+
+
+
 
 
 
