@@ -28,21 +28,16 @@ import { NotificationModule } from 'app/main/notification/notification.module';
 //import { EventComponent } from './main/event/event.component';
 //import { ProduitsComponent } from './main/produits/produits.component';
 //import { CryptHttpService } from 'ngx-http-crypt';
-import { UtilisateurComponent } from './main/utilisateur/utilisateur.component';
 import { UtilisateurModule } from './main/utilisateur/utilisateur.module';
-import { EmployerComponent } from './main/employer/employer.component';
 import { EmployerModule } from './main/employer/employer.module';
 import { AnalyticsDashboardModule } from './main/dashboards/analytics/analytics.module';
-import { AdminComponent } from './main/admin/admin.component';
 import { AdminModule } from './main/admin/admin.module';
-import { LoginComponent } from './main/login/login.component';
 import { LoginModule } from './main/login/login.module';
-import { AccueilComponent } from './main/accueil/accueil.component';
 import { AccueilModule } from './main/accueil/accueil.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GlobaleService } from './main/service/globale.service';
-import { InscriptionComponent } from './main/inscription/inscription.component';
 import { InscriptionModule } from './main/inscription/inscription.module';
+import { ToastrModule } from 'ngx-toastr';
 
 
 const appRoutes: Routes = [
@@ -65,7 +60,7 @@ const appRoutes: Routes = [
         BrowserAnimationsModule,
         HttpClientModule,
         RouterModule.forRoot(appRoutes),
-
+        ToastrModule.forRoot(),
         TranslateModule.forRoot(),
 
         // Material moment date module

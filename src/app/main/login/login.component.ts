@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { FuseConfigService } from '@fuse/services/config.service';
 import { GlobaleService } from '../service/globale.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -58,6 +59,7 @@ export class LoginComponent implements OnInit {
    * @param {FuseConfigService} _fuseConfigService 
    */
   constructor(
+      private toastr: ToastrService,
       private formBuilder: FormBuilder,
       private _fuseConfigService: FuseConfigService,
       private router: Router,
@@ -118,5 +120,9 @@ export class LoginComponent implements OnInit {
     })
   }
 
+
+  showSuccess() {
+    this.toastr.success('Hello world!', 'Toastr fun!');
+  }
  
 }
