@@ -37,13 +37,12 @@ import { AccueilModule } from './main/accueil/accueil.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GlobaleService } from './main/service/globale.service';
 import { InscriptionModule } from './main/inscription/inscription.module';
-import { ToastrModule } from 'ngx-toastr';
-
+import { ToastrModule } from 'ngx-toastr'; 
 
 const appRoutes: Routes = [
     {
         path      : '**',
-        redirectTo: 'login'
+        redirectTo: 'login',
     },
     
 ];
@@ -104,7 +103,7 @@ const appRoutes: Routes = [
         AppComponent
     ],
     providers: [
-        GlobaleService
+        GlobaleService,
         //CryptHttpService
     ]
 })

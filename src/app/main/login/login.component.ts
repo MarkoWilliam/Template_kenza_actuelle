@@ -5,6 +5,8 @@ import { FuseConfigService } from '@fuse/services/config.service';
 import { GlobaleService } from '../service/globale.service';
 import { ToastrService } from 'ngx-toastr'; 
 import { error } from 'console';
+import { HttpResponse } from '@angular/common/http';
+import { User } from '../modelUser/user';
 
 @Component({
   selector: 'app-login',
@@ -17,17 +19,19 @@ export class LoginComponent implements OnInit {
     email: new FormControl('', Validators.required),
     password: new FormControl('')
   })
-
   modelCLient = {
     email: null,
     password: null,
   }
- 
+ messageError = null;
 
   get email() {
     return this.loginForm.get('email')
   }
 
+
+  fonction = null;
+  fonctionSer = null;
   get message() {
     return this.registrationForm.get('message');
   }
@@ -110,28 +114,24 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser() {
-
- 
-      this.servInscr.Loginuser(this.modelCLient).subscribe(results => {
-
-      
-        if(results != null) {
-          console.log("C'est ok", results)
-          this.router.navigate(['/analytique'], {skipLocationChange: true});
-          this.toastr.success('avec succès', 'Authentification'); 
-        }  else {
-          console.log("Erruer");
-          this.toastr.error('Login ou mot de passe incorrectes !', 'Erreur'); 
-        }   
-         
-      });
-
-    
-      // this.toastr.error('Login ou mot de passe incorrectes !', 'Erreur'); 
- 
-
+  this.servInscr.Loginuser(this.modelCLient).subscribe(results => {
+    console.log("Test");
+    if(results.status == 200) {
+      console.log("C'est ok", results)
+      this.router.navigate(['/analytique'], {skipLocationChange: true});
+      this.toastr.success('avec succès', 'Authentification');     
+    }else {
+      this.toastr.error('Login ou mot de passe incorrectes !', 'Erreur');
+     }
+  },(error) => {
+    console.log("Erreur",  error.status)
+    this.toastr.error('Login ou mot de passe incorrectes !', 'Erreur'); 
   }
+  ); 
 
+
+ 
+  }
 
   showSuccess() {
     this.toastr.success('avec succès', 'Authentification');

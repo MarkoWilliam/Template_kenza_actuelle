@@ -2,7 +2,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Lien } from '../models/lien';
-
+// import 'rxjs/add/operator/catch';
+// import 'rxjs/add/observable/throw';
+// import { ToastrService } from 'ngx-toastr'; 
 @Injectable({
   providedIn: 'root'
 })
@@ -31,4 +33,6 @@ export class GlobaleService {
     headers.append('Content-Type', 'application/json');
     return this.http.post(this.lien.lienCmd + `${this.LoginUser}`,ModelCLient, {headers, observe:'response'});
   }
+
+ 
 }

@@ -108,10 +108,16 @@ export class InscriptionComponent implements OnInit {
 
   registerEntrer() {
 
+    // if(this.modelCLient.nom === '') {
+    //   this.toastr.warning('Remplissez le champ Nom!', 'Champ vide'); 
+    // }else if(this.modelCLient.email === '') {
+    //   this.toastr.warning('Remplissez le champ Email!', 'Champ vide'); 
+    // }else if(this.modelCLient.password === '') {
+    //   this.toastr.warning('Remplissez le champ Password!', 'Champ vide'); 
+    // }else {
+ 
       this.servInscr.creationUser(this.modelCLient).subscribe( results => {
-        // const alertpesan = data.body.data;
-        // console.log('Maessage de data', this.modelCLient);
-        if (results) {
+        if (results.status == 200) {
           console.log('Message rerour', results);
           this.router.navigate(['/login']);
           this.toastr.success('enregistrer', 'Donnée');
@@ -120,8 +126,12 @@ export class InscriptionComponent implements OnInit {
           console.log("Il y a une erreur");
           this.toastr.warning('Déja utiliser par une autre utilisateur', 'Email');
         }
-      });
-      // this.toastr.warning('Déja utiliser par une autre utilisateur', 'Email');
+      },(error) => {
+        console.log("Erreur",  error.status)
+        this.toastr.error(' !', 'Erreur'); 
+      }
+      ); 
+    // }
   }
 
 
