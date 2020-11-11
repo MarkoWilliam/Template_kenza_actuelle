@@ -11,7 +11,7 @@ import { FuseSharedModule } from '@fuse/shared.module';
 const routes = [
        {
          path : 'login',
-         component: LoginComponent,  
+         component: LoginComponent,
         }
 ];
 

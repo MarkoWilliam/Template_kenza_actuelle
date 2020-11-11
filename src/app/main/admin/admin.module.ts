@@ -6,12 +6,14 @@ import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { AdminComponent } from './admin.component';
+import { AuthGuard } from '../service/auth/auth.guard';
 
 
 const routes = [
   {
       path     : 'admin',
-      component: AdminComponent
+      component: AdminComponent,
+      canActivate: [AuthGuard],
   }
 ];
 

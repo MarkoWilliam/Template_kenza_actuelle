@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { AuthGuard } from '../service/auth/auth.guard';
 import { EventComponent } from './event.component';
 
 
@@ -7,7 +8,8 @@ import { EventComponent } from './event.component';
 const routes = [
   {
       path     : 'event',
-      component: EventComponent
+      component: EventComponent,
+      canActivate: [AuthGuard],
   }
 ];
 

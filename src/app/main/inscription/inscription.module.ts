@@ -8,11 +8,12 @@ import { MatInputModule } from '@angular/material/input';
 
 import { FuseSharedModule } from '@fuse/shared.module';
 import { InscriptionComponent } from './inscription.component';
+import { AuthGuard } from '../service/auth/auth.guard';
 
 const routes = [
   {
     path: 'inscription',
-    component: InscriptionComponent
+    component: InscriptionComponent,
   }
 ]
 

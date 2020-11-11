@@ -9,13 +9,15 @@ import { Lien } from '../models/lien';
   providedIn: 'root'
 })
 export class GlobaleService {
-
+ 
+  private isUserLoggeIn = false;
   private ListerUser = 'user';
   private CreationUser = 'auth/register';
   private LoginUser = 'auth/login';
   private lien: Lien = new Lien();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient
+              ) { }
 
   listeUser(): Observable<any> {
     const headers = new HttpHeaders({ 'content-type': 'application/json' });
@@ -32,6 +34,10 @@ export class GlobaleService {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     return this.http.post(this.lien.lienCmd + `${this.LoginUser}`,ModelCLient, {headers, observe:'response'});
+  }
+
+  getUserLoggeIn() {
+    return this.isUserLoggeIn;
   }
 
  

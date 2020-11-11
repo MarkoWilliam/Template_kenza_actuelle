@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { AuthGuard } from '../service/auth/auth.guard';
 import { MessageComponent } from './message.component';
 
 
@@ -7,7 +8,8 @@ import { MessageComponent } from './message.component';
 const routes = [
   {
       path     : 'message',
-      component: MessageComponent
+      component: MessageComponent,
+      canActivate: [AuthGuard],
   }
 ];
 

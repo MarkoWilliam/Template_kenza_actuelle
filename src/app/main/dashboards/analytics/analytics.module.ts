@@ -15,6 +15,7 @@ import { FuseWidgetModule } from '@fuse/components/widget/widget.module';
 
 import { AnalyticsDashboardComponent } from 'app/main/dashboards/analytics/analytics.component';
 import { AnalyticsDashboardService } from 'app/main/dashboards/analytics/analytics.service';
+import { AuthGuard } from 'app/main/service/auth/auth.guard';
 
 const routes: Routes = [
     {

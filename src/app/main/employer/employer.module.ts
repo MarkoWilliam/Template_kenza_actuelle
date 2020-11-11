@@ -4,12 +4,14 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { FuseSharedModule } from '@fuse/shared.module';
 import { EmployerComponent } from './employer.component';
+import { AuthGuard } from '../service/auth/auth.guard';
 
 
 const routes = [
   {
       path     : 'employer',
-      component: EmployerComponent
+      component: EmployerComponent,
+      canActivate: [AuthGuard],
   }
 ];
 
