@@ -16,6 +16,8 @@ import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 })
 export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
 {
+    nom: any;
+    email: any;
     fuseConfig: any;
     navigation: any;
 
@@ -40,6 +42,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
     {
         // Set the private defaults
         this._unsubscribeAll = new Subject();
+
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -119,6 +122,8 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
             .subscribe(() => {
                 this.navigation = this._fuseNavigationService.getCurrentNavigation();
             });
+
+            this.Donner();
     }
 
     /**
@@ -149,5 +154,10 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
     toggleSidebarFolded(): void
     {
         this._fuseSidebarService.getSidebar('navbar').toggleFold();
+    }
+
+    Donner() {
+      this.nom =  sessionStorage.getItem('nom');
+       this.email = sessionStorage.getItem('email');
     }
 }

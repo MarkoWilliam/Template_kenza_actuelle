@@ -26,7 +26,7 @@ export const navigation: FuseNavigation[] = [
                 id       : 'utilisateur',
                 title    : 'Gestion des clients',
                 type     : 'item',
-                icon     : 'account_circle',
+                icon     : 'people',
                 url      : '/utlisateur',
             },
 

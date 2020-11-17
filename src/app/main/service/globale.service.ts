@@ -42,7 +42,7 @@ export class GlobaleService {
   }
 
   loggedIn() {
-    return !!localStorage.getItem('token');
+    return !!sessionStorage.getItem('token');
   }
 
  

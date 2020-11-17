@@ -7,7 +7,7 @@ import { ContentComponent } from 'app/layout/components/content/content.componen
 
 @NgModule({
     declarations: [
-        ContentComponent
+        ContentComponent, 
     ],
     imports     : [
         RouterModule,

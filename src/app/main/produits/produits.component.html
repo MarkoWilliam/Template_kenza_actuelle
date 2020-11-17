@@ -1,66 +1,75 @@
-<div class="content">
-    <h2 class="title_page">Poduit mis en avant</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>N°</th>
-                <th>Code Article</th>
-                <th>Image</th>
-                <th>Description</th>
-                <th></th>
-                <th>Afficher</th>           
-            </tr>        
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>CA1</td>
-                <td>
-                    <img style="width:20px; height:20px; margin: 10px" [src]="">
-                </td>
-                <td>text desciption</td>
-                <td></td>
-                <td>
-                    <input type="checkbox">
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>CA2</td>
-                <td>
-                    <img style="width:20px; height:20px; margin: 10px" [src]="">
-                </td>
-                <td>text desciption</td>
-                <td></td>
-                <td>
-                    <input type="checkbox">
-                </td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>CA3</td>
-                <td>
-                    <img style="width:20px; height:20px; margin: 10px" [src]="">
-                </td>
-                <td>text desciption</td>
-                <td></td>
-                <td>
-                    <input type="checkbox">
-                </td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>CA4</td>
-                <td>
-                    <img style="width:20px; height:20px; margin: 10px" [src]="">
-                </td>
-                <td>text desciption</td>
-                <td></td>
-                <td>
-                    <input type="checkbox">
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+<div class="page-layout blank p-24" fusePerfectScrollbar>
 
+    <div class="main-widget" id="marginWidth">
+
+        <div class="position-relative p-24 blue-600" fxLayout="row" fxLayoutAlign="space-between center">
+            <div fxLayout="column" fxLayoutAlign="start start">
+                <p class="textProduit">Les produits</p>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+
+    <div class="content-card">
+        <div class="tableDiv">
+
+
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr id="centerth">
+                        <th scope="col">id</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Catégorie</th>
+                        <th scope="col">Couleurs</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Prix</th>
+                        <th scope="col">Prix-Solde</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="centertd">
+                    <tr>
+                        <td>1</td>
+                        <td>LANIERE EN FETE</td>
+                        <td>ROBE</td>
+                        <td>Noire, blanc</td>
+                        <td></td>
+                        <td>En Promo</td>
+                        <td>22,90 €</td>
+                        <td>12,00 €</td>
+                        <td><button class="btn">Detail</button></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>CHEMISE LOSANGE</td>
+                        <td>ROBE</td>
+                        <td>Rouge, blanc</td>
+                        <td></td>
+                        <td>En Promo</td>
+                        <td>22,90 €</td>
+                        <td>12,00 €</td>
+                        <td><button class="btn">Detail</button></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>HAUT PALME</td>
+                        <td>ROBE</td>
+                        <td>Rouge, blanc</td>
+                        <td></td>
+                        <td>En Promo</td>
+                        <td>11,50 €</td>
+                        <td>7,00 €</td>
+                        <td><button class="btn">Detail</button></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

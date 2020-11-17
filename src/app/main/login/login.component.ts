@@ -121,7 +121,9 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/analytique'], {skipLocationChange: true});
       this.toastr.success('avec succès', 'Authentification');   
       // stoquer token dans local Storage du navigateur  
-      localStorage.setItem('token', results.body.token);
+      sessionStorage.setItem('token', results.body.token);
+      sessionStorage.setItem('nom', results.body.reponse.nom);
+      sessionStorage.setItem('email', results.body.reponse.email);
     }else {
       this.toastr.error('Login ou mot de passe incorrectes !', 'Erreur');
      }
