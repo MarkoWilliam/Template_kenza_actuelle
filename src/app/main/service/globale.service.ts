@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Lien } from '../models/lien';
+import { map } from 'rxjs/operators';
 // import 'rxjs/add/operator/catch';
 // import 'rxjs/add/observable/throw';
 // import { ToastrService } from 'ngx-toastr'; 
@@ -10,7 +11,7 @@ import { Lien } from '../models/lien';
 })
 export class GlobaleService {
  
-  private isUserLoggeIn = false;
+  public isUserLoggeIn = false;
   private ListerUser = 'user';
   private CreationUser = 'auth/register';
   private LoginUser = 'auth/login';
@@ -38,6 +39,10 @@ export class GlobaleService {
 
   getUserLoggeIn() {
     return this.isUserLoggeIn;
+  }
+
+  loggedIn() {
+    return !!localStorage.getItem('token');
   }
 
  

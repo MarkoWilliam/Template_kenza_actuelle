@@ -11,7 +11,8 @@ export interface FuseNavigationItem
     exactMatch?: boolean;
     externalUrl?: boolean;
     openInNewTab?: boolean;
-    function?: any;
+    function?: boolean;
+    canActivate?: any;
     badge?: {
         title?: string;
         translate?: string;

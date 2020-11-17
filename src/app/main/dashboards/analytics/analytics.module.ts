@@ -21,6 +21,7 @@ const routes: Routes = [
     {
         path     : 'analytique',
         component: AnalyticsDashboardComponent,
+        canActivate: [AuthGuard],
     }
 ];
 

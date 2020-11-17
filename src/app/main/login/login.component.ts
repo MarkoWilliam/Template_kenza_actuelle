@@ -119,21 +119,27 @@ export class LoginComponent implements OnInit {
     if(results.status == 200) {
       console.log("C'est ok", results)
       this.router.navigate(['/analytique'], {skipLocationChange: true});
-      this.toastr.success('avec succès', 'Authentification');     
+      this.toastr.success('avec succès', 'Authentification');   
+      // stoquer token dans local Storage du navigateur  
+      localStorage.setItem('token', results.body.token);
     }else {
       this.toastr.error('Login ou mot de passe incorrectes !', 'Erreur');
      }
   },(error) => {
-    console.log("Erreur",  error.status)
-    this.toastr.error('Login ou mot de passe incorrectes !', 'Erreur'); 
+
+    if(error.status === 401) {
+      console.log("Erreur",  error.status)
+      this.toastr.error('Login ou mot de passe incorrectes !', 'Erreur'); 
+    } else if (error.status === 405) {
+      this.toastr.warning('Il y a une champ vide', 'Erreur'); 
+    } 
+    else {
+      console.log("Erreur Trover")
+    }
+
   }
   ); 
-
-  // (error) => {
-  //   if(error) {}
-  //   console.log("Erreur",  error.status)
-  //   this.toastr.error('Login ou mot de passe incorrectes !', 'Erreur'); 
-  // }
+ 
  
   }
 

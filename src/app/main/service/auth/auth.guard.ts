@@ -8,12 +8,30 @@ import { GlobaleService } from '../globale.service';
   providedIn: 'root'
 })
 export class AuthGuard implements  CanActivate{
-constructor(private global: GlobaleService,private router: Router,private toastr: ToastrService,) {}
+constructor(private _global: GlobaleService,
+            private _router: Router,
+            private toastr: ToastrService,) {}
 
-canActivate(  next: ActivatedRouteSnapshot,
-  state: RouterStateSnapshot):Observable<boolean> | Promise<boolean> | boolean {
-    this.router.navigate(['/login']);
+// canActivate(  next: ActivatedRouteSnapshot,
+//   state: RouterStateSnapshot):Observable<boolean> | Promise<boolean> | boolean {
+
+//     if(this._global.getUserLoggeIn()) {
+//       return true;
+//     } else {
+//       this._router.navigate(['/login']);
+//       this.toastr.warning('Vous d\'abord !', 'Connecter'); 
+//       // return this._global.getUserLoggeIn();
+//     }
+
+// }
+
+canActivate(): boolean {
+  if (this._global.loggedIn()) {
+    return true;
+  } else {
+    this._router.navigate(['/login']);
     this.toastr.warning('Vous d\'abord !', 'Connecter'); 
-    return this.global.getUserLoggeIn();
+    return false;
+  }
 }
 }

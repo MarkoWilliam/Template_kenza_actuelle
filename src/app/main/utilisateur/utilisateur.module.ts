@@ -4,12 +4,14 @@ import { UtilisateurComponent } from './utilisateur.component';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { FuseSharedModule } from '@fuse/shared.module';
+import { AuthGuard } from '../service/auth/auth.guard';
 
 
 const routes = [
   {
       path     : 'utlisateur',
-      component: UtilisateurComponent
+      component: UtilisateurComponent,
+      canActivate: [AuthGuard],
   }
 ];
 

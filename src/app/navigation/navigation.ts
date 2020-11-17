@@ -1,5 +1,5 @@
-import { FuseNavigation } from '@fuse/types';
-
+import { FuseNavigation } from '@fuse/types'; 
+import { AuthGuard } from 'app/main/service/auth/auth.guard';
 export const navigation: FuseNavigation[] = [
     {
         id       : 'applications',
@@ -18,7 +18,7 @@ export const navigation: FuseNavigation[] = [
                 id       : 'admin',
                 title    : 'Gestion Administrateur',
                 type     : 'item',
-                icon     : 'account_circle',
+                icon     : 'account_circle', 
                 url      : '/admin',
             },
             

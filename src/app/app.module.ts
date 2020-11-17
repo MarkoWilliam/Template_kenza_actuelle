@@ -40,12 +40,13 @@ import { InscriptionModule } from './main/inscription/inscription.module';
 import { ToastrModule } from 'ngx-toastr'; 
 import { AuthGuard } from './main/service/auth/auth.guard';
 import { AnalyticsDashboardComponent } from './main/dashboards/analytics/analytics.component';
+import { AdminComponent } from './main/admin/admin.component';
 
 const appRoutes: Routes = [
     {
         path      : '**',
         redirectTo: 'login',
-    }
+    },
     
 ];
 
