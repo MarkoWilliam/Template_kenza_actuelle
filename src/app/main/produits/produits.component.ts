@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';  
+import { GlobaleService } from '../service/globale.service';
 //import { locale as english } from './i18n/en';
 //import { locale as turkish } from './i18n/tr';
 
@@ -42,16 +43,35 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class ProduitsComponent  
 {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  listProduit: MatTableDataSource<any>;
+ 
+  displayedColumns: string[] = ['position', 'nom', 'couleur', 'stock_dispo', 'statue', 'prix', 'prix_solde'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
+  constructor(public servGlobal : GlobaleService) {}
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
+    this.ListeProduit();
   }
 
- 
+  //----------------List produits------------------
+//  ListeProduit() {
+//    this.servGlobal.listeProduit().subscribe(results => {
+//     this.listProduit = results.body;
+//     console.log("list produit", this.listProduit);
+//    })
+//  }
+
+ListeProduit() {
+  this.servGlobal.listeProduit().subscribe(results => {
+   this.listProduit = new MatTableDataSource(results.body);
+   this.listProduit.paginator = this.paginator;
+   console.log("list produit", this.listProduit);
+   console.log("list produit pagination",    this.listProduit.paginator);
+  })
+}
  
 }
 

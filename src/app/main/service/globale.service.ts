@@ -15,22 +15,27 @@ export class GlobaleService {
   private ListerUser = 'user';
   private CreationUser = 'auth/register';
   private LoginUser = 'auth/login';
+  private ListeProduit = "produit/produitList";
   private lien: Lien = new Lien();
 
   constructor(private http: HttpClient
               ) { }
 
+
+  //------------------Liste user------------------
   listeUser(): Observable<any> {
     const headers = new HttpHeaders({ 'content-type': 'application/json' });
     return this.http.get(this.lien.lienCmd +`${this.ListerUser}`, {headers, observe: 'response'});
   }
 
+    //------------------Création user------------------
   creationUser(ModelCLient: object): Observable<any> {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     return this.http.post(this.lien.lienCmd + `${this.CreationUser}`,ModelCLient, {headers, observe:'response'});
   }
 
+    //------------------Login user------------------
   Loginuser(ModelCLient: object): Observable<any> {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
@@ -45,5 +50,11 @@ export class GlobaleService {
     return !!sessionStorage.getItem('token');
   }
 
+    //------------------Liste produit------------------
+
+    listeProduit(): Observable<any> {
+      const headers = new HttpHeaders({ 'content-type': 'application/json' });
+      return this.http.get(this.lien.lienCmd + `${this.ListeProduit}`, {headers, observe: 'response'});
+    }
  
 }
