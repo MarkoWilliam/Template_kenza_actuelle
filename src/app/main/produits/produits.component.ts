@@ -45,24 +45,16 @@ export class ProduitsComponent
 {
   listProduit: MatTableDataSource<any>;
  
-  displayedColumns: string[] = ['position', 'nom', 'couleur', 'stock_dispo', 'statue', 'prix', 'prix_solde'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  displayedColumns: string[] = ['position', 'nom', 'couleur', 'stock_dispo', 'statue', 'prix', 'prix_solde', 'actions'];
+ 
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   constructor(public servGlobal : GlobaleService) {}
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
     this.ListeProduit();
   }
 
-  //----------------List produits------------------
-//  ListeProduit() {
-//    this.servGlobal.listeProduit().subscribe(results => {
-//     this.listProduit = results.body;
-//     console.log("list produit", this.listProduit);
-//    })
-//  }
 
 ListeProduit() {
   this.servGlobal.listeProduit().subscribe(results => {
