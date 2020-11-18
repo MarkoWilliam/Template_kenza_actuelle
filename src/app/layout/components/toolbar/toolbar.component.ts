@@ -19,6 +19,7 @@ import { Router } from '@angular/router';
 
 export class ToolbarComponent implements OnInit, OnDestroy
 {
+    nom : any; 
     horizontalNavbar: boolean;
     rightNavbar: boolean;
     hiddenNavbar: boolean;
@@ -108,6 +109,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
                 this.horizontalNavbar = settings.layout.navbar.position === 'top';
                 this.rightNavbar = settings.layout.navbar.position === 'right';
                 this.hiddenNavbar = settings.layout.navbar.hidden === true;
+                this.Donner();
             });
 
         // Set the selected language from default languages
@@ -166,4 +168,9 @@ export class ToolbarComponent implements OnInit, OnDestroy
     deconnexion() {
         this.route.navigate(['/login'])
     }
+
+    
+    Donner() {
+        this.nom =  sessionStorage.getItem('nom');
+      }
 }
