@@ -1,0 +1,62 @@
+@import "src/@fuse/scss/fuse";
+.tableDiv {
+    margin-top: 50px;
+}
+
+table {
+    width: 100%;
+}
+
+#centerth th {
+    text-align: center;
+    color: white;
+}
+
+#centertd td {
+    text-align: center;
+}
+
+.btn {
+    border-radius: 10px;
+    border-color: #039BE5;
+    color: rgb(228, 219, 212);
+    background-color: #039BE5;
+    width: 100px;
+}
+
+.th {
+    font-family: sans-serif;
+    border: thin solid #333435;
+    text-align: center;
+}
+
+td {
+    font-family: sans-serif;
+    border: thin solid #3c3c3d;
+    // width: 100%;
+    // padding: 5px;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+#site-search {
+    height: 30px;
+    background-color: rgb(219, 211, 211);
+    border-radius: 10px;
+}
+
+.marginDiv {
+    margin-left: auto;
+    margin-right: auto;
+    width: 20em;
+}
+
+.marignBtn {
+    margin-left: 10px;
+    border-radius: 10px;
+}
+
+.textProduit {
+    // text-align: center;
+    font-size: 25px;
+}

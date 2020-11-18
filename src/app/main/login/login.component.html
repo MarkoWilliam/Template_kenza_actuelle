@@ -1,0 +1,95 @@
+<div class="back">
+
+
+
+    <div id="login">
+        <div class="logo">
+            <img id="img_logo" src="assets/img/logo_kenza_principale.png">
+        </div>
+
+        <div class="text_log">
+            <!-- <p> connectez-vous à votre compte</p> -->
+        </div>
+        <br>
+        <br>
+
+        <br>
+
+
+        <div class="margin">
+
+            <div class="login-box">
+                <!-- 
+                <form [formGroup]="loginForm"> -->
+                <form [formGroup]="registrationForm" autocomplete="off">
+                    <div class="user-box">
+
+                        <input [(ngModel)]="modelCLient.email" type="text" formControlName="message" inputmode="Email">
+                        <div class="error" id="test" *ngFor="let error of errorMessages.message">
+                            <ng-container *ngIf="message.hasError(error.type) && (message.dirty || message.touched)">
+                                <small class="error-message">{{error.message}}</small>
+                            </ng-container>
+                        </div>
+                        <!-- <span class="error" *ngIf="email.invalid && email.touched">Email n'est pas valider</span> -->
+                        <label>Email</label>
+
+                    </div>
+                    <div class="user-box">
+                        <input [(ngModel)]="modelCLient.password" type="password" formControlName="pass" inputmode="password">
+                        <div class="error" id="test" *ngFor="let error of errorMessages.message">
+                            <ng-container *ngIf="pass.hasError(error.type) && (pass.dirty || pass.touched)">
+                                <small class="error-message">{{error.pass}}</small>
+                            </ng-container>
+                        </div>
+                        <label position="floating">password</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" />
+                        <label class="mdp_oublié">
+                      <span>Mot de passe oublié</span>
+                    </label>
+                    </div>
+                    <div class="btn_log">
+                        <button id="btn_with" mat-raised-button (click)="loginUser()">Connexion</button>
+                    </div>
+                    <!-- 
+                    <div class="text_or">
+                        <p>---OR---</p>
+                    </div> -->
+
+                    <!-- <div>
+                        <table>
+                            <thead>
+                                <th>
+                                    <button id="btn_goole" mat-raised-button (click)="showSuccess()"> 
+                                        Google
+                                </button>
+                                </th>
+                                <th>
+                                    <button id="btn_facebook" mat-flat-button color="primary"> 
+                                        Facebook
+                                </button>
+                                </th>
+                            </thead>
+                        </table>
+                    </div> -->
+
+                    <!-- <div class="margin_tex">
+                        <div class="text_compte">
+                            <p style="text-align: center;">Vous n'avez pas de compte ?</p>
+                        </div>
+                        <div style="margin-left: 30%;">
+                            <button id="text_cliq" mat-raised-button (click)="Inscription()">Cliquez ici</button>
+                        </div>
+                    </div> -->
+
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+</div>
