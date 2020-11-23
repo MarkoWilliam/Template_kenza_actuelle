@@ -16,6 +16,7 @@ export class GlobaleService {
   private CreationUser = 'auth/register';
   private LoginUser = 'auth/login';
   private ListeProduit = "produit/produitList";
+  private ListeById = "produit/produitID"
   private lien: Lien = new Lien();
 
   constructor(private http: HttpClient
@@ -56,5 +57,8 @@ export class GlobaleService {
       const headers = new HttpHeaders({ 'content-type': 'application/json' });
       return this.http.get(this.lien.lienCmd + `${this.ListeProduit}`, {headers, observe: 'response'});
     }
+
+    //----------------Selecte par id-----------------
+
  
 }

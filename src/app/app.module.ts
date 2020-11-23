@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpParams } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
@@ -23,7 +23,7 @@ import { EventModule } from 'app/main/event/event.module';
 
 import { MessageModule } from 'app/main/message/message.module';
 import { NotificationModule } from 'app/main/notification/notification.module';
-import { MatTableModule } from '@angular/material'  
+import { MatCardModule, MatDialogModule, MatGridListModule, MatTableModule } from '@angular/material'  
 import { UtilisateurModule } from './main/utilisateur/utilisateur.module';
 import { EmployerModule } from './main/employer/employer.module';
 import { AnalyticsDashboardModule } from './main/dashboards/analytics/analytics.module';
@@ -38,6 +38,8 @@ import { AuthGuard } from './main/service/auth/auth.guard';
 import { AnalyticsDashboardComponent } from './main/dashboards/analytics/analytics.component';
 import { AdminComponent } from './main/admin/admin.component';
 import { MatSortModule } from '@angular/material/sort';
+import { DialogExampleComponent } from './main/dialog-example/dialog-example.component';
+import { DialogExampleModule } from './main/dialog-example/dialog-example.module';
 
 const appRoutes: Routes = [
     {
@@ -50,10 +52,9 @@ const appRoutes: Routes = [
 @NgModule({
     declarations: [
         AppComponent,
-       // InscriptionComponent,
-        //AccueilComponent,
-       // LoginComponent
     ],
+    //-----Dialog---------
+    entryComponents: [DialogExampleComponent,],
     imports     : [
         BrowserModule,
         BrowserAnimationsModule,
@@ -70,7 +71,6 @@ const appRoutes: Routes = [
 
         // Material moment date module
         MatMomentDateModule,
-
         // Material
         MatButtonModule,
         MatIconModule,
@@ -84,7 +84,9 @@ const appRoutes: Routes = [
         FuseThemeOptionsModule,
         FormsModule,
         ReactiveFormsModule,
-
+        MatDialogModule,
+        MatGridListModule,
+        MatCardModule,
         // App modules
         LayoutModule,
         SampleModule,
@@ -99,6 +101,7 @@ const appRoutes: Routes = [
         LoginModule,
         AccueilModule,
         InscriptionModule,
+        DialogExampleModule,
     ],
     bootstrap   : [
         AppComponent

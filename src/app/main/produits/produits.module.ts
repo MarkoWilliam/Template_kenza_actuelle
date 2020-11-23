@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from '../service/auth/auth.guard';
 import { ProduitsComponent } from './produits.component';
-import { MatCheckboxModule, MatInputModule, MatIconModule, MatSortModule, MatTableModule } from '@angular/material' 
+import { MatCheckboxModule, MatInputModule, MatIconModule, MatSortModule, MatTableModule, MatDialogModule, MatGridListModule, MatCardModule } from '@angular/material' 
 import { MatPaginatorModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule, HttpParams } from '@angular/common/http';
 const routes = [
   {
       path     : 'produits',
@@ -28,7 +29,13 @@ const routes = [
       FormsModule,
       ReactiveFormsModule,
       MatInputModule,
-      BrowserModule    
+      BrowserModule,
+      MatDialogModule,
+      MatGridListModule,
+      MatCardModule,
+      HttpClientModule
+    
+          
   ],
   exports     : [
     ProduitsComponent,
@@ -40,7 +47,11 @@ const routes = [
     FormsModule, 
     ReactiveFormsModule,
     MatInputModule,
-    BrowserModule     
+    BrowserModule,
+    MatDialogModule,
+    MatGridListModule,
+    MatCardModule,
+    HttpClientModule,   
   ]
 })
 

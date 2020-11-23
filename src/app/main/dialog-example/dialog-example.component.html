@@ -1,0 +1,38 @@
+<h1 mat-dialog-title class="titre">Détail du article </h1>
+<div mat-dialog-content style="width: 350px;">
+    <div class="example-container">
+
+        <mat-form-field appearance="fill" class="input">
+            <mat-label>Nom</mat-label>
+            <input [(ngModel)]="data.nom" matInput>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="input">
+            <mat-label>Couleur</mat-label>
+            <input [(ngModel)]="data.couleur" matInput>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="input">
+            <mat-label>Stock disponible</mat-label>
+            <input [(ngModel)]="data.stock_dispo" matInput>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="input">
+            <mat-label>Status</mat-label>
+            <input [(ngModel)]="data.statue" matInput>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="input">
+            <mat-label>Prix</mat-label>
+            <input [(ngModel)]="data.prix" matInput>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="input">
+            <mat-label>Prix solde</mat-label>
+            <input [(ngModel)]="data.prix_solde" matInput>
+        </mat-form-field>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Close</button>
+</div>
