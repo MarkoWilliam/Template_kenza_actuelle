@@ -10,17 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class DialogExampleComponent implements OnInit {
   produitId: any;
-  dataProduit : {
-    id: 0,
-    nom: '',
-    couleur: '',
-    stock_dispo: '',
-    statue: '',
-    prix: '',
-    prix_solde: '',
-    etat: '',
-    image: '',
-  }
+
   constructor(private route: ActivatedRoute, 
     private globalServ: GlobaleService,
     private toastr: ToastrService,
@@ -34,13 +24,21 @@ export class DialogExampleComponent implements OnInit {
     // this.produitId = this.route.snapshot.paramMap.get('id');
   }
 
-  Updatemodif() {
-  this.globalServ.UpdatProduit(this.data).subscribe(results=> {
+  Updatemodif(produitId) {
+  this.globalServ.UpdatProduit(produitId,this.data).subscribe(results=> {
     if(results) {
       this.toastr.success('Donner bien modifier', 'Success')
     } else {
       this.toastr.warning('Il y a une ereeur', 'Erreur')
     }
+  }, (error) => {
+    if(error.status === 501) {
+      console.log("Erreur", error.status)
+      this.toastr.warning('Il y a une champ vide', 'Erreur')
+    }else {
+      console.log("Erreur Trouver")
+    }
+
   })
 }
 

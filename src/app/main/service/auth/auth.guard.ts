@@ -12,18 +12,6 @@ constructor(private _global: GlobaleService,
             private _router: Router,
             private toastr: ToastrService,) {}
 
-// canActivate(  next: ActivatedRouteSnapshot,
-//   state: RouterStateSnapshot):Observable<boolean> | Promise<boolean> | boolean {
-
-//     if(this._global.getUserLoggeIn()) {
-//       return true;
-//     } else {
-//       this._router.navigate(['/login']);
-//       this.toastr.warning('Vous d\'abord !', 'Connecter'); 
-//       // return this._global.getUserLoggeIn();
-//     }
-
-// }
 
 canActivate(): boolean {
   if (this._global.loggedIn()) {
