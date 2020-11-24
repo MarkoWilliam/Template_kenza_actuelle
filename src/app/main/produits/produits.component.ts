@@ -6,6 +6,7 @@ import { DialogExampleComponent } from '../dialog-example/dialog-example.compone
 import { GlobaleService } from '../service/globale.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 //import { locale as english } from './i18n/en';
 //import { locale as turkish } from './i18n/tr';
 export interface DialogData {
@@ -28,11 +29,11 @@ export interface PeriodicElement {
 })
 export class ProduitsComponent  
 {
+  donnerProduit: any;
   idProduit: number;
   checked: boolean = false;
   indeterminate:boolean = false;
   disabled:boolean = false;
-   etat: string;
   listProduit: MatTableDataSource<any>;
   dataProduit : {
     id: 0,
@@ -54,14 +55,13 @@ export class ProduitsComponent
   @ViewChild(MatSort,  {static: true}, ) sort: MatSort;
 
   constructor(public servGlobal : GlobaleService,public route: Router,
+              private toastr: ToastrService,
               public dialog: MatDialog) {}
   ngOnInit() {
     this.ListeProduit();
   }
 
-  onCheck(etat) {
-    this.etat = this.checked?'ON':'OFF';
-}
+ 
 //   changeValue() {
 //   this.etat
 //  }
@@ -91,15 +91,64 @@ openModal(element) {
 //  this.route.navigate(['/dialog'], { queryParams: { order: 'elementId' } });
 }
 
-checkBox(etat) {
-  if(this.etat) {
-    console.log(etat);
-    return 1
+// Updatemodif(idProduit, etat) {
+//   console.log(idProduit, etat);
+//   this.UpdatemodifProduit(idProduit, etat);
+// }
+
+UpdatemodifProduit(produitId) {
+  this.servGlobal.UpdatProduitck(produitId,this.etat).subscribe(results=> {
+    if(results) {
+      console.log("ok");
+      this.toastr.success('Donner bien modifier', 'Success')
     } else {
-    return 0
-  }
+      this.toastr.warning('Il y a une ereeur', 'Erreur')
+    }
+  }, 
+  (error) => {
+    if(error.status === 501) {
+      console.log("Erreur", error.status)
+      this.toastr.warning('Il y a une champ vide', 'Erreur')
+    }else {
+      console.log("Erreur Trouver")
+    }
+
+ }
+  )
 }
 
+recuperation(donner) {
+  console.log("Donner", donner);
+  
+// this.donnerProduit = donner;
+//  this.donnerProduit.etat === true
+//  if(donner.etat) {
+//    donner.etat = false
+//  } else {
+//   donner.etat = true
+//  }
+donner.etat = !donner.etat;
+// donner.etat = false;
+ this.servGlobal.UpdatProduit(donner.id,donner).subscribe(results=> {
+  if(results) {
+    console.log("ok");
+    this.toastr.success('Donner bien modifier', 'Success')
+  } else {
+    this.toastr.warning('Il y a une ereeur', 'Erreur')
+  }
+}, 
+(error) => {
+  if(error.status === 501) {
+    console.log("Erreur", error.status)
+    this.toastr.warning('Il y a une champ vide', 'Erreur')
+  }else {
+    console.log("Erreur Trouver")
+  }
+
+}
+)
+
+}
 
 
 }

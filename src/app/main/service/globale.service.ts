@@ -67,6 +67,12 @@ export class GlobaleService {
       return this.http.patch(this.lien.lienCmd + `${this.UpadateProduit}` + id  ,ModelProduit, {headers, observe:'response'});
     }
 
+    UpdatProduitck(id: number,ModelProduit): Observable<any> {
+      const headers = new HttpHeaders({'content-type': 'application/json'});
+      // return this.http.patch(this.lien.lienCmd + `${this.UpadateProduit}` + id,  {headers, observe:'response'});
+      return this.http.patch(this.lien.lienCmd + `${this.UpadateProduitCheck}` + id  ,ModelProduit, {headers, observe:'response'});
+    }
+
     
 
  
