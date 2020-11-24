@@ -16,7 +16,7 @@ export class GlobaleService {
   private CreationUser = 'auth/register';
   private LoginUser = 'auth/login';
   private ListeProduit = "produit/produitList";
-  private ListeById = "produit/produitID";
+  private UpadateProduitCheck = "produit/produits/";
   private UpadateProduit = "produit/";
   private lien: Lien = new Lien();
 
@@ -66,5 +66,8 @@ export class GlobaleService {
       // return this.http.patch(this.lien.lienCmd + `${this.UpadateProduit}` + id,  {headers, observe:'response'});
       return this.http.patch(this.lien.lienCmd + `${this.UpadateProduit}` + id  ,ModelProduit, {headers, observe:'response'});
     }
+
+    
+
  
 }

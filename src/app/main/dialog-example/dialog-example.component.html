@@ -1,4 +1,4 @@
-<h1 mat-dialog-title class="titre">Détail du article </h1>
+<h1 mat-dialog-title class="titre">Détail du produit </h1>
 <div mat-dialog-content style="width: 350px;">
     <div class="example-container">
 
@@ -25,6 +25,11 @@
         <mat-label>Image</mat-label>
         <img [src]="data.image">
         <br>
+        <section class="example-section">
+            <mat-label>Afficher dans le menu</mat-label>
+            <br>
+            <mat-checkbox class="example-margin" [(ngModel)]="data.etat">oui</mat-checkbox>
+        </section>
 
         <br>
         <mat-form-field appearance="fill" class="input">
@@ -39,6 +44,6 @@
     </div>
 </div>
 <div mat-dialog-actions>
-    <button mat-button mat-dialog-close>Close</button>
-    <button mat-button mat-dialog-close (click)="Updatemodif(data.id)" color="warning">Update</button>
+    <button mat-button mat-dialog-close>Fermer</button>
+    <button mat-button mat-dialog-close (click)="Updatemodif(data.id)" color="warning">Enregistrer</button>
 </div>

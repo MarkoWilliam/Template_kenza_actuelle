@@ -10,7 +10,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class DialogExampleComponent implements OnInit {
   produitId: any;
-
+  checked_oui = false;
+  checked_nom = false;
   constructor(private route: ActivatedRoute, 
     private globalServ: GlobaleService,
     private toastr: ToastrService,

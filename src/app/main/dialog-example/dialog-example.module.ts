@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {  MatCardImage, MatDialogModule, MatFormField, MatInputModule, MatOptionModule, MatSelectModule,   } from '@angular/material' 
+import {  MatCardImage, MatCheckbox, MatCheckboxModule, MatDialogModule, MatFormField, MatInputModule, MatOptionModule, MatSelectModule,   } from '@angular/material' 
 import { DialogExampleComponent } from './dialog-example.component';
 import { AuthGuard } from '../service/auth/auth.guard';
 import { RouterModule } from '@angular/router';
@@ -30,6 +30,7 @@ const routes = [
     TranslateModule,
     FuseSharedModule,
     MatInputModule,
+    MatCheckboxModule
   ], 
   exports: [
     MatOptionModule,
