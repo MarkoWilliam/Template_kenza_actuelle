@@ -21,7 +21,6 @@ export interface PeriodicElement {
 }
 
 
-
 @Component({
   selector: 'app-produits',
   templateUrl: './produits.component.html',
@@ -29,10 +28,26 @@ export interface PeriodicElement {
 })
 export class ProduitsComponent  
 {
-
+  idProduit: number;
+  checked: boolean = false;
+  indeterminate:boolean = false;
+  disabled:boolean = false;
+   etat: string;
   listProduit: MatTableDataSource<any>;
- 
-  displayedColumns: string[] = ['position', 'nom', 'couleur', 'stock_dispo', 'statue', 'prix', 'prix_solde', 'actions'];
+  dataProduit : {
+    id: 0,
+    nom: '',
+    couleur: '',
+    stock_dispo: '',
+    statue: '',
+    prix: '',
+    prix_solde: '',
+    etat: '',
+    image: '',
+  }
+
+
+  displayedColumns: string[] = ['position', 'nom', 'couleur', 'stock_dispo','image', 'statue', 'prix', 'prix_solde','etat', 'actions'];
   searchKey: string;
 
   @ViewChild(MatPaginator,  {static: true}, ) paginator: MatPaginator;
@@ -44,7 +59,12 @@ export class ProduitsComponent
     this.ListeProduit();
   }
 
- 
+  onCheck(etat) {
+    this.etat = this.checked?'ON':'OFF';
+}
+//   changeValue() {
+//   this.etat
+//  }
 
 ListeProduit() {
   this.servGlobal.listeProduit().subscribe(results => {
@@ -70,6 +90,17 @@ openModal(element) {
 // onvoie id seulement
 //  this.route.navigate(['/dialog'], { queryParams: { order: 'elementId' } });
 }
+
+checkBox(etat) {
+  if(this.etat) {
+    console.log(etat);
+    return 1
+    } else {
+    return 0
+  }
+}
+
+
 
 }
 

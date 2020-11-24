@@ -16,7 +16,8 @@ export class GlobaleService {
   private CreationUser = 'auth/register';
   private LoginUser = 'auth/login';
   private ListeProduit = "produit/produitList";
-  private ListeById = "produit/produitID"
+  private ListeById = "produit/produitID";
+  private UpadateProduit = "produit/4";
   private lien: Lien = new Lien();
 
   constructor(private http: HttpClient
@@ -58,7 +59,11 @@ export class GlobaleService {
       return this.http.get(this.lien.lienCmd + `${this.ListeProduit}`, {headers, observe: 'response'});
     }
 
-    //----------------Selecte par id-----------------
+    //----------------Update produit par id-----------------
 
+    UpdatProduit(ModelProduit): Observable<any> {
+      const headers = new HttpHeaders({'content-type': 'application/json'});
+      return this.http.patch(this.lien.lienCmd + `${this.UpadateProduit}`,ModelProduit, {headers, observe:'response'});
+    }
  
 }
