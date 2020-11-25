@@ -91,48 +91,16 @@ openModal(element) {
 //  this.route.navigate(['/dialog'], { queryParams: { order: 'elementId' } });
 }
 
-// Updatemodif(idProduit, etat) {
-//   console.log(idProduit, etat);
-//   this.UpdatemodifProduit(idProduit, etat);
-// }
-
-UpdatemodifProduit(produitId) {
-  this.servGlobal.UpdatProduitck(produitId,this.etat).subscribe(results=> {
-    if(results) {
-      console.log("ok");
-      this.toastr.success('Donner bien modifier', 'Success')
-    } else {
-      this.toastr.warning('Il y a une ereeur', 'Erreur')
-    }
-  }, 
-  (error) => {
-    if(error.status === 501) {
-      console.log("Erreur", error.status)
-      this.toastr.warning('Il y a une champ vide', 'Erreur')
-    }else {
-      console.log("Erreur Trouver")
-    }
-
- }
-  )
-}
 
 recuperation(donner) {
   console.log("Donner", donner);
-  
-// this.donnerProduit = donner;
-//  this.donnerProduit.etat === true
-//  if(donner.etat) {
-//    donner.etat = false
-//  } else {
-//   donner.etat = true
-//  }
 donner.etat = !donner.etat;
 // donner.etat = false;
  this.servGlobal.UpdatProduit(donner.id,donner).subscribe(results=> {
   if(results) {
     console.log("ok");
-    this.toastr.success('Donner bien modifier', 'Success')
+    this.toastr.success('Donner bien modifier', 'Success');
+    this.ListeProduit();
   } else {
     this.toastr.warning('Il y a une ereeur', 'Erreur')
   }
