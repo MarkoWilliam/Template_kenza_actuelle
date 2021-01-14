@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { AuthGuard } from '../service/auth/auth.guard';
+import { TranslateModule } from '@ngx-translate/core';
+import { FuseSharedModule } from '@fuse/shared.module';
 import { RouterModule } from '@angular/router';
-// import { AuthGuard } from '../service/auth/auth.guard';
 import { NotificationComponent } from './notification.component';
+import { NotificationModalComponent } from '../modals/notification-modal/notification-modal.component';
 
 
 
@@ -9,20 +13,19 @@ const routes = [
   {
       path     : 'notification',
       component: NotificationComponent,
-      // canActivate: [AuthGuard],
+      canActivate: [AuthGuard],
   }
 ];
 
 @NgModule({
-  declarations: [
-    NotificationComponent
+  declarations: [],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    TranslateModule,
+    FuseSharedModule
   ],
-  imports     : [
-      RouterModule.forChild(routes)
-  ],
-  exports     : [
-    NotificationComponent
-  ]
+  entryComponents:[NotificationModalComponent]
 })
 
 export class NotificationModule

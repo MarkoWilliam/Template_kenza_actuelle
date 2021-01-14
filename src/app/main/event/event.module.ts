@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { AuthGuard } from '../service/auth/auth.guard';
+import { TranslateModule } from '@ngx-translate/core';
+import { FuseSharedModule } from '@fuse/shared.module';
+import { RouterModule } from '@angular/router';
+import { EventModalComponent } from '../modals/event-modal/event-modal.component';
 import { EventComponent } from './event.component';
 
 
@@ -13,16 +17,16 @@ const routes = [
   }
 ];
 
+
 @NgModule({
-  declarations: [
-    EventComponent
+  declarations: [],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    TranslateModule,
+    FuseSharedModule
   ],
-  imports     : [
-      RouterModule.forChild(routes)
-  ],
-  exports     : [
-    EventComponent
-  ]
+  entryComponents:[EventModalComponent]
 })
 
 export class EventModule

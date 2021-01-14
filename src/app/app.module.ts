@@ -40,6 +40,26 @@ import { AdminComponent } from './main/admin/admin.component';
 import { MatSortModule } from '@angular/material/sort';
 import { DialogExampleComponent } from './main/dialog-example/dialog-example.component';
 import { DialogExampleModule } from './main/dialog-example/dialog-example.module';
+import { BanniereModalComponent } from './main/modals/banniere-modal/banniere-modal.component';
+import { FileUploadModule } from 'ng2-file-upload';
+
+import { GpAccueilModule } from './main/gp-accueil/gp-accueil.module';
+import { GpAccueilComponent } from './main/gp-accueil/gp-accueil.component';
+import { NotificationComponent } from './main/notification/notification.component';
+import { NotificationModalComponent } from './main/modals/notification-modal/notification-modal.component';
+import { EventModalComponent } from './main/modals/event-modal/event-modal.component';
+import { EventComponent } from './main/event/event.component';
+import { CarteCadeauComponent } from './main/carte-cadeau/carte-cadeau.component';
+import { CarteCadeauModule } from './main/carte-cadeau/carte-cadeau.module';
+import { MagasinComponent } from './main/magasin/magasin.component';
+import { OffresComponent } from './main/offres/offres.component';
+import { MagasinModule } from './main/magasin/magasin.module';
+import { OffresModule } from './main/offres/offres.module';
+import { CartecardeauModalComponent } from './main/modals/cartecardeau-modal/cartecardeau-modal.component';
+import { MagasinModalComponent } from './main/modals/magasin-modal/magasin-modal.component';
+import { OffresModalComponent } from './main/modals/offres-modal/offres-modal.component';
+import { NewUserModalComponent } from './main/modals/new-user-modal/new-user-modal.component';
+
 
 const appRoutes: Routes = [
     {
@@ -52,6 +72,20 @@ const appRoutes: Routes = [
 @NgModule({
     declarations: [
         AppComponent,
+        EventComponent,
+        BanniereModalComponent,
+        NotificationComponent,
+        GpAccueilComponent,
+        NotificationModalComponent,
+        EventModalComponent,
+        CarteCadeauComponent,
+        MagasinComponent,
+        OffresComponent,
+        CartecardeauModalComponent,
+        MagasinModalComponent,
+        OffresModalComponent,
+        AdminComponent,
+        NewUserModalComponent
     ],
     //-----Dialog---------
     entryComponents: [DialogExampleComponent,],
@@ -87,6 +121,7 @@ const appRoutes: Routes = [
         MatDialogModule,
         MatGridListModule,
         MatCardModule,
+        
         // App modules
         LayoutModule,
         SampleModule,
@@ -102,6 +137,12 @@ const appRoutes: Routes = [
         AccueilModule,
         InscriptionModule,
         DialogExampleModule,
+        FileUploadModule,
+        GpAccueilModule,
+        CarteCadeauModule,
+        MagasinModule,
+        OffresModule
+       
     ],
     bootstrap   : [
         AppComponent

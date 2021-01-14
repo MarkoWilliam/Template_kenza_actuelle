@@ -16,13 +16,13 @@ export const navigation: FuseNavigation[] = [
             },
             {
                 id       : 'admin',
-                title    : 'Gestion Administrateur',
+                title    : 'Gestion Utilisateurs',
                 type     : 'item',
                 icon     : 'account_circle', 
                 url      : '/admin',
             },
             
-            {
+           /*  {
                 id       : 'utilisateur',
                 title    : 'Gestion des clients',
                 type     : 'item',
@@ -43,10 +43,10 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'account_circle',
                 url      : '/accueil',
-            },
+            }, */
         ]
     },
-    {
+     {
         id       : 'affichage',
         title    : 'Gestion Affichage',
         translate: 'NAV.APPLICATIONS',
@@ -57,11 +57,6 @@ export const navigation: FuseNavigation[] = [
                 title    : 'Produits mis en avant',                
                 type     : 'item',                
                 url      : '/produits',               
-            },{
-                id       : 'event',
-                title    : 'Evenement',                
-                type     : 'item',                
-                url      : '/event',               
             }
         ]
     },
@@ -84,6 +79,54 @@ export const navigation: FuseNavigation[] = [
             }
         ]
     },
+   /*  {
+        id       : 'parametrages',
+        title    : 'Parametrage',
+        translate: 'NAV.APPLICATIONS',
+        type     : 'group',
+        children : [
+            {
+                id       : 'banniere',
+                title    : 'banniere',                
+                type     : 'item',                
+                url      : '/banniere',               
+            }
+        ]
+    }, */
+    {
+        id       : 'page',
+        title    : 'Gestion Contenu Page',
+        translate: 'NAV.APPLICATIONS',
+        type     : 'group',
+        children : [
+            {
+                id       : 'gpAccueil',
+                title    : 'Accueil',                
+                type     : 'item',                
+                url      : '/gp-accueil',               
+            },{
+                id       : 'carteCadeau',
+                title    : 'Carte cadeau',                
+                type     : 'item',                
+                url      : '/carte-cadeau',               
+            },{
+                id       : 'event',
+                title    : 'Evenement',                
+                type     : 'item',                
+                url      : '/event',               
+            },/* {
+                id       : 'magasin',
+                title    : 'Magasins',                
+                type     : 'item',                
+                url      : '/magasin',               
+            }, */{
+                id       : 'offres',
+                title    : 'Offres',                
+                type     : 'item',                
+                url      : '/offres',               
+            }
+        ]
+    },
     {
         id       : 'deconnecter',
         title    : 'Sortir',
@@ -99,6 +142,4 @@ export const navigation: FuseNavigation[] = [
             },
         ]
     }
-    
-
 ];

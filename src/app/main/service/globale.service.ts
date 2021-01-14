@@ -12,23 +12,22 @@ import { map } from 'rxjs/operators';
 export class GlobaleService {
  
   public isUserLoggeIn = false;
-  private ListerUser = 'user';
   private CreationUser = 'auth/register';
   private LoginUser = 'auth/login';
   private ListeProduit = "produit/produitList";
   private UpadateProduitCheck = "produit/produits/";
-  private UpadateProduit = "produit/";
+  private insertban = "produit/insertban";
+  private insertnotification = "produit/insertnotif";
+  private UpadateProduit="";
+  private recupallelement="produit/pageelement/";
+  private allnotif = "produit/allnotif"
   private lien: Lien = new Lien();
+  public base_Url_Api_Bo=this.lien.lienCmd;
+
 
   constructor(private http: HttpClient
               ) { }
 
-
-  //------------------Liste user------------------
-  listeUser(): Observable<any> {
-    const headers = new HttpHeaders({ 'content-type': 'application/json' });
-    return this.http.get(this.lien.lienCmd +`${this.ListerUser}`, {headers, observe: 'response'});
-  }
 
     //------------------Création user------------------
   creationUser(ModelCLient: object): Observable<any> {
@@ -73,7 +72,37 @@ export class GlobaleService {
       return this.http.patch(this.lien.lienCmd + `${this.UpadateProduitCheck}` + id  ,ModelProduit, {headers, observe:'response'});
     }
 
-    
+   
+    ///maj bannniere
+    majbanniere(model: any): Observable<any> {
+      const headers = new HttpHeaders({'content-type': 'application/json'});
+      return this.http.post(this.lien.lienCmd + `${this.insertban}`,model, {headers, observe:'response'});
+    }
+    // recupe all element page config
+    recupelement(id:number): Observable<any> {
+      const headers = new HttpHeaders({'content-type': 'application/json'});
+      return this.http.patch(this.lien.lienCmd + `${this.recupallelement}` + id , {headers, observe:'response'});
+    }
+    //insert new notif
+    insertnotif(model: any): Observable<any> {
+      const headers = new HttpHeaders({'content-type': 'application/json'});
+      return this.http.post(this.lien.lienCmd + `${this.insertnotification}`,model, {headers, observe:'response'});
+    }
+    //recup all notification
+    getAllNotification(): Observable<any> {
+      const headers = new HttpHeaders({'content-type': 'application/json'});
+      return this.http.get(this.lien.lienCmd + `${this.allnotif}`,{headers, observe:'response'});
+    }
 
- 
+
+    //------------------Liste user------------------
+    listeUser(): Observable<any> {
+      return this.http.get(`${this.lien.lienCmd}auth/listeUser`);
+    }
+    ///upload image
+    uploadimage(model: any) {
+      let formData = new FormData();
+      formData.append("file",model);
+      return this.http.post(`${this.lien.lienCmd}upload`,formData);
+    } 
 }

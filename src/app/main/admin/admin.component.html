@@ -2,121 +2,62 @@
 
     <div class="main-widget" id="marginWidth">
 
-        <div class="position-relative p-24 blue-600" fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="position-relative p-24 bg_head" fxLayout="row" fxLayoutAlign="space-between center">
             <div fxLayout="column" fxLayoutAlign="start start">
-                <span class="h2">Les Administrations</span>
+                <span class="h2">Liste Utilisateurs</span>
                 <span class="h5 secondary-text">
                    </span>
-            </div>
-            <div fxLayout="row" fxLayoutAlign="start center">
-                <label for="site-search"></label>
-                <label></label>
-                <input type="search" id="site-search">
-
-                <button class="marignBtn">Search</button>
-            </div>
-
         </div>
+        <button class="mat-focus-indicator add-product-button fuse-white mt-24 mt-md-0 ng-tns-c281-46 mat-raised-button mat-button-base" (click)="newUser()">
+            Nouvel Utilisateur
+        </button>
+</div>
+<div class="search-div">
+    <mat-form-field class="search-form-field" floatLabel="never">
+        <input matInput type="text" placeholder="Rechercher" [(ngModel)]="searchKey" autocomplete="off" (keyup)="applyFilter()">
+        <button mat-button *ngIf="searchKey" matSuffix mat-icon-button aria-label="Clear" (click)="onSearchClear()">
+          <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+</div>
+<div class="content">
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="listuser" class="mat-elevation-z8" matSort>
 
-        <div class="position-relative h-256 pb-16 blue-600">
+            <ng-container matColumnDef="index">
+                <th mat-header-cell *matHeaderCellDef> index</th>
+                <td mat-cell *matCellDef="let element;index as i;"> {{i+1}} </td>
+              </ng-container>
 
-        </div>
-
-    </div>
-
-
-
-    <div class="content-card">
-        <div class="tableDiv">
+            <ng-container matColumnDef="Nom">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom</th>
+              <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
+            </ng-container>
 
 
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr id="centerth">
-                        <th scope="col">id</th>
-                        <th scope="col">Profil</th>
-                        <th scope="col">Nom</th>
-                        <th scope="col">Prenom</th>
-                        <th scope="col">Téléphone</th>
-                        <th scope="col">Rôle</th>
-                        <th scope="col">Adresse</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody id="centertd">
-                    <tr>
-                        <td>1</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>02012365897</td>
-                        <td>Admin</td>
-                        <td>Paris</td>
-                        <td><button class="btn">Detail</button></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>02012365897</td>
-                        <td>Admin</td>
-                        <td>Paris</td>
-                        <td><button class="btn">Detail</button></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>02012365897</td>
-                        <td>Admin</td>
-                        <td>Paris</td>
-                        <td><button class="btn">Detail</button></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>02012365897</td>
-                        <td>Admin</td>
-                        <td>Paris</td>
-                        <td><button class="btn">Detail</button></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>02012365897</td>
-                        <td>Admin</td>
-                        <td>Paris</td>
-                        <td><button class="btn">Detail</button></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>02012365897</td>
-                        <td>Admin</td>
-                        <td>Paris</td>
-                        <td><button class="btn">Detail</button></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>02012365897</td>
-                        <td>Admin</td>
-                        <td>Paris</td>
-                        <td><button class="btn">Detail</button></td>
-                    </tr>
-                </tbody>
-            </table>
+            <ng-container matColumnDef="Prenom">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Prenom</th>
+                <td mat-cell *matCellDef="let element"> {{element.prenom}} </td>
+            </ng-container>
 
-        </div>
+
+            <ng-container matColumnDef="Email">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Type">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+                <td mat-cell *matCellDef="let element"> {{element.type_str}} </td>
+            </ng-container>
+
+
+
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 25 , 100]" [pageSize]="25" showFirstLastButtons></mat-paginator>
     </div>
 </div>

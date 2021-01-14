@@ -1,33 +1,58 @@
-<div class="content">
-    <h2 class="title_page">Notification</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>N°</th>
-                <th>Text Par defaut</th>
-                <th>Type</th>
-                <th>Action</th>           
-            </tr>        
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>               
-                <td>text</td>
-                <td>Commande</td>
-                <td>
-                    <button>Editer</button>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>               
-                <td>text</td>
-                <td>Commande</td>
-                <td>
-                    <button>Editer</button>
-                </td>
-            </tr>
-           
-        </tbody>
-    </table>
+<div class="page-layout blank p-24" fusePerfectScrollbar>
+
+    <div class="main-widget" id="marginWidth">
+
+        <div class="position-relative p-24 bg_head" fxLayout="row" fxLayoutAlign="space-between center">
+            <div fxLayout="column" fxLayoutAlign="start start">
+                <span class="h2">Liste Notification</span>
+                <span class="h5 secondary-text">
+                   </span>
+        </div>
+        <button class="mat-focus-indicator add-product-button fuse-white mt-24 mt-md-0 ng-tns-c281-46 mat-raised-button mat-button-base" (click)="newnotification()">
+            Nouvel Notificaton
+        </button>
+</div>
+<div class="search-div">
+    <mat-form-field class="search-form-field" floatLabel="never">
+        <input matInput type="text" placeholder="Rechercher" [(ngModel)]="searchKey" autocomplete="off" (keyup)="applyFilter()">
+        <button mat-button *ngIf="searchKey" matSuffix mat-icon-button aria-label="Clear" (click)="onSearchClear()">
+          <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
 </div>
 
+<div class="content">
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="listnotif" class="mat-elevation-z8" matSort>
+
+            <ng-container matColumnDef="index">
+                <th mat-header-cell *matHeaderCellDef> index</th>
+                <td mat-cell *matCellDef="let element;index as i;"> {{i+1}} </td>
+              </ng-container>
+
+            <ng-container matColumnDef="Date">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+              <td mat-cell *matCellDef="let element"> {{element.date_add}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Titre">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Titre</th>
+                <td mat-cell *matCellDef="let element"> {{element.titre}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Contenu">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Texte</th>
+                <td mat-cell *matCellDef="let element"> {{element.contenu}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Produit">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Produit</th>
+                <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 25 , 100]" [pageSize]="25" showFirstLastButtons></mat-paginator>
+    </div>
+</div>
