@@ -57,7 +57,7 @@ export class ProduitsComponent
 
   statue :any;
 
-  displayedColumns: string[] = ['position', 'nom', 'link_rewrite', 'meta_title','id_category','actions1'];
+  displayedColumns: string[] = ['position', 'nom','prix','id_category','Image','actions1'];
   searchKey: string;
 
   @ViewChild(MatPaginator,  {static: true}, ) paginator: MatPaginator;
@@ -78,11 +78,25 @@ export class ProduitsComponent
     await this.ListeProdMise();
    await this.servPresta.getAllProduit().subscribe(async results => {
      results = results.body;
+    //  console.log("les donnéer", results);
      await results.forEach((element, index) => {
        if(this.liste.includes(element.id_product)) {
         results[index].active = 0;
        }
      });
+ 
+     await results.forEach(async (element, index) => {
+      results[index]['link'] = `http://` + `${element.domain}` + `${element.physical_uri}` +  `${element.id_image}` + '-' + `home_default` + '/' + `${element.link_rewrite}` + `.jpg`;
+      //console.log(     results[index]['link']);
+      results[index]['lien'] =  `http://` + `${element.domain}` + `${element.physical_uri}` + 'accueil' + '/' +  `${element.id_product}` + '-' + `${element.id_product_attribute}` + '-' + `${element.link_rewrite}` + `.html#` + '/' + `${element.id_attribute}` + '.' + 'couleur' + '-' + `${element.link_rewrite}`;
+     results[index]['color_pr'] = element.color;
+     results[index]['image_url'] =  `http://` + `${element.domain}` + `${element.physical_uri}` +  'img/co/' + `${element.id_attribute}` + '.jpg' ;
+     results[index]['couleur'] = element.id_product;
+     this.prix = element.meta_title.split("|")
+     results[index]['price'] = this.prix[2];
+     index++;
+      });
+
     this.listProduit = new MatTableDataSource(results);
     this.listProduit.sort = this.sort;
     this.listProduit.paginator = this.paginator;
@@ -90,27 +104,6 @@ export class ProduitsComponent
     });
 }
  
-
-
-// async ListeProduit() {
-//   this.servPresta.getProduitMise().subscribe(async results => {
-//   this.liste = results.body;
-//   console.log("Liste mise en avant", this.liste);
-//   let index = 0;
-//   this.liste.array.forEach(async element => {
-     
-//   });
-
-
-//   await this.servPresta.getAllProduit().subscribe(async results => {
-//     this.listProduit = new MatTableDataSource(results.body);
-//     this.listProduit.sort = this.sort;
-//     this.listProduit.paginator = this.paginator;
-//     }) 
-
-// })
-
-// }
 
 
 applyFilter() {
@@ -123,8 +116,7 @@ onSearchClear() {
 }
 openModal(element) {
   this.dialog.open(DialogExampleComponent, {data: element})
-// onvoie id seulement
-//  this.route.navigate(['/dialog'], { queryParams: { order: 'elementId' } });
+
 }
 
 
