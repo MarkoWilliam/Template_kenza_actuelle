@@ -59,7 +59,22 @@ import { CartecardeauModalComponent } from './main/modals/cartecardeau-modal/car
 import { MagasinModalComponent } from './main/modals/magasin-modal/magasin-modal.component';
 import { OffresModalComponent } from './main/modals/offres-modal/offres-modal.component';
 import { NewUserModalComponent } from './main/modals/new-user-modal/new-user-modal.component';
-
+import { ProduitAllModule } from './main/mide_en_avant/produit-all/produit-all.module';
+import { ProduitBebeModule } from './main/mide_en_avant/produit-bebe/produit-bebe.module';
+import { ProduitMfModule } from './main/mide_en_avant/produit-mf/produit-mf.module';
+import { BanniereComponent } from './main/banniere/banniere.component';
+import { BanniereModule } from './main/banniere/banniere.module';
+import { ProfileComponent } from './main/modals/profile/profile.component'; 
+import { NosServiceComponent } from './main/nos-service/nos-service.component';
+import { NosServiceModalComponent } from './main/modals/nos-service-modal/nos-service-modal.component';
+import { NosServiceModule } from './main/nos-service/nos-service.module';
+import { NosServiceModalModule } from './main/modals/nos-service-modal/nos-service-modal.module';
+import { ProduitPromoComponent } from './main/mide_en_avant/produit-promo/produit-promo.component';
+import { ProduitCurvyComponent } from './main/mide_en_avant/produit-curvy/produit-curvy.component';
+import { ProduitFilletteComponent } from './main/mide_en_avant/produit-fillette/produit-fillette.component';
+import { ProduitCurvyModule } from './main/mide_en_avant/produit-curvy/produit-curvy.module';
+import { ProduitPromoModule } from './main/mide_en_avant/produit-promo/produit-promo.module';
+import { ProduitFilletteModule } from './main/mide_en_avant/produit-fillette/produit-fillette.module';
 
 const appRoutes: Routes = [
     {
@@ -85,10 +100,13 @@ const appRoutes: Routes = [
         MagasinModalComponent,
         OffresModalComponent,
         AdminComponent,
-        NewUserModalComponent
+        ProfileComponent,
+        NewUserModalComponent,
+        BanniereComponent,
+        NosServiceComponent,
     ],
     //-----Dialog---------
-    entryComponents: [DialogExampleComponent,],
+    entryComponents: [DialogExampleComponent,NosServiceModalComponent],
     imports     : [
         BrowserModule,
         BrowserAnimationsModule,
@@ -141,7 +159,16 @@ const appRoutes: Routes = [
         GpAccueilModule,
         CarteCadeauModule,
         MagasinModule,
-        OffresModule
+        OffresModule,
+        ProduitAllModule,
+        ProduitBebeModule,
+        ProduitMfModule,
+        BanniereModule,
+        NosServiceModule,
+        NosServiceModalModule,
+        ProduitCurvyModule,
+        ProduitPromoModule,
+        ProduitFilletteModule
        
     ],
     bootstrap   : [
@@ -152,6 +179,7 @@ const appRoutes: Routes = [
         AuthGuard
         //CryptHttpService
     ]
+    
 })
 export class AppModule
 {

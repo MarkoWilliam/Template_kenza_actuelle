@@ -30,6 +30,7 @@ export interface PeriodicElement {
 })
 export class ProduitsComponent  
 {
+  url: any;
   liste: any = [];
   prix: any;
   donnerProduit: any;
@@ -103,7 +104,8 @@ export class ProduitsComponent
     
     });
 }
- 
+
+
 
 
 applyFilter() {

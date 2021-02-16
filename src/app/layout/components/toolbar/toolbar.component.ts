@@ -9,6 +9,8 @@ import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
 import { navigation } from 'app/navigation/navigation';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { ProfileComponent } from 'app/main/modals/profile/profile.component';
 
 @Component({
     selector     : 'toolbar',
@@ -19,7 +21,9 @@ import { Router } from '@angular/router';
 
 export class ToolbarComponent implements OnInit, OnDestroy
 {
-    nom : any; 
+    nom : any;
+    prenom : any;
+    id_user:any; 
     horizontalNavbar: boolean;
     rightNavbar: boolean;
     hiddenNavbar: boolean;
@@ -30,6 +34,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
 
     // Private
     private _unsubscribeAll: Subject<any>;
+  
 
     /**
      * Constructor
@@ -42,7 +47,8 @@ export class ToolbarComponent implements OnInit, OnDestroy
         private _fuseConfigService: FuseConfigService,
         private _fuseSidebarService: FuseSidebarService,
         private _translateService: TranslateService,
-        public route : Router
+        public route : Router,
+        private dialog: MatDialog,
     )
     {
         // Set the defaults
@@ -172,5 +178,13 @@ export class ToolbarComponent implements OnInit, OnDestroy
     
     Donner() {
         this.nom =  sessionStorage.getItem('nom');
-      }
+        this.prenom =  sessionStorage.getItem('prenom');
+        this.id_user = sessionStorage.getItem('id');
+    }
+    afficheprofil(id_user){
+        this.dialog.open(ProfileComponent,{
+            width:'35%',
+            data :{id_user}
+        }); 
+    }
 }

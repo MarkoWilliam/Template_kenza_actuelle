@@ -1,51 +1,80 @@
 <h1 mat-dialog-title class="titre">Nouvel Element</h1>
 <div mat-dialog-content>
-    
+
     <h3 style="font-weight:bold">Type Element :</h3>
 
-    <label for="icon">Icon&nbsp;&nbsp;</label>
-        <input matinput type="radio" [(ngModel)]="prod.check1" name="typeel" value="icon" (change)="afficher_bloc(0)" [checked]=true><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <label for="icon">Titre&nbsp;&nbsp;</label>
+    <input matinput type="radio" [(ngModel)]="prod.check1" name="typeel" value="icon" (change)="afficher_bloc(0)" [checked]=true><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
     <label for="image">Image&nbsp;&nbsp;</label>
-        <input matinput type="radio" [(ngModel)]="prod.check1" name="typeel" value="image" (change)="afficher_bloc(1)" [checked]=true>
-       
+    <input matinput type="radio" [(ngModel)]="prod.check1" name="typeel" value="image" (change)="afficher_bloc(1)" [checked]=true>
+
     <hr>
-    <mat-form-field appearance="fill" class="example-full-width">
-                <mat-label>Nom</mat-label>
-                <input matInput type="text" [(ngModel)]="prod.nom" required>
-    </mat-form-field>
+
     <div [hidden]="ishidden0">
-        <mat-form-field appearance="fill" class="example-full-width">
-            <mat-label>Numero position Icon</mat-label>
-            <select matNativeControl required [(ngModel)]="prod.num_position_icon">
-                        <option value="1">N°:1</option>
-                        <option value="2">N°:2</option>
-                        <option value="3">N°:3</option>
-                        <option value="4">N°:4</option>
-            </select>
-        </mat-form-field>
+        <div mat-dialog-content>
+
+            <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>Titre</mat-label>
+                <input matInput type="text" [(ngModel)]="offre.titre" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>position</mat-label>
+                <select matNativeControl required [(ngModel)]="offre.position">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                  </select>
+            </mat-form-field>
+
+
+        </div>
+        <div mat-dialog-actions>
+            <button mat-button mat-dialog-close class="red">Fermer</button>
+            <button mat-button mat-dialog-close type="submit" (click)="insertion()" color="warning" class="green">Enregistrer</button>
+        </div>
     </div>
     <div [hidden]="ishidden1">
-        <mat-form-field appearance="fill" class="example-full-width">
-                    <mat-label>Text</mat-label>
-                    <input matInput [(ngModel)]="prod.text_ban">
-        </mat-form-field>
-        <mat-form-field appearance="fill" class="example-full-width">
-            <mat-label>Position text</mat-label>
-            <select matNativeControl required [(ngModel)]="prod.position_text">
-                        <option value="left">Gauche</option>
-                        <option value="right">Droite</option>
-                        <option value="center">Centre</option>
-            </select>
-        </mat-form-field>
+        <div mat-dialog-content>
+            <div>
+                <img style="width:200px;height:75px;" src="{{base_url}}produit/imageban/{{offre.nom_image}}">
+                <label>
+                    <input type="file"  value="url_img" (change)="onFileSelected($event)"/>
+                </label>
+            </div>
+            <br>
+
+            <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>Titre</mat-label>
+                <input matInput type="text" [(ngModel)]="offre.titre" required>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Contenu Texte</mat-label>
+                <textarea rows="5" cols="40" matInput placeholder="............." [(ngModel)]="offre.texte" required></textarea>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>Lien details</mat-label>
+                <input matInput type="text" [(ngModel)]="offre.lien" placeholder="https://">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>position</mat-label>
+                <select matNativeControl required [(ngModel)]="offre.position">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                  </select>
+            </mat-form-field>
+
+
+        </div>
+        <div mat-dialog-actions>
+            <button mat-button mat-dialog-close class="red">Fermer</button>
+            <button mat-button mat-dialog-close type="submit" (click)="insertion()" color="warning" class="green">Enregistrer</button>
+        </div>
     </div>
-    <div>         
-        <label>
-             background image : 
-            <input type="file"  value="url_img" (change)="onFileSelected($event)"/>
-        </label>
-    </div> 
-</div>
-<div mat-dialog-actions>
-    <button mat-button mat-dialog-close class="red">Fermer</button>
-    <button mat-button mat-dialog-close type="submit" (click)="Updatemodif()" color="warning" class="green">Enregistrer</button>
 </div>

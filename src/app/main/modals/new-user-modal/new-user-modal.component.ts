@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core'; 
+import { Component,Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
 import { FuseConfigService } from '@fuse/services/config.service';
 import { GlobaleService } from 'app/main/service/globale.service';
@@ -12,14 +13,19 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./new-user-modal.component.scss']
 })
 export class NewUserModalComponent implements OnInit {
-  modelCLient = {
+  
+  modelUser = {
+    id:null,
     nom: null,
     email: null,
     password: null,
     prenom:null,
     id_type:1,
-    type_str:"Admin",
+    etat:1
   }
+  mode=0;
+  
+  
   get pass() {
     return this.registrationForm.get('pass')
   }
@@ -77,34 +83,50 @@ export class NewUserModalComponent implements OnInit {
 
   confirm_password = '';
 
-
-
   constructor(
     private toastr: ToastrService,
     private formBuilder: FormBuilder,
     private _fuseConfigService: FuseConfigService,
     private router: Router,
     private servInscr: GlobaleService,
-  ) { }
+    @Inject(MAT_DIALOG_DATA) public data: {user}
+   
+  ) { 
+        if(data.user){
+          this.modelUser.id = data.user.id;
+          this.modelUser.nom = data.user.nom;
+          this.modelUser.prenom = data.user.prenom;
+          this.modelUser.id_type = data.user.id_type;
+          this.modelUser.email = data.user.email;     
+          this.modelUser.etat = data.user.etat;    
+          this.mode = 1; 
+          
+        }
+    }
 
   ngOnInit() {
   }
 
 
-  registerEntrer() { 
-      this.servInscr.creationUser(this.modelCLient).subscribe( results => {
-        if (results.status == 200) {
-          console.log('Message rerour', results);
-         /*  this.router.navigate(['/login']); */
-          this.toastr.success('enregistrer', 'Donnée');
-        }
-        else {
-          console.log("Il y a une erreur");
-          this.toastr.warning('Déja utiliser par une autre utilisateur', 'Email');
-        }
-      },(error) => {
-        console.log("Erreur",  error.status)
-        this.toastr.error(' !', 'Erreur'); 
-      }); 
+  registerEntrer(modesave) {
+    if(modesave == 0){
+        this.servInscr.creationUser(this.modelUser).subscribe( results => {
+          if (results) {
+            this.toastr.success('enregistrer', 'Donnée');
+            window.location.reload();
+          }
+        },(error) => {
+          this.toastr.error(error.message,'Erreur'); 
+        }); 
+    }else{
+        this.servInscr.majUser(this.modelUser).subscribe( results => {
+          if (results) {
+            this.toastr.success('enregistrer', 'Donnée');
+            window.location.reload();
+          }
+        },(error) => {
+          this.toastr.error(error.message,'Erreur'); 
+        }); 
+    }
   }
 }

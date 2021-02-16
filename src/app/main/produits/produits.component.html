@@ -26,7 +26,7 @@
             <table mat-table [dataSource]="listProduit" class="mat-elevation-z8" matSort>
 
                 <ng-container matColumnDef="position">
-                    <th mat-header-cell *matHeaderCellDef> Id</th>
+                    <th mat-header-cell *matHeaderCellDef style="width: 350px;"> Id</th>
                     <td mat-cell *matCellDef="let element">{{element.id_product}} </td>
                 </ng-container>
                 <ng-container matColumnDef="nom">
@@ -34,7 +34,7 @@
                     <td mat-cell *matCellDef="let element">{{element.name}} </td>
                 </ng-container>
                 <ng-container matColumnDef="prix">
-                    <th mat-header-cell *matHeaderCellDef> Prix</th>
+                    <th mat-header-cell *matHeaderCellDef style="width: 350px;"> Prix</th>
                     <td mat-cell *matCellDef="let element">{{element.price}} </td>
                 </ng-container>
                 <ng-container matColumnDef="id_category">

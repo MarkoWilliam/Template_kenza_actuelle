@@ -1,5 +1,6 @@
 import { Component, OnInit,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { GlobaleService } from 'app/main/service/globale.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -23,13 +24,33 @@ export class OffresModalComponent implements OnInit {
     check1:false,
     num_position_icon:0
   }
-  images;
+
+  images=null;
+  offre = {
+    code_offre: null,
+    nom_image: '',
+    titre: '', 
+    texte: '',
+    etat: '', 
+    lien: '',
+    position: '',
+  }; 
+
+  titre = {
+    id: null,
+    titre: '', 
+    position: '',
+    page: '',
+  }; 
+  base_url="";
 
   constructor(
-    private api:GlobaleService
+    private api:GlobaleService,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit() {
+    this.base_url=this.api.base_Url_Api_Bo;
   }
 
   afficher_bloc(tmp){
@@ -47,15 +68,56 @@ export class OffresModalComponent implements OnInit {
     const file =event.target.files[0];
     this.images = file;
   }
-  async Updatemodif(){
-    console.log(this.prod);
-      this.api.uploadimage(this.images).pipe().subscribe((data: any) => { 
-         if(data){
-            this.prod.url_img=data.name_img;
-         }
-         this.api.majbanniere(this.prod).pipe().subscribe((data: any) => { 
+  // async Updatemodif(){
+  //   console.log(this.prod);
+  //     this.api.uploadimage(this.images).pipe().subscribe((data: any) => { 
+  //        if(data){
+  //           this.prod.url_img=data.name_img;
+  //        }
+  //        this.api.majbanniere(this.prod).pipe().subscribe((data: any) => { 
             
-        });
+  //       });
+  //     }); 
+  // }
+
+insertion() {
+  if(this.offre.nom_image !== '') {
+
+    this.api.uploadimage(this.images).pipe().subscribe((data: any) => { 
+      if(data){
+         this.offre.nom_image=data.name_img;
+      }
+      this.api.insertOffre(this.offre).pipe().subscribe((data: any) => {
+        if (data) {
+            this.toastr.success('enregistrer', 'Donnée');
+            window.location.reload();
+        }
+      },(error) => {
+        this.toastr.error(error.message,'Erreur'); 
       }); 
+   });
+  } else {
+    this.api.insertOffre(this.offre).pipe().subscribe((data: any) => {
+      if (data) {
+          this.toastr.success('enregistrer', 'Donnée');
+          window.location.reload();
+      }
+    },(error) => {
+      this.toastr.error(error.message,'Erreur'); 
+    }); 
   }
+}
+
+
+inserteTitre() {
+  this.api.insertTitre(this.titre).pipe().subscribe((data: any) => {
+    if (data) {
+        this.toastr.success('enregistrer', 'Donnée');
+        window.location.reload();
+    }
+  },(error) => {
+    this.toastr.error(error.message,'Erreur'); 
+  }); 
+}
+  
 }

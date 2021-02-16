@@ -1,45 +1,27 @@
-<h1 mat-dialog-title class="titre">Nouvel Evenement</h1>
+<h1 mat-dialog-title class="titre">Evenement</h1>
 <div mat-dialog-content>
-    <div><h3 style="font-weight:bold">BANNIERE :</h3></div>
-    <hr>
-    <mat-form-field appearance="fill" class="example-full-width">
-        <mat-label>Nom</mat-label>
-        <input matInput type="text" [(ngModel)]="prod.nom" required>
-    </mat-form-field>
-    <!-- <mat-form-field appearance="fill" class="example-full-width">
-        <mat-label>ID Categorie</mat-label>
-        <input matInput type="number" [(ngModel)]="prod.id_categorie" required>
-    </mat-form-field> -->
-    <mat-form-field appearance="fill" class="example-full-width">
-        <mat-label>Text</mat-label>
-        <input matInput [(ngModel)]="prod.text_ban">
-    </mat-form-field>
-    <mat-form-field appearance="fill" class="example-full-width">
-        <mat-label>Position text</mat-label>
-        <select matNativeControl required [(ngModel)]="prod.position_text">
-            <option value="left">Gauche</option>
-            <option value="right">Droite</option>
-            <option value="center">Centre</option>
-        </select>
-    </mat-form-field>
-     
-    <div>         
+    <div>       
+        <img style="width:200px;height:75px;" src="{{base_url}}produit/imageban/{{prod.nom_image}}">  
         <label>
-             background image : 
             <input type="file"  value="url_img" (change)="onFileSelected($event)"/>
         </label>
     </div> 
-    <div><h3 style="font-weight:bold">CONTENU</h3></div>
-    <hr>
+    <br>
+
     <mat-form-field appearance="fill" class="example-full-width">
         <mat-label>Titre</mat-label>
-        <input matInput [(ngModel)]="prod.titre_body">
+        <input matInput type="text" [(ngModel)]="prod.titre" required>
     </mat-form-field>
+
     <mat-form-field class="example-full-width">
         <mat-label>Contenu Texte</mat-label>
-        <textarea matInput placeholder="............." [(ngModel)]="prod.contenu_body" required></textarea>
+        <textarea rows="5" cols="40" matInput placeholder="............." [(ngModel)]="prod.texte" required></textarea>
     </mat-form-field>  
 
+    <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>Lien details</mat-label>
+        <input matInput type="text" [(ngModel)]="prod.lien" placeholder="https://">
+    </mat-form-field>
   
 </div>
 <div mat-dialog-actions>

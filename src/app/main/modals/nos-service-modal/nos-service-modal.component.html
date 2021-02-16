@@ -1,0 +1,20 @@
+<h1 mat-dialog-title class="titre">Service</h1>
+<div mat-dialog-content>
+    <div>
+        <img style="width:200px;height:75px;" src="{{base_url}}produit/imageban/{{offre.nom_image}}">
+        <label>
+            <input type="file"  value="url_img" (change)="onFileSelected($event)"/>
+        </label>
+    </div>
+    <br>
+    <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>Lien details</mat-label>
+        <input matInput type="text" [(ngModel)]="offre.lien" placeholder="https://">
+    </mat-form-field>
+
+
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close class="red">Fermer</button>
+    <button mat-button mat-dialog-close type="submit" (click)="Updatemodif()" color="warning" class="green">Enregistrer</button>
+</div>

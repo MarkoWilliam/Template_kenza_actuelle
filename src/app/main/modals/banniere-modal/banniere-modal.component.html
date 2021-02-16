@@ -1,37 +1,29 @@
-<h1 mat-dialog-title class="titre">Nouveau banniere</h1>
+<h1 mat-dialog-title class="titre">banniere ou Image</h1>
 <div mat-dialog-content>
 
-    <mat-form-field appearance="fill" class="example-full-width">
-        <mat-label>Nom</mat-label>
-        <input matInput type="text" [(ngModel)]="prod.nom" required>
-    </mat-form-field>
-    <mat-form-field appearance="fill" class="example-full-width">
-        <mat-label>ID Categorie</mat-label>
-        <input matInput type="number" [(ngModel)]="prod.id_categorie" required>
-    </mat-form-field>
-    <mat-form-field appearance="fill" class="example-full-width">
-        <mat-label>Text</mat-label>
-        <input matInput [(ngModel)]="prod.text_ban">
-    </mat-form-field>
-    <mat-form-field appearance="fill" class="example-full-width">
-        <mat-label>Position text</mat-label>
-        <select matNativeControl required [(ngModel)]="prod.position_text">
-            <option value="left">Gauche</option>
-            <option value="right">Droite</option>
-            <option value="center">Centre</option>
-        </select>
-    </mat-form-field>
-     
-    <div>         
+    <div>        
+        <img style="width:200px;height:75px;" src="{{base_url}}produit/imageban/{{prod.nom_image}}">   
         <label>
-             background image : 
             <input type="file"  value="url_img" (change)="onFileSelected($event)"/>
         </label>
     </div> 
 
-  
+    <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>Choix page</mat-label>
+        <select matNativeControl required [(ngModel)]="prod.id_page">
+            <option value="1">Accueil</option>
+            <option value="2">Carte cadeau</option>
+            <option value="3">Offre</option>
+            <option value="4">Magasin</option>
+        </select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>N° position bannniere</mat-label>
+        <input matInput type="number" [(ngModel)]="prod.num_ban" required>
+    </mat-form-field>
+
 </div>
-<hr>
 <div mat-dialog-actions>
     <button mat-button mat-dialog-close class="red">Fermer</button>
     <button mat-button mat-dialog-close type="submit" (click)="Updatemodif()" color="warning" class="green">Enregistrer</button>

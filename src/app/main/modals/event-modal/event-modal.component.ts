@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material';
 import { GlobaleService } from 'app/main/service/globale.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-event-modal',
@@ -8,36 +10,86 @@ import { GlobaleService } from 'app/main/service/globale.service';
 })
 export class EventModalComponent implements OnInit {
   prod={
-    nom:'',
-    id_categorie:0,
-    id_page:3,
-    url_img:'',
-    text_ban:'',
-    position_text:'',
-
-    titre_body:'',
-    contenu_body:'',
+    id_event:null,
+    nom_image:'',
+    titre:'',
+    texte:'',
+    lien:'',
+    etat:1
   }
-  images;
+  mode=0;
+  images=null;
+  base_url=null;
   constructor(
-    private api:GlobaleService
-  ) { }
+    private api:GlobaleService,
+    private toastr: ToastrService,
+    @Inject(MAT_DIALOG_DATA) public data: {event}
+  ) {
+    if(data.event){
+      //console.log(data);
+     
+      this.prod.etat = data.event.etat;
+      this.prod.id_event = data.event.id_event;
+      this.prod.lien = data.event.lien;
+      this.prod.nom_image = data.event.nom_image;     
+      this.prod.texte = data.event.texte;    
+      this.prod.titre = data.event.titre;    
+      this.mode = 1; 
+      
+    }
+  }
 
   ngOnInit() {
+    this.base_url=this.api.base_Url_Api_Bo;
   }
+ 
   onFileSelected(event){
     const file =event.target.files[0];
     this.images = file;
   }
+  
   async Updatemodif(){
-      this.api.uploadimage(this.images).pipe().subscribe((data: any) => { 
-         if(data){
-            this.prod.url_img=data.name_img;
-         }
-         this.api.majbanniere(this.prod).pipe().subscribe((data: any) => { 
-            
-        });
-      });
+      if(this.mode==0){
+        this.api.uploadimage(this.images).pipe().subscribe((data: any) => { 
+          if(data){
+             this.prod.nom_image=data.name_img;
+          }
+          this.api.insertevent(this.prod).pipe().subscribe((data: any) => {
+            if (data) {
+                this.toastr.success('enregistrer', 'Donnée');
+                window.location.reload();
+            }
+          },(error) => {
+            this.toastr.error(error.message,'Erreur'); 
+          }); 
+       });
+      }else{         
+          if(this.images==null){
+            //console.log( this.prod.nom_image);
+            this.api.updateevent(this.prod).pipe().subscribe((data: any) => {
+              if (data) {
+                  this.toastr.success('enregistrer', 'Donnée');
+                  window.location.reload();
+              }
+            },(error) => {
+              this.toastr.error(error.message,'Erreur'); 
+            }); 
+          }else{
+            this.api.uploadimage(this.images).pipe().subscribe((data: any) => { 
+              if(data){
+                 this.prod.nom_image=data.name_img;
+              }
+              this.api.updateevent(this.prod).pipe().subscribe((data: any) => {
+                if (data) {
+                    this.toastr.success('enregistrer', 'Donnée');
+                    window.location.reload();
+                }
+              },(error) => {
+                this.toastr.error(error.message,'Erreur'); 
+              }); 
+           });
+          }
+      }
   }
 }
 

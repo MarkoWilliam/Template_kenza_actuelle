@@ -1,49 +1,30 @@
-<h1 mat-dialog-title class="titre">Détail du produit </h1>
-<div mat-dialog-content style="width: 350px;">
-    <div class="example-container">
-
-        <mat-form-field appearance="fill" class="input">
-            <mat-label>Nom</mat-label>
-            <input [(ngModel)]="data.nom" matInput>
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill" class="input">
-            <mat-label>Couleur</mat-label>
-            <input [(ngModel)]="data.couleur" matInput>
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill" class="input">
-            <mat-label>Stock disponible</mat-label>
-            <input [(ngModel)]="data.stock_dispo" matInput>
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill" class="input">
-            <mat-label>Status</mat-label>
-            <input [(ngModel)]="data.statue" matInput>
-        </mat-form-field>
-        <br>
-        <mat-label>Image</mat-label>
-        <img [src]="data.image">
-        <br>
-        <section class="example-section">
-            <mat-label>Afficher le contenu</mat-label>
-            <br>
-            <mat-checkbox class="example-margin" [(ngModel)]="data.etat"></mat-checkbox>
-        </section>
-
-        <br>
-        <mat-form-field appearance="fill" class="input">
-            <mat-label>Prix</mat-label>
-            <input [(ngModel)]="data.prix" matInput>
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill" class="input">
-            <mat-label>Prix solde</mat-label>
-            <input [(ngModel)]="data.prix_solde" matInput>
-        </mat-form-field>
+<h1 mat-dialog-title class="titre">Evenement</h1>
+<div mat-dialog-content>
+    <div>
+        <img style="width:200px;height:75px;" src="{{base_url}}produit/imageban/{{offre.nom_image}}">
+        <label>
+            <input type="file"  value="url_img" (change)="onFileSelected($event)"/>
+        </label>
     </div>
+    <br>
+
+    <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>Titre</mat-label>
+        <input matInput type="text" [(ngModel)]="offre.titre" required>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Contenu Texte</mat-label>
+        <textarea rows="5" cols="40" matInput placeholder="............." [(ngModel)]="offre.texte" required></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>Lien details</mat-label>
+        <input matInput type="text" [(ngModel)]="offre.lien" placeholder="https://">
+    </mat-form-field>
+
 </div>
 <div mat-dialog-actions>
-    <button mat-button mat-dialog-close>Fermer</button>
-    <button mat-button mat-dialog-close (click)="Updatemodif(data.id)" color="warning">Enregistrer</button>
+    <button mat-button mat-dialog-close class="red">Fermer</button>
+    <button mat-button mat-dialog-close type="submit" (click)="Updatemodif()" color="warning" class="green">Enregistrer</button>
 </div>

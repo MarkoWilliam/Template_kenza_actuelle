@@ -124,6 +124,8 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('token', results.body.token);
       sessionStorage.setItem('nom', results.body.reponse.nom);
       sessionStorage.setItem('email', results.body.reponse.email);
+      sessionStorage.setItem('id', results.body.reponse.id);
+      sessionStorage.setItem('prenom', results.body.reponse.prenom);
     }else {
       this.toastr.error('Login ou mot de passe incorrectes !', 'Erreur');
      }

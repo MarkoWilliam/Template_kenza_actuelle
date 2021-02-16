@@ -46,7 +46,52 @@ export const navigation: FuseNavigation[] = [
             }, */
         ]
     },
-     {
+    {
+        id      : 'miseProduit',
+        title   : 'Produits mis en avant',
+        type    : 'collapsable',
+        translate: 'NAV.APPLICATIONS',
+        // icon    : 'import_contacts',
+        children: [
+            {
+                id   : 'produitAll',
+                title: 'Produits nouveautés',
+                type : 'item',
+                url  : '/produitAll'
+            },
+            {
+                id   : 'produitCurvy',
+                title: 'Produits grande Taille',
+                type : 'item',
+                url  : '/produitCurvy'
+            },
+            {
+                id   : 'produitMf',
+                title: 'Produit mere et fille',
+                type : 'item',
+                url  : '/produitMf'
+            },
+            {
+                id   : 'produitPromo',
+                title: 'Produit promotion',
+                type : 'item',
+                url  : '/produitPromos'
+            },
+            {
+                id   : 'produitFillette',
+                title: 'Produit fillette',
+                type : 'item',
+                url  : '/produitFillette'
+            },
+            {
+                id   : 'produitBb',
+                title: 'Produit bebe',
+                type : 'item',
+                url  : '/produitBb'
+            }
+        ]
+    },
+    /* {
         id       : 'affichage',
         title    : 'Gestion Affichage',
         translate: 'NAV.APPLICATIONS',
@@ -59,23 +104,18 @@ export const navigation: FuseNavigation[] = [
                 url      : '/produits',               
             }
         ]
-    },
+    }, 
     {
         id       : 'applications',
         title    : 'Utility',
         translate: 'NAV.APPLICATIONS',
         type     : 'group',
         children : [
-            {
+           /*  {
                 id       : 'message',
                 title    : 'Message',                
                 type     : 'item',                
                 url      : '/message',               
-            },{
-                id       : 'chat',
-                title    : 'Push Notification',                
-                type     : 'item',                
-                url      : '/notification',            
             }
         ]
     },
@@ -100,6 +140,24 @@ export const navigation: FuseNavigation[] = [
         type     : 'group',
         children : [
             {
+                id       : 'banniere',
+                title    : 'Banniere ou Image',                
+                type     : 'item',                
+                url      : '/banniere',               
+            },
+            {
+                id       : 'event',
+                title    : 'Evenement',                
+                type     : 'item',                
+                url      : '/event',               
+            },         
+            {
+                id       : 'chat',
+                title    : 'Push Notification',                
+                type     : 'item',                
+                url      : '/notification',            
+            }, 
+            /*{
                 id       : 'gpAccueil',
                 title    : 'Accueil',                
                 type     : 'item',                
@@ -114,22 +172,62 @@ export const navigation: FuseNavigation[] = [
                 title    : 'Evenement',                
                 type     : 'item',                
                 url      : '/event',               
-            },/* {
+            }, {
                 id       : 'magasin',
                 title    : 'Magasins',                
                 type     : 'item',                
                 url      : '/magasin',               
-            }, */{
+            },{
                 id       : 'offres',
                 title    : 'Offres',                
                 type     : 'item',                
                 url      : '/offres',               
-            }
+            }*/
         ]
     },
     {
+        id      : 'miseProduit',
+        title   : 'Offres',
+        type    : 'collapsable',
+        translate: 'NAV.APPLICATIONS',
+        // icon    : 'import_contacts',
+        children: [
+            {
+                id   : 'offres',
+                title: 'Nos offres',
+                type : 'item',
+                url  : '/offres'
+            },
+            {
+                id   : 'nosService',
+                title: 'Nos service',
+                type : 'item',
+                url  : '/nosService'
+            },
+        ]
+    },
+    /*{
+        id       : 'Parametrage',
+        title    : 'Parametrage',
+        translate: 'NAV.APPLICATIONS',
+        type     : 'group',
+        children : [
+            {
+                id       : 'parampage',
+                title    : 'Page APK Client',                
+                type     : 'item',                
+                url      : '/parampage',               
+            },{
+                id       : 'Type Utilisateur',
+                title    : 'Type Utilisateur',                
+                type     : 'item',                
+                url      : '/message',               
+            }
+        ]
+    },*/
+    {
         id       : 'deconnecter',
-        title    : 'Sortir',
+        title    : '',
         translate: 'NAV.APPLICATIONS',
         type     : 'group',
         children : [
@@ -141,5 +239,6 @@ export const navigation: FuseNavigation[] = [
                 url      : '/login',               
             },
         ]
-    }
+    },
+    
 ];

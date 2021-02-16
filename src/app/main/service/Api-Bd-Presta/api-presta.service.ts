@@ -15,7 +15,11 @@ export class ApiPrestaService {
   private produitMise = "produit_bo/insertionProduit";
   private selecteProduct = "produit_bo/selecteProduit";
   private deleteProduit = "produit_bo/supprimer/";
-
+  private listMereFille = "carousel/listMerreFille";
+  private listBebe = "carousel/listBebe";
+  private produitCurvy = "produit_bo/listCurvy";
+  private produitFillette = "produit_bo/listFillete";
+  private produitPromos = "produit_bo/listPromo";
   constructor(
     private http: HttpClient
   ) { }
@@ -32,6 +36,25 @@ export class ApiPrestaService {
     const headers = new HttpHeaders({'content-type': 'application/json'});
     return this.http.get(this.lien.lienPresta + `${this.produitMiseAvant}`,{headers, observe:'response'});
   }
+
+    //-----------Produit Mise en avant urvy-----------
+    getAllCurvy(): Observable<any> {
+      const headers = new HttpHeaders({'content-type': 'application/json'});
+      return this.http.get(this.lien.lienPresta + `${this.produitCurvy}`,{headers, observe:'response'});
+    }
+
+     //-----------Produit Mise en avant Fillette-----------
+     getAllFillette(): Observable<any> {
+      const headers = new HttpHeaders({'content-type': 'application/json'});
+      return this.http.get(this.lien.lienPresta + `${this.produitFillette}`,{headers, observe:'response'});
+    }
+
+        //-----------Produit Mise en avant promotion-----------
+        getAllPromotion(): Observable<any> {
+          const headers = new HttpHeaders({'content-type': 'application/json'});
+          return this.http.get(this.lien.lienPresta + `${this.produitPromos}`,{headers, observe:'response'});
+        }
+    
 
   insertionProduit(ModelCLient: object): Observable<any> {
     const headers = new HttpHeaders();
@@ -56,6 +79,18 @@ export class ApiPrestaService {
   //   getCol(id_prod:string,id_cat:string){
   //     return this.http.get(`${this.lien.lienApi}carousel/listCouleur?ids=${id_prod}&cat=${id_cat}`);
   //  }
+
+  ListProduitMF(): Observable<any> {
+    const headers =  new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get(this.lien.lienPresta + `${this.listMereFille}`, {headers, observe:'response'});
+  }
+
+  getListBebe(): Observable<any> {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get(this.lien.lienPresta  + `${this.listBebe}`, {headers, observe:'response'});
+  }
 
 
 }

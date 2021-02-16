@@ -1,0 +1,71 @@
+<div class="page-layout blank p-24" fusePerfectScrollbar>
+
+    <div class="main-widget" id="marginWidth">
+
+        <div class="position-relative p-24 bg_head" fxLayout="row" fxLayoutAlign="space-between center">
+            <div fxLayout="column" fxLayoutAlign="start start">
+                <span class="h2">Liste Banniere ou Image</span>
+                <span class="h5 secondary-text">
+                   </span>
+            </div>
+            <button class="mat-focus-indicator add-product-button fuse-white mt-24 mt-md-0 ng-tns-c281-46 mat-raised-button mat-button-base" (click)="newbanniere()">
+            Nouvel Banniere ou Image
+        </button>
+        </div>
+        <div class="search-div">
+            <mat-form-field class="search-form-field" floatLabel="never">
+                <input matInput type="text" placeholder="Rechercher" [(ngModel)]="searchKey" autocomplete="off" (keyup)="applyFilter()">
+                <button mat-button *ngIf="searchKey" matSuffix mat-icon-button aria-label="Clear" (click)="onSearchClear()">
+          <mat-icon>close</mat-icon>
+        </button>
+            </mat-form-field>
+        </div>
+        <div class="content">
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="listeelement" class="mat-elevation-z8" matSort>
+
+                    <ng-container matColumnDef="index">
+                        <th mat-header-cell *matHeaderCellDef> index</th>
+                        <td mat-cell *matCellDef="let element;index as i;"> {{i+1}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Image">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Image</th>
+                        <td mat-cell *matCellDef="let element">
+                            <img style="width:200px;height:75px;" src="{{base_url}}produit/imageban/{{element.nom_image}}">
+                        </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="N° banniere">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>N° banniere</th>
+                        <td mat-cell *matCellDef="let element"> {{element.num_ban}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Nom Page">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom Page</th>
+                        <td mat-cell *matCellDef="let element"> {{element.nom_page}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Action">
+                        <th class="th" mat-header-cell *matHeaderCellDef> Actions </th>
+                        <td mat-cell *matCellDef="let element">
+                            Modifier
+                            <button mat-icon-button (click)="majBann(element)">
+                        <mat-icon>launch</mat-icon>
+                    </button> Activer
+                            <mat-checkbox (click)="majStatban(element.id_ban,element.etat)" [(ngModel)]="element.etat" class="checkBox-btn"></mat-checkbox>
+                        </td>
+                    </ng-container>
+
+
+
+
+
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <mat-paginator [pageSizeOptions]="[5, 10, 25 , 100]" [pageSize]="25" showFirstLastButtons></mat-paginator>
+            </div>
+        </div>

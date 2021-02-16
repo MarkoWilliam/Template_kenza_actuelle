@@ -3,6 +3,7 @@ import {MatSort,MatSortable,MatPaginator,MatTableDataSource,MatDialog,MatDialogC
 import { GlobaleService } from 'app/main/service/globale.service';
 import { NotificationModalComponent } from '../modals/notification-modal/notification-modal.component';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -14,11 +15,12 @@ export class NotificationComponent implements OnInit{
    listnotif: MatTableDataSource<any>;
   
    searchKey: string;
-   displayedColumns: string[] = ['index','Date','Titre','Contenu','Produit'];
+   displayedColumns: string[] = ['index','Date','Titre','Contenu','Produit','Action'];
   constructor(
       private dialog: MatDialog,
       private api:GlobaleService,
       private http:HttpClient,
+      private toastr: ToastrService,
   ) { }
    
   @ViewChild(MatSort, {static: true})
@@ -58,5 +60,45 @@ export class NotificationComponent implements OnInit{
   onSearchClear() {
     this.searchKey="";
     this.applyFilter();
+  }
+
+ /*  majnotif(majnotif){
+    console.log(majnotif);
+    this.dialog.open(NotificationModalComponent,{
+      width:'35%',
+      data :{majnotif}
+    }); 
+  } */
+  majStatNotif(id,etat){
+    let newetat = !etat;
+    let model={
+      id:id,
+      etat:newetat
+    }
+    this.api.majEtatNotif(model).subscribe(results=> {
+      if(results) { 
+        this.toastr.success('Mis à jours effectuer', 'Success');
+      }
+    }, 
+    (error) => {
+        this.toastr.warning(error.message, 'Erreur');
+    });
+  }
+
+  renVnotif(notif){
+    let etat = !notif.etat;
+    if(etat == false){
+      this.api.renVnotif(notif).subscribe(results=> {
+        if(results) { 
+          this.toastr.success('Renvoie avec succès', 'Success');
+          this.recupListNotification();
+        }
+      }, 
+      (error) => {
+          this.toastr.warning(error.message, 'Erreur');
+      }); 
+    }else{
+      this.toastr.warning("Renvoie impossible,activer d'abord la notification", 'Erreur');
+    }
   }
 }

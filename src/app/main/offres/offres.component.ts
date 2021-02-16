@@ -1,6 +1,8 @@
 import { Component, OnInit ,ViewChild} from '@angular/core';
 import {MatSort,MatSortable,MatPaginator,MatTableDataSource,MatDialog,MatDialogConfig} from '@angular/material';
 import { GlobaleService } from 'app/main/service/globale.service';
+import { ToastrService } from 'ngx-toastr';
+import { DialogExampleComponent } from '../dialog-example/dialog-example.component';
 import { OffresModalComponent } from '../modals/offres-modal/offres-modal.component';
 
 @Component({
@@ -13,11 +15,11 @@ export class OffresComponent implements OnInit {
   listeelement: MatTableDataSource<any>;
   base_url="";
   searchKey: string;
-  displayedColumns: string[] = ['index','nom','ID Categorie','Background Image','Texte','Postion Texte'];
-
+  displayedColumns: string[] = ['index','Image','Titre','Texte','Lien','Action'];
   constructor(
       private dialog: MatDialog,
       private api:GlobaleService,
+      private toastr: ToastrService,
      
   ){}
 
@@ -33,7 +35,7 @@ export class OffresComponent implements OnInit {
   }
 
   async recupListElement(){
-      this.api.recupelement(5).pipe().subscribe((data: any) => { 
+      this.api.getOffres().subscribe((data: any) => { 
         if(data){
           /*  console.log(data); */
           this.listeelement = new MatTableDataSource(data);
@@ -44,7 +46,7 @@ export class OffresComponent implements OnInit {
     }
 
   newnevent(){
-      this.dialog.open(OffresModalComponent,{
+      this.dialog.open(DialogExampleComponent,{
         width:'35%',
         data :{}
       }); 
@@ -56,5 +58,30 @@ export class OffresComponent implements OnInit {
   onSearchClear() {
     this.searchKey="";
     this.applyFilter();
+  }
+
+  
+  majevent(element){
+    this.dialog.open(DialogExampleComponent,{
+      width:'35%',
+      data :{element}
+    }); 
+  }
+
+
+  majStatEvent(code_offre,etat){
+    let newetat = !etat;
+    let model={
+      code_offre:code_offre,
+      etat:newetat
+    }
+    this.api.updateEtat(model).subscribe(results=> {
+      if(results) { 
+        this.toastr.success('Mis à jours effectuer', 'Success');
+      }
+    }, 
+    (error) => {
+        this.toastr.warning(error.message, 'Erreur');
+    });
   }
 }

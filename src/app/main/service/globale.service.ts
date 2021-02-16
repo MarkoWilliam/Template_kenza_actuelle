@@ -105,4 +105,105 @@ export class GlobaleService {
       formData.append("file",model);
       return this.http.post(`${this.lien.lienCmd}upload`,formData);
     } 
+
+    majEtatUser(model:any){
+      return this.http.post(`${this.lien.lienCmd}auth/majEtatUser`,model);
+    }
+
+    majUser(model:any){
+      return this.http.post(`${this.lien.lienCmd}auth/majUser`,model);
+    }
+    
+    majEtatNotif(model:any){
+      return this.http.post(`${this.lien.lienCmd}produit/majNotif`,model);
+    }
+
+    renVnotif(model:any){
+      return this.http.post(`${this.lien.lienCmd}produit/renVnotif`,model);
+    }
+    getlistepage(){
+      return this.http.get(`${this.lien.lienCmd}produit/allpage`);
+    }
+    getevent(){
+      return this.http.get(`${this.lien.lienCmd}produit/allevenement`);
+    }
+
+    insertevent(model: any): Observable<any> {
+      return this.http.post(`${this.lien.lienCmd}produit/insertevent`,model);
+    }
+    updateevent(model: any): Observable<any> {
+      return this.http.post(`${this.lien.lienCmd}produit/updateevent`,model);
+    }
+    
+    majEtatEvent(model:any){
+      return this.http.post(`${this.lien.lienCmd}produit/majEtatEvent`,model);
+    }
+
+    getAllBan(){
+      return this.http.get(`${this.lien.lienCmd}banniere/allban`);
+    }
+    
+    insertbann(model: any): Observable<any> {
+      return this.http.post(`${this.lien.lienCmd}banniere/insertbann`,model);
+    }
+
+    updateBann(model: any): Observable<any> {
+      return this.http.post(`${this.lien.lienCmd}banniere/updateBann`,model);
+    }
+    
+    majEtatBan (model:any){
+      return this.http.post(`${this.lien.lienCmd}banniere/majEtatBann`,model);
+    }
+
+    //---------------Offres-------------------
+
+    //------------get offre-------------
+    getOffres(){
+      return this.http.get(`${this.lien.lienCmd}offres/listeOffres`);
+    }
+    //-------------insert offre------------
+    insertOffre(model: any): Observable<any> {
+      return this.http.post(`${this.lien.lienCmd}offres/insertOffre`,model);
+    }
+   //-----------------Upadte etat-------------------        
+    updateEtat(model:any){
+      return this.http.post(`${this.lien.lienCmd}offres/updateEtat`,model);
+    }
+
+    //---------------Update offre-----------
+    updateOffre(model: any): Observable<any> {
+      return this.http.post(`${this.lien.lienCmd}offres/updateOffres`,model);
+    }
+ //-------------insert titre offre------------
+    insertTitre(model: any): Observable<any> {
+      return this.http.post(`${this.lien.lienCmd}offres/insertOffre`,model);
+    }
+
+      //------------get titre-------------
+      getTitre(){
+        return this.http.get(`${this.lien.lienCmd}offres/listeTitre`);
+      }
+
+        //-----------------Upadte etat-------------------        
+    updateEtatList(model:any){
+      return this.http.post(`${this.lien.lienCmd}offres/updateEtatTitre`,model);
+    }
+
+
+    getService(){
+      return this.http.get(`${this.lien.lienCmd}offres/listeService`);
+    }
+    //-------------insert offre------------
+    insertService(model: any): Observable<any> {
+      return this.http.post(`${this.lien.lienCmd}offres/insertService`,model);
+    }
+   //-----------------Upadte etat-------------------        
+    updateService(model:any){
+      return this.http.post(`${this.lien.lienCmd}offres/updateService`,model);
+    }
+
+    //---------------Update offre-----------
+    updateServiceEtat(model: any): Observable<any> {
+      return this.http.post(`${this.lien.lienCmd}offres/updateEtatService`,model);
+    }
 }
