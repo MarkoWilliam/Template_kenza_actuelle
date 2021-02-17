@@ -43,15 +43,7 @@
                         </div>
                         <label position="floating">password</label>
                     </div>
-                    <div>
-                        <input type="checkbox" />
-                        <label class="mdp_oublié">
-                      <span>Mot de passe oublié</span>
-                    </label>
-                    </div>
-                    <div class="btn_log">
-                        <button id="btn_with" mat-raised-button (click)="loginUser()">Connexion</button>
-                    </div>
+
                     <!-- 
                     <div class="text_or">
                         <p>---OR---</p>
@@ -84,6 +76,15 @@
                     </div> -->
 
                 </form>
+                <div>
+                    <input type="checkbox" [(ngModel)]="isChecked" (change)="checkValue(isChecked?'A':'B')" />
+                    <label class="mdp_oublié">
+                  <span>Mot de passe oublié</span>
+                </label>
+                </div>
+                <div class="btn_log">
+                    <button id="btn_with" mat-raised-button (click)="loginUser()">Connexion</button>
+                </div>
             </div>
         </div>
 

@@ -25,7 +25,6 @@ export class NosServiceModalComponent implements OnInit {
     private toastr: ToastrService,
     // Récuperer les données envoyées depuis offreuit component
     @Inject(MAT_DIALOG_DATA) public data: {element}) { 
-      console.log('Donner modal', data);
       if(data.element) {
         this.donner = data.element;
         this.offre.code_service = data.element.code_service;
@@ -61,7 +60,6 @@ export class NosServiceModalComponent implements OnInit {
      });
     }else{         
         if(this.images==null){
-      console.log( this.offre.nom_image);
           this.api.updateOffre(this.offre).pipe().subscribe((data: any) => {
             if (data) {
                 this.toastr.success('enregistrer', 'Donnée');

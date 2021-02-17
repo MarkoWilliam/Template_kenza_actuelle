@@ -80,7 +80,6 @@ export class ProduitPromoComponent implements OnInit {
     this.showLoader = true;
    await this.servPresta.getAllPromotion().subscribe(async results => {
      results = results.body;
-     console.log("les donnéer", results);
      await results.forEach((element, index) => {
        if(this.liste.includes(element.id_product)) {
         results[index].active = 0;
@@ -89,7 +88,6 @@ export class ProduitPromoComponent implements OnInit {
  
      await results.forEach(async (element, index) => {
       results[index]['link'] = `http://` + `${element.domain}` + `${element.physical_uri}` +  `${element.id_image}` + '-' + `home_default` + '/' + `${element.link_rewrite}` + `.jpg`;
-      //console.log(     results[index]['link']);
       results[index]['lien'] =  `http://` + `${element.domain}` + `${element.physical_uri}` + 'accueil' + '/' +  `${element.id_product}` + '-' + `${element.id_product_attribute}` + '-' + `${element.link_rewrite}` + `.html#` + '/' + `${element.id_attribute}` + '.' + 'couleur' + '-' + `${element.link_rewrite}`;
      results[index]['color_pr'] = element.color;
      results[index]['image_url'] =  `http://` + `${element.domain}` + `${element.physical_uri}` +  'img/co/' + `${element.id_attribute}` + '.jpg' ;
@@ -144,9 +142,7 @@ ListeProdMise() {
 return new Promise((resolve) => {
   this.servPresta.getProduitMise().subscribe(results => {
     this.liste = results.body;
-    console.log("Liste mise en avant", this.liste);
     resolve(results.body)
-    //console.log("Liste mise en avant", this.listePro);
   })
 }) 
 }

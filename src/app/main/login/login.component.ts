@@ -24,11 +24,10 @@ export class LoginComponent implements OnInit {
     password: null,
   }
  messageError = null;
-
   get email() {
     return this.loginForm.get('email')
   }
-
+  isChecked = '';
 
   fonction = null;
   fonctionSer = null;
@@ -117,7 +116,6 @@ export class LoginComponent implements OnInit {
   this.servInscr.Loginuser(this.modelCLient).subscribe(results => {
     console.log("Test");
     if(results.status == 200) {
-      console.log("C'est ok", results)
       this.router.navigate(['/analytique'], {skipLocationChange: true});
       this.toastr.success('avec succès', 'Authentification');   
       // stoquer token dans local Storage du navigateur  
@@ -150,5 +148,12 @@ export class LoginComponent implements OnInit {
   showSuccess() {
     this.toastr.success('avec succès', 'Authentification');
   }
+
+
+  checkValue(event: any){
+    if(  event === "A") {
+      this.toastr.warning('Contactez l\'administrateur du site!', 'S\'il vous plait'); 
+    } 
+ }
  
 }

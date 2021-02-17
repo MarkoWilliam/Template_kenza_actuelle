@@ -77,7 +77,6 @@ export class ProduitMFComponent implements OnInit {
     this.showLoader = true;
    await this.servPresta.ListProduitMF().subscribe(async results => {
      results = results.body;
-    //  console.log("les donnéer", results);
      await results.forEach((element, index) => {
        if(this.liste.includes(element.id_product)) {
         results[index].active = 0;
@@ -96,7 +95,6 @@ export class ProduitMFComponent implements OnInit {
       });
 
     this.listMF = new MatTableDataSource(results);
-    console.log("List Bebe",     this.listMF);
     this.listMF.sort = this.sort;
     this.listMF.paginator = this.paginator;
     this.showLoader = false;
@@ -124,12 +122,10 @@ let model={
 }
   this.servPresta.insertionProduit(model).subscribe(results => {
     if (results.status == 200) {
-      console.log('Message retour', results);
       this.toastr.success('Pris en compte', 'Changement');
       this.ListeProdMise();
     }
     else {
-      console.log("Il y a une erreur");
       this.toastr.warning('Cette numéro de product existe déja dans la table!', 'Code produit');
     }
   },
@@ -140,9 +136,7 @@ ListeProdMise() {
   return new Promise((resolve) => {
     this.servPresta.getProduitMise().subscribe(results => {
       this.liste = results.body;
-      console.log("Liste mise en avant", this.liste);
       resolve(results.body)
-      //console.log("Liste mise en avant", this.listePro);
     })
   }) 
   }
