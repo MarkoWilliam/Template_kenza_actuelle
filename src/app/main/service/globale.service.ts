@@ -23,8 +23,35 @@ export class GlobaleService {
   private allnotif = "produit/allnotif"
   private lien: Lien = new Lien();
   public base_Url_Api_Bo=this.lien.lienCmd;
+  //-------------13---------------
+  private produitMiseAvant = "produit_bo/listProduitNew";
+  private selecteProduct = "produit_bo/selecteProduit";
+  private produitnew = "produit_bo/insertionProduit";
 
+  //------------mf-----------------------
+  private listMereFille =  "produit_bo/listmf";
+  private produitmf = "produit_bo/insertMf";
+  private selecteMf = "produit_bo/selectemf";
 
+  //------------curvy---------------
+  private produitCurvy = "produit_bo/listCurvy";
+  private produitCurv = "produit_bo/insertcurvy";
+  private selecteCurvy = "produit_bo/selecteCurvy"; 
+
+  //-----------promotion-------------
+  private produitPromos = "produit_bo/listPromo";
+  private produitpromo = "produit_bo/insertpromo";
+  private selectePromo = "pushProduit/listePushpromo";
+
+  //---------------fille------------------
+  private produitFillette = "produit_bo/listFillete";
+  private produitfilette = "produit_bo/insertfilette";
+  private selectefille = "pushProduit/listePushfilette";
+
+  //--------------Bebe---------------------
+  private listBebe = "produit_bo/listBebe";
+  private pushBebe = "produit_bo/insertbebe";
+  private selecteBebe = "pushProduit/listePushbebe";
   constructor(private http: HttpClient
               ) { }
 
@@ -206,4 +233,115 @@ export class GlobaleService {
     updateServiceEtat(model: any): Observable<any> {
       return this.http.post(`${this.lien.lienCmd}offres/updateEtatService`,model);
     }
+
+    //-----------------------Mise en avant--------------
+      //-----------Produit Mise en avant 13-----------
+  getAllProduit(): Observable<any> {
+    const headers = new HttpHeaders({'content-type': 'application/json'});
+    return this.http.get(this.lien.lienPresta + `${this.produitMiseAvant}`,{headers, observe:'response'});
+  }
+   
+  getProduitMise(): Observable<any> {
+    const headers = new HttpHeaders({'content-type': 'application/json'});
+    return this.http.get(this.lien.lienCmd + `${this.selecteProduct}`,{headers, observe:'response'});
+  }
+
+  insertionNew(ModelCLient: object): Observable<any> {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(this.lien.lienCmd + `${this.produitnew}`,ModelCLient, {headers, observe:'response'});
+  }
+
+  //--------------------------MF----------------------------
+  ListProduitMF(): Observable<any> {
+    const headers =  new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get(this.lien.lienPresta + `${this.listMereFille}`, {headers, observe:'response'});
+  }
+
+  insertionMf(ModelCLient: object): Observable<any> {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(this.lien.lienCmd + `${this.produitmf}`,ModelCLient, {headers, observe:'response'});
+  }
+ 
+    getProduitMF(): Observable<any> {
+      const headers = new HttpHeaders({'content-type': 'application/json'});
+      return this.http.get(this.lien.lienCmd + `${this.selecteMf}`,{headers, observe:'response'});
+    }
+
+    //-----------------------------curvy------------------------
+    getAllCurvy(): Observable<any> {
+      const headers = new HttpHeaders({'content-type': 'application/json'});
+      return this.http.get(this.lien.lienPresta + `${this.produitCurvy}`,{headers, observe:'response'});
+        }
+        
+  insertioncurvy(ModelCLient: object): Observable<any> {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(this.lien.lienCmd + `${this.produitCurv}`,ModelCLient, {headers, observe:'response'});
+  }
+
+   
+  getProduitCurvy(): Observable<any> {
+    const headers = new HttpHeaders({'content-type': 'application/json'});
+    return this.http.get(this.lien.lienCmd + `${this.selecteCurvy}`,{headers, observe:'response'});
+  }
+
+
+  //-----------promotion-----------
+  getAllPromotion(): Observable<any> {
+    const headers = new HttpHeaders({'content-type': 'application/json'});
+    return this.http.get(this.lien.lienPresta + `${this.produitPromos}`,{headers, observe:'response'});
+  }
+
+  insertionPromo(ModelCLient: object): Observable<any> {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(this.lien.lienCmd + `${this.produitpromo}`,ModelCLient, {headers, observe:'response'});
+  }
+  
+      
+  getProduitpromo(): Observable<any> {
+    const headers = new HttpHeaders({'content-type': 'application/json'});
+    return this.http.get(this.lien.lienCmd + `${this.selectePromo}`,{headers, observe:'response'});
+  }
+
+  //--------------------------fille -------------------------------- 
+  getAllFillette(): Observable<any> {
+    const headers = new HttpHeaders({'content-type': 'application/json'});
+    return this.http.get(this.lien.lienPresta + `${this.produitFillette}`,{headers, observe:'response'});
+   }
+   insertionFilette(ModelCLient: object): Observable<any> {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(this.lien.lienCmd + `${this.produitfilette}`,ModelCLient, {headers, observe:'response'});
+  }
+
+  getProduitFille(): Observable<any> {
+    const headers = new HttpHeaders({'content-type': 'application/json'});
+    return this.http.get(this.lien.lienCmd + `${this.selectefille}`,{headers, observe:'response'});
+  }
+
+  //-------------------Bebe---------------------
+  getListBebe(): Observable<any> {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get(this.lien.lienPresta  + `${this.listBebe}`, {headers, observe:'response'});
+  }
+
+  
+  insertionBebe(ModelCLient: object): Observable<any> {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(this.lien.lienCmd + `${this.pushBebe}`,ModelCLient, {headers, observe:'response'});
+  }
+
+  getProduitBebe(): Observable<any> {
+    const headers = new HttpHeaders({'content-type': 'application/json'});
+    return this.http.get(this.lien.lienCmd + `${this.selecteBebe}`,{headers, observe:'response'});
+  }
+
+
+
 }

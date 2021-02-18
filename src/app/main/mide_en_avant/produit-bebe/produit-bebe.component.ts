@@ -74,24 +74,23 @@ export class ProduitBebeComponent implements OnInit {
   async ListeProduit() {
     await this.ListeProdMise();
     this.showLoader = true;
-   await this.servPresta.getListBebe().subscribe(async results => {
+   await this.servGlobal.getListBebe().subscribe(async results => {
      results = results.body;
      await results.forEach((element, index) => {
        if(this.liste.includes(element.id_product)) {
+        results[index].active = 1;
+       } else {
         results[index].active = 0;
        }
+       results[index]['link'] = `http://` + `${element.domain}` + `${element.physical_uri}` +  `${element.id_image}` + '-' + `home_default` + '/' + `${element.link_rewrite}` + `.jpg`;
+       results[index]['lien'] = `http://` + `${element.domain}` + `${element.physical_uri}` + 'accueil' + '/' +  `${element.id_product}` + '-' + `${element.id_product_attribute}` + '-' + `${element.link_rewrite}` + `.html#` + '/' + `${element.id_attribute}` + '.' + 'couleur' + '-' + `${element.link_rewrite}`;
+       results[index]['color_pr'] = element.color;
+       results[index]['image_url'] =  `http://` + `${element.domain}` + `${element.physical_uri}` +  'img/co/' + `${element.id_attribute}` + '.jpg' ;
+       this.prix = element.meta_title.split("|")
+       results[index]['price'] = this.prix[2];
      });
  
-     await results.forEach(async (element, index) => {
-      results[index]['link'] = `http://` + `${element.domain}` + `${element.physical_uri}` +  `${element.id_image}` + '-' + `home_default` + '/' + `${element.link_rewrite}` + `.jpg`;
-      results[index]['lien'] = `http://` + `${element.domain}` + `${element.physical_uri}` + 'accueil' + '/' +  `${element.id_product}` + '-' + `${element.id_product_attribute}` + '-' + `${element.link_rewrite}` + `.html#` + '/' + `${element.id_attribute}` + '.' + 'couleur' + '-' + `${element.link_rewrite}`;
-      results[index]['color_pr'] = element.color;
-      results[index]['image_url'] =  `http://` + `${element.domain}` + `${element.physical_uri}` +  'img/co/' + `${element.id_attribute}` + '.jpg' ;
-      this.prix = element.meta_title.split("|")
-      results[index]['price'] = this.prix[2];
-      index++;
-      });
-
+  
     this.listBebe = new MatTableDataSource(results);
     this.listBebe.sort = this.sort;
     this.listBebe.paginator = this.paginator;
@@ -117,7 +116,7 @@ this.statue = 0;
 let model={
   id:donner
 }
-  this.servPresta.insertionProduit(model).subscribe(results => {
+  this.servGlobal.insertionBebe(model).subscribe(results => {
     if (results.status == 200) {
       this.toastr.success('Pris en compte', 'Changement');
       this.ListeProdMise();
@@ -130,7 +129,7 @@ let model={
 }
 ListeProdMise() {
   return new Promise((resolve) => {
-    this.servPresta.getProduitMise().subscribe(results => {
+    this.servGlobal.getProduitBebe().subscribe(results => {
       this.liste = results.body;
       resolve(results.body)
     })

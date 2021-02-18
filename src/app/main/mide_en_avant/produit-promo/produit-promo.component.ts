@@ -71,6 +71,7 @@ export class ProduitPromoComponent implements OnInit {
   ngOnInit() {
     this.ListeProduit();
     this.listProduit ;
+    this.ListeProdMise();
   }
 
  
@@ -78,24 +79,25 @@ export class ProduitPromoComponent implements OnInit {
   async ListeProduit() {
     await this.ListeProdMise();
     this.showLoader = true;
-   await this.servPresta.getAllPromotion().subscribe(async results => {
+   await this.servGlobal.getAllPromotion().subscribe(async results => {
      results = results.body;
      await results.forEach((element, index) => {
        if(this.liste.includes(element.id_product)) {
+        console.log("*******", element)
+        results[index].active = 1;
+       } else {
         results[index].active = 0;
        }
+       results[index]['link'] = `http://` + `${element.domain}` + `${element.physical_uri}` +  `${element.id_image}` + '-' + `home_default` + '/' + `${element.link_rewrite}` + `.jpg`;
+       results[index]['lien'] =  `http://` + `${element.domain}` + `${element.physical_uri}` + 'accueil' + '/' +  `${element.id_product}` + '-' + `${element.id_product_attribute}` + '-' + `${element.link_rewrite}` + `.html#` + '/' + `${element.id_attribute}` + '.' + 'couleur' + '-' + `${element.link_rewrite}`;
+      results[index]['color_pr'] = element.color;
+      results[index]['image_url'] =  `http://` + `${element.domain}` + `${element.physical_uri}` +  'img/co/' + `${element.id_attribute}` + '.jpg' ;
+      results[index]['couleur'] = element.id_product;
+      this.prix = element.meta_title.split("|")
+      results[index]['price'] = this.prix[2];
      });
  
-     await results.forEach(async (element, index) => {
-      results[index]['link'] = `http://` + `${element.domain}` + `${element.physical_uri}` +  `${element.id_image}` + '-' + `home_default` + '/' + `${element.link_rewrite}` + `.jpg`;
-      results[index]['lien'] =  `http://` + `${element.domain}` + `${element.physical_uri}` + 'accueil' + '/' +  `${element.id_product}` + '-' + `${element.id_product_attribute}` + '-' + `${element.link_rewrite}` + `.html#` + '/' + `${element.id_attribute}` + '.' + 'couleur' + '-' + `${element.link_rewrite}`;
-     results[index]['color_pr'] = element.color;
-     results[index]['image_url'] =  `http://` + `${element.domain}` + `${element.physical_uri}` +  'img/co/' + `${element.id_attribute}` + '.jpg' ;
-     results[index]['couleur'] = element.id_product;
-     this.prix = element.meta_title.split("|")
-     results[index]['price'] = this.prix[2];
-     index++;
-      });
+ 
 
     this.listProduit = new MatTableDataSource(results);
     this.listProduit.sort = this.sort;
@@ -124,7 +126,7 @@ this.statue = 0;
 let model={
   id:donner
 }
-  this.servPresta.insertionProduit(model).subscribe(results => {
+  this.servGlobal.insertionPromo(model).subscribe(results => {
     if (results.status == 200) {
       console.log('Message retour', results);
       this.toastr.success('Pris en compte', 'Changement');
@@ -140,8 +142,9 @@ let model={
 
 ListeProdMise() {
 return new Promise((resolve) => {
-  this.servPresta.getProduitMise().subscribe(results => {
+  this.servGlobal.getProduitpromo().subscribe(results => {
     this.liste = results.body;
+    console.log("*******", this.liste)
     resolve(results.body)
   })
 }) 

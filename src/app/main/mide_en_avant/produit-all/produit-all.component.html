@@ -49,7 +49,7 @@
                 </ng-container>
                 <ng-container matColumnDef="actions1" id="bgTable">
                     <th mat-header-cell *matHeaderCellDef> Action</th>
-                    <td mat-cell *matCellDef="let element">
+                    <td mat-cell *matCellDef="let element ">
                         <mat-label>Activer</mat-label>&nbsp;&nbsp;
                         <mat-checkbox (click)="recuperation(element.id_product)" [(ngModel)]="element.active" class="checkBox-btn"></mat-checkbox>
                     </td>

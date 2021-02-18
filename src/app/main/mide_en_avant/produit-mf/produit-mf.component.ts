@@ -75,25 +75,22 @@ export class ProduitMFComponent implements OnInit {
   async ListeProduit() {
     await this.ListeProdMise();
     this.showLoader = true;
-   await this.servPresta.ListProduitMF().subscribe(async results => {
+   await this.servGlobal.ListProduitMF().subscribe(async results => {
      results = results.body;
      await results.forEach((element, index) => {
        if(this.liste.includes(element.id_product)) {
+        results[index].active = 1;
+       } else {
         results[index].active = 0;
        }
-     });
- 
-     await results.forEach(async (element, index) => {
-      results[index]['url_image'] = `http://` + `${element.domain}` + `${element.physical_uri}` +  'modules/wkshopthelook/views/img/looks/'  + `${element.img_name}` + '.jpg';
-      results[index]['image_bc'] =  `http://` + `${element.domain}` + `${element.physical_uri}` +  'img/co/' + `${element.id_attribute}` + '.jpg' ;
-      results[index]['lien'] = `http://` + `${element.domain}` + `${element.physical_uri}` + `wkshopcollection/1/collection-mere-fille-kenza?wk_id_look=` + `${element.id_look}`;
-     this.prix = element.meta_title.split("|")
-     results[index]['price'] = this.prix[2];
-       this.url = results[index]['url_image'] ;
-       results[index]['name_produit'] = element.name;
-       index++;
-      });
-
+       results[index]['url_image'] = `http://` + `${element.domain}` + `${element.physical_uri}` +  'modules/wkshopthelook/views/img/looks/'  + `${element.img_name}` + '.jpg';
+       results[index]['image_bc'] =  `http://` + `${element.domain}` + `${element.physical_uri}` +  'img/co/' + `${element.id_attribute}` + '.jpg' ;
+       results[index]['lien'] = `http://` + `${element.domain}` + `${element.physical_uri}` + `wkshopcollection/1/collection-mere-fille-kenza?wk_id_look=` + `${element.id_look}`;
+      this.prix = element.meta_title.split("|")
+      results[index]['price'] = this.prix[2];
+        this.url = results[index]['url_image'] ; 
+        results[index]['name_produit'] = element.name; 
+     }); 
     this.listMF = new MatTableDataSource(results);
     this.listMF.sort = this.sort;
     this.listMF.paginator = this.paginator;
@@ -120,7 +117,7 @@ this.statue = 0;
 let model={
   id:donner
 }
-  this.servPresta.insertionProduit(model).subscribe(results => {
+  this.servGlobal.insertionMf(model).subscribe(results => {
     if (results.status == 200) {
       this.toastr.success('Pris en compte', 'Changement');
       this.ListeProdMise();
@@ -134,7 +131,7 @@ let model={
 
 ListeProdMise() {
   return new Promise((resolve) => {
-    this.servPresta.getProduitMise().subscribe(results => {
+    this.servGlobal.getProduitMF().subscribe(results => {
       this.liste = results.body;
       resolve(results.body)
     })
