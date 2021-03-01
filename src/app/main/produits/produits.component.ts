@@ -77,7 +77,7 @@ export class ProduitsComponent
 
   async ListeProduit() {
     await this.ListeProdMise();
-   await this.servPresta.getAllProduit().subscribe(async results => {
+   await this.servGlobal.getAllProduit().subscribe(async results => {
      results = results.body;
     //  console.log("les donnéer", results);
      await results.forEach((element, index) => {
@@ -169,7 +169,7 @@ let model={
 }
 
 ListeProdMise() {
-this.servPresta.getProduitMise().subscribe(results => {
+this.servGlobal.getProduitMise().subscribe(results => {
   this.liste = results.body;
   console.log("Liste mise en avant", this.liste);
 })

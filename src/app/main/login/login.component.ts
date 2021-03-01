@@ -113,7 +113,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser() {
-  this.servInscr.Loginuser(this.modelCLient).subscribe(results => {
+  this.servInscr.Loginuser(this.modelCLient).subscribe(async results => {
     console.log("Test");
     if(results.status == 200) {
       this.router.navigate(['/analytique'], {skipLocationChange: true});
@@ -125,15 +125,15 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('id', results.body.reponse.id);
       sessionStorage.setItem('prenom', results.body.reponse.prenom);
     }else {
-      this.toastr.error('Login ou mot de passe incorrectes !', 'Erreur');
+    await  this.toastr.error('Votre email ou mot de passe incorrectes !', 'Erreur');
      }
-  },(error) => {
+  },async (error) => {
 
     if(error.status === 401) {
       console.log("Erreur",  error.status)
-      this.toastr.error('Login ou mot de passe incorrectes !', 'Erreur'); 
+     await this.toastr.error('Login ou mot de passe incorrectes !', 'Erreur'); 
     } else if (error.status === 405) {
-      this.toastr.warning('Il y a une champ vide', 'Erreur'); 
+    await  this.toastr.warning('Il y a une champ vide', 'Erreur'); 
     } 
     else {
       console.log("Erreur Trover")

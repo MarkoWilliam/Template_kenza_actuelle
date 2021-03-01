@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Lien } from '../models/lien';
 import { map } from 'rxjs/operators';
+import { environment } from 'environments/environment';
 // import 'rxjs/add/operator/catch';
 // import 'rxjs/add/observable/throw';
 // import { ToastrService } from 'ngx-toastr'; 
@@ -21,7 +22,8 @@ export class GlobaleService {
   private UpadateProduit="";
   private recupallelement="produit/pageelement/";
   private allnotif = "produit/allnotif"
-  private lien: Lien = new Lien();
+  // private lien: Lien = new Lien();
+  private lien = environment;
   public base_Url_Api_Bo=this.lien.lienCmd;
   //-------------13---------------
   private produitMiseAvant = "produit_bo/listProduitNew";

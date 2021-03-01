@@ -68,17 +68,6 @@ export class OffresModalComponent implements OnInit {
     const file =event.target.files[0];
     this.images = file;
   }
-  // async Updatemodif(){
-  //   console.log(this.prod);
-  //     this.api.uploadimage(this.images).pipe().subscribe((data: any) => { 
-  //        if(data){
-  //           this.prod.url_img=data.name_img;
-  //        }
-  //        this.api.majbanniere(this.prod).pipe().subscribe((data: any) => { 
-            
-  //       });
-  //     }); 
-  // }
 
 insertion() {
   if(this.offre.nom_image !== '') {

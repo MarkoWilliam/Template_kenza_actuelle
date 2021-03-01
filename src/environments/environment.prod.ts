@@ -1,4 +1,6 @@
 export const environment = {
     production: true,
-    hmr       : false
+    hmr       : false,
+    lienCmd : "https://bo.test.kenza.re/",
+    lienPresta : "https://apk.test.kenza.re/",
 };

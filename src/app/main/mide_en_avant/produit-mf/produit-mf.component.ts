@@ -1,12 +1,13 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef, MatSort, MAT_DIALOG_DATA } from '@angular/material';
 import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';  
-import { HttpClient, HttpParams } from '@angular/common/http';
+import {MatTableDataSource} from '@angular/material/table';   
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { GlobaleService } from 'app/main/service/globale.service';
 import { ApiPrestaService } from 'app/main/service/Api-Bd-Presta/api-presta.service';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 export interface DialogData {
   animal: string;
@@ -55,7 +56,7 @@ export class ProduitMFComponent implements OnInit {
   showLoader: boolean;
   statue :any;
 
-  displayedColumns: string[] = ['position', 'nom','prix','Image','actions1'];
+  displayedColumns: string[] = ['position', 'nom','date','prix','Image','actions1'];
   searchKey: string;
 
   @ViewChild(MatPaginator,  {static: true}, ) paginator: MatPaginator;
@@ -65,6 +66,7 @@ export class ProduitMFComponent implements OnInit {
               public servPresta : ApiPrestaService,
               public route: Router,
               private toastr: ToastrService,
+              private http: HttpClient,
               public dialog: MatDialog) {}
   ngOnInit() {
     this.ListeProduit();
@@ -76,25 +78,26 @@ export class ProduitMFComponent implements OnInit {
     await this.ListeProdMise();
     this.showLoader = true;
    await this.servGlobal.ListProduitMF().subscribe(async results => {
-     results = results.body;
-     await results.forEach((element, index) => {
-       if(this.liste.includes(element.id_product)) {
-        results[index].active = 1;
-       } else {
-        results[index].active = 0;
-       }
-       results[index]['url_image'] = `http://` + `${element.domain}` + `${element.physical_uri}` +  'modules/wkshopthelook/views/img/looks/'  + `${element.img_name}` + '.jpg';
-       results[index]['image_bc'] =  `http://` + `${element.domain}` + `${element.physical_uri}` +  'img/co/' + `${element.id_attribute}` + '.jpg' ;
-       results[index]['lien'] = `http://` + `${element.domain}` + `${element.physical_uri}` + `wkshopcollection/1/collection-mere-fille-kenza?wk_id_look=` + `${element.id_look}`;
-      this.prix = element.meta_title.split("|")
-      results[index]['price'] = this.prix[2];
-        this.url = results[index]['url_image'] ; 
-        results[index]['name_produit'] = element.name; 
-     }); 
-    this.listMF = new MatTableDataSource(results);
-    this.listMF.sort = this.sort;
-    this.listMF.paginator = this.paginator;
-    this.showLoader = false;
+if(results.status == 200) {
+  results = results.body;
+  await results.forEach((element, index) => {
+    if(this.liste.includes(element.id_product)) {
+     results[index].active = 1;
+    } else {
+     results[index].active = 0;
+    }
+    results[index]['url_image'] = `https://` + `${element.domain}` + `${element.physical_uri}` +  'modules/wkshopthelook/views/img/looks/'  + `${element.img_name}` + '.jpg';     
+    results[index]['date'] = element.date_add;
+   this.prix = element.meta_title.split("|")
+   results[index]['price'] = this.prix[2];
+     this.url = results[index]['url_image'] ; 
+     results[index]['name_produit'] = element.name; 
+  }); 
+ this.listMF = new MatTableDataSource(results);
+ this.listMF.sort = this.sort;
+ this.listMF.paginator = this.paginator;
+ this.showLoader = false;
+}
     });
 }
 

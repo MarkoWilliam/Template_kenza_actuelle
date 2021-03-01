@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Lien } from 'app/main/models/lien';
+import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
 
 import { map } from 'rxjs/operators';
@@ -9,7 +10,8 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ApiPrestaService {
-  private lien: Lien = new Lien();
+  // private lien: Lien = new Lien();
+  private lien = environment;
   private produitNewOffr ="produit/prodnewetoffre";
   private produitMise = "produit_bo/insertcurvy";
   private deleteProduit = "produit_bo/supprimer/";

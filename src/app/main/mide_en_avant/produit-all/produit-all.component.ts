@@ -1,8 +1,7 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef, MatSort, MAT_DIALOG_DATA } from '@angular/material';
 import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';  
-import { HttpClient, HttpParams } from '@angular/common/http';
+import {MatTableDataSource} from '@angular/material/table';   
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { GlobaleService } from 'app/main/service/globale.service';
@@ -56,7 +55,7 @@ export class ProduitAllComponent implements OnInit {
   showLoader: boolean;
   statue :any;
 
-  displayedColumns: string[] = ['position', 'nom','prix','id_category','Image','actions1'];
+  displayedColumns: string[] = ['position', 'nom','date','prix','id_category','Image','actions1'];
   searchKey: string;
 
   @ViewChild(MatPaginator,  {static: true}, ) paginator: MatPaginator;
@@ -79,17 +78,19 @@ export class ProduitAllComponent implements OnInit {
     this.showLoader = true;
    await this.servGlobal.getAllProduit().subscribe(async results => {
      results = results.body; 
+
      await results.forEach(async (element, index) => {
       if(this.liste.includes(element.id_product)) {
         results[index].active = 1; 
        } else {
         results[index].active = 0;
        }
-       results[index]['link'] = `http://` + `${element.domain}` + `${element.physical_uri}` +  `${element.id_image}` + '-' + `home_default` + '/' + `${element.link_rewrite}` + `.jpg`;
-       //console.log(     results[index]['link']);
-       results[index]['lien'] =  `http://` + `${element.domain}` + `${element.physical_uri}` + 'accueil' + '/' +  `${element.id_product}` + '-' + `${element.id_product_attribute}` + '-' + `${element.link_rewrite}` + `.html#` + '/' + `${element.id_attribute}` + '.' + 'couleur' + '-' + `${element.link_rewrite}`;
+       results[index]['link'] = `https://` + `${element.domain}` + `${element.physical_uri}` +  `${element.id_image}` + '-' + `home_default` + '/' + `${element.link_rewrite}` + `.jpg`;
+       results[index]['date'] = element.date_add;
+       console.log("Date",        results[index]['date'].split('').join('') );
+       results[index]['lien'] =  `https://` + `${element.domain}` + `${element.physical_uri}` + 'accueil' + '/' +  `${element.id_product}` + '-' + `${element.id_product_attribute}` + '-' + `${element.link_rewrite}` + `.html#` + '/' + `${element.id_attribute}` + '.' + 'couleur' + '-' + `${element.link_rewrite}`;
       results[index]['color_pr'] = element.color;
-      results[index]['image_url'] =  `http://` + `${element.domain}` + `${element.physical_uri}` +  'img/co/' + `${element.id_attribute}` + '.jpg' ;
+      results[index]['image_url'] =  `https://` + `${element.domain}` + `${element.physical_uri}` +  'img/co/' + `${element.id_attribute}` + '.jpg' ;
       this.prix = element.meta_title.split("|")
       results[index]['price'] = this.prix[2];   
       });
@@ -130,6 +131,7 @@ let model={
       this.toastr.warning('Cette numéro de product existe déja dans la table!', 'Code produit');
     }
   },
+  
   );
 }
 
@@ -144,5 +146,11 @@ return new Promise((resolve) => {
 
   async actualiser() {
  await this.ListeProduit();
+}
+
+checkValue(event: any){
+  if(  event === "A") {
+    this.toastr.warning('Contactez l\'administrateur du site!', 'S\'il vous plait'); 
+  } 
 }
 }
