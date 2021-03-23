@@ -44,9 +44,9 @@ export class BanniereModalComponent implements OnInit {
   }
 
   onFileSelected(event):Promise<any>{
-return new Promise((resole)=> {
+return new Promise(async (resole)=> {
   const file =event.target.files[0];
-  this.images = file;
+  this.images = await file;
   console.log("File **",this.images);
  
   resole(this.images);
@@ -55,16 +55,16 @@ return new Promise((resole)=> {
   async Updatemodif(){
     if(this.mode==0){
       // alert("ato111");
-      this.api.uploadimage(this.images).subscribe((data: any) => { 
+      this.api.uploadimage(this.images).subscribe(async (data: any) => { 
         console.log("File 1",this.images);
         if(data){
           console.log("************** image", data);
-            this.prod.nom_image=data.name_img;
+            this.prod.nom_image= await data.file.filename;
         }
         this.api.insertbann(this.prod).subscribe((data: any) => { 
             if(data){
               this.toastr.success('enregistrer', 'Donnée');
-            //  window.location.reload();
+             window.location.reload();
                   console.log("Insertion data", data);
             }
           },(error) => {
@@ -79,7 +79,7 @@ return new Promise((resole)=> {
             this.api.updateBann(this.prod).pipe().subscribe((data: any) => {
               if (data) {
                   this.toastr.success('enregistrer', 'Donnée');
-                //  window.location.reload();
+                 window.location.reload();
                  console.log("Update data  1 si image est null", data);
               }
             },(error) => {
@@ -87,19 +87,19 @@ return new Promise((resole)=> {
             }); 
         }else{
          
-            this.api.uploadimage(this.images).pipe().subscribe((data: any) => { 
+            this.api.uploadimage(this.images).pipe().subscribe(async (data: any) => { 
               //console.log("File 3",this.images)
             
             //  console.log("ato222");
-              console.log("ato222",data);
+              console.log("ato222",data.file.filename);
                 if(data){
-                  this.prod.nom_image=data.name_img;
+                   this.prod.nom_image = await data.file.filename;
                 }
                 this.api.updateBann(this.prod).pipe().subscribe((data: any) => {
                   if (data) {
                       this.toastr.success('enregistrer', 'Donnée');
                       console.log("Upadate 2 data", data);
-                    //  window.location.reload();
+                     window.location.reload();
                   }
                 },(error) => {
                   this.toastr.error(error.message,'Erreur'); 

@@ -1,6 +1,39 @@
 <h1 mat-dialog-title class="titre">Nouvel Utilisateur</h1>
-<div mat-dialog-content>
+<!-- <div>
+    <table style="width: 90%;margin-left: 5%;">
+        <thead>
+
+            <th> <label for="icon"> Utilisateur &nbsp;&nbsp;</label></th>
+
+
+            <th> <input matinput type="radio" name="typeel" value="icon" (change)="afficher_bloc(0)" [checked]=true><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+
+                <th> <label for="image">Fonction &nbsp;&nbsp;</label>
+
+
+                    <th> <input matinput type="radio" name="typeel" value="image" (change)="afficher_bloc(1)" [checked]=true>
+                    </th>
+
+        </thead>
+    </table>
+</div> -->
+<div mat-dialog-content class="div">
+
+    <!-- <div [hidden]="ishidden0"> -->
     <form [formGroup]="registrationForm" autocomplete="off">
+
+
+        <div class="user-box">
+            <img class="prof_image" src="{{base_url}}produit/imageban/{{modelUser.nom_image}}">
+            <br>
+            <label>
+                <input type="file"  value="url_img" (change)="onFileSelected($event)"/>
+            </label>
+        </div>
+        <br>
+
+
         <div class="user-box">
             <label position="floating">Nom</label>
             <div class="error" id="test" *ngFor="let error of errorMessages.name">
@@ -8,7 +41,7 @@
                     <small class="error-message">{{error.message}}</small>
                 </ng-container>
             </div> <br>
-            <input id="input_register" [(ngModel)]="modelUser.nom" type="text" color="blue" formControlName="name" inputmode="text">            
+            <input id="input_register" [(ngModel)]="modelUser.nom" type="text" color="blue" formControlName="name" inputmode="text">
         </div>
 
         <div class="user-box">
@@ -18,7 +51,7 @@
                     <small class="error-message">{{error.message}}</small>
                 </ng-container>
             </div> <br>
-            <input id="input_register" [(ngModel)]="modelUser.prenom" type="text" color="blue" formControlName="firstname" inputmode="text">            
+            <input id="input_register" [(ngModel)]="modelUser.prenom" type="text" color="blue" formControlName="firstname" inputmode="text">
         </div>
 
         <div class="user-box">
@@ -29,37 +62,51 @@
             </div> <br>
             <mat-form-field appearance="fill" class="example-full-width">
                 <mat-label>Choix d'utilisateur</mat-label>
-                <select matNativeControl required [(ngModel)]="modelUser.id_type" formControlName="typeuser">
-                    <option value="1">Admin</option>
-                    <option value="2">Employee</option>
-                </select>
+                <!-- <select matNativeControl required   [(ngModel)]="modelUser.id_type" formControlName="typeuser">
+                    <option value="{{user.id_type_user}}">{{user.nom_type}}</option> 
+                </select> -->
+
+                <mat-select matNativeControl required [(ngModel)]="modelUser.id_type" formControlName="typeuser">
+                    <mat-option *ngFor="let user of typeUser" value="{{user.id_type_user}} ">
+                        {{user.nom_type}}
+                    </mat-option>
+                </mat-select>
             </mat-form-field>
 
         </div>
 
         <div class="user-box">
             <label position="floating">Email</label>
-            <input id="input_register" [(ngModel)]="modelUser.email" type="email" formControlName="message" inputmode="email">
             <div class="error" id="test" *ngFor="let error of errorMessages.message">
                 <ng-container *ngIf="message.hasError(error.type) && (message.dirty || message.touched)">
                     <small class="error-message">{{error.message}}</small>
                 </ng-container>
-            </div>
+            </div> <br>
+            <input id="input_register" [(ngModel)]="modelUser.email" type="email" formControlName="message" inputmode="email">
+
         </div>
 
         <div class="user-box">
             <label position="floating">Mot de passe</label>
-            <input id="input_register" [(ngModel)]="modelUser.password" type="password" formControlName="pass" inputmode="password">
             <div class="error" id="test" *ngFor="let error of errorMessages.message">
                 <ng-container *ngIf="pass.hasError(error.type) && (pass.dirty || pass.touched)">
                     <small class="error-message">{{error.pass}}</small>
                 </ng-container>
             </div>
+            <br>
+            <input id="input_register" [(ngModel)]="modelUser.password" type="password" formControlName="pass" inputmode="password">
+
         </div>
     </form>
-</div>
-<div mat-dialog-actions>
-    <button mat-button mat-dialog-close class="red">Fermer</button>
-    <button mat-button mat-dialog-close  [disabled]="!registrationForm.valid" (click)="registerEntrer(mode)" color="warning" class="green">Enregistrer</button>
-</div>
+    <div mat-dialog-actions>
+        <button mat-button mat-dialog-close class="red">Fermer</button>
+        <button mat-button mat-dialog-close [disabled]="!registrationForm.valid" (click)="registerEntrer(mode)" color="warning" class="green">Enregistrer</button>
+    </div>
+    <!-- </div> -->
 
+    <!-- <div [hidden]="ishidden1">
+        <label position="floating">Nom</label>
+        <label position="floating">Nom</label>
+        <label position="floating">Nom</label>
+    </div> -->
+</div>

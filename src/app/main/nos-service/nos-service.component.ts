@@ -15,7 +15,7 @@ export class NosServiceComponent implements OnInit {
   listeelement: MatTableDataSource<any>;
   base_url="";
   searchKey: string;
-  
+  showLoader: boolean;
   displayedColumns: string[] = ['index','Image','Lien', 'Action'];
   constructor(
       private dialog: MatDialog,
@@ -36,12 +36,14 @@ export class NosServiceComponent implements OnInit {
   }
 
   async recupListElement(){
+    this.showLoader = true;
       this.api.getService().subscribe((data: any) => { 
         if(data){
           /*  console.log(data); */
           this.listeelement = new MatTableDataSource(data);
           this.listeelement.sort = this.sort;
           this.listeelement.paginator = this.paginator;
+          this.showLoader = false;
         }
      });
     }

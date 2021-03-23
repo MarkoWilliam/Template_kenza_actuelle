@@ -7,7 +7,7 @@ import { hmrBootstrap } from 'hmr';
 if ( environment.production )
 {
     enableProdMode();
-  // window.console.log = () => { }
+    window.console.log = () => { }
 }  
 
 const bootstrap = () => platformBrowserDynamic().bootstrapModule(AppModule);

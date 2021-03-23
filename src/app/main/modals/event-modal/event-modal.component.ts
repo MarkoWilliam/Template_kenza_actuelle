@@ -50,9 +50,9 @@ export class EventModalComponent implements OnInit {
   
   async Updatemodif(){
       if(this.mode==0){
-        this.api.uploadimage(this.images).pipe().subscribe((data: any) => { 
+        this.api.uploadimage(this.images).pipe().subscribe(async (data: any) => { 
           if(data){
-             this.prod.nom_image=data.name_img;
+             this.prod.nom_image=await data.file.filename;
           }
           this.api.insertevent(this.prod).pipe().subscribe((data: any) => {
             if (data) {
@@ -75,9 +75,9 @@ export class EventModalComponent implements OnInit {
               this.toastr.error(error.message,'Erreur'); 
             }); 
           }else{
-            this.api.uploadimage(this.images).pipe().subscribe((data: any) => { 
+            this.api.uploadimage(this.images).pipe().subscribe(async (data: any) => { 
               if(data){
-                 this.prod.nom_image=data.name_img;
+                 this.prod.nom_image=await data.file.filename;
               }
               this.api.updateevent(this.prod).pipe().subscribe((data: any) => {
                 if (data) {

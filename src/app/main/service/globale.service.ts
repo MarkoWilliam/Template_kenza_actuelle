@@ -54,6 +54,10 @@ export class GlobaleService {
   private listBebe = "produit_bo/listBebe";
   private pushBebe = "produit_bo/insertbebe";
   private selecteBebe = "pushProduit/listePushbebe";
+
+  //-----------Type user------------
+  private typeUser = "auth/typeUser";
+  private CreationTypeUser = 'auth/typeUser';
   constructor(private http: HttpClient
               ) { }
 
@@ -345,5 +349,15 @@ export class GlobaleService {
   }
 
 
+  //----------Type User ----------------
+GetTypeUser():Observable<any> {
+  const headers = new HttpHeaders({'content-type':'applicaiton/json'});
+  return this.http.get(this.lien.lienCmd + `${this.typeUser}`, {headers, observe:'response'});
+}
+creationTypeUser(ModelCLient: object): Observable<any> {
+  const headers = new HttpHeaders();
+  headers.append('Content-Type', 'application/json');
+  return this.http.post(this.lien.lienCmd + `${this.CreationUser}`,ModelCLient, {headers, observe:'response'});
+}
 
 }

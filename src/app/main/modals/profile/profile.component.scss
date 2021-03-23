@@ -1,11 +1,23 @@
 .titre {
     text-align: center;
 }
-.titre_profile{
+
+.titre_profile {
     font-size: 16;
     font-weight: bold;
-    padding:4px;
+    padding: 4px;
 }
-.row_profile{
+
+.row_profile {
     padding: 10px;
+}
+
+.prof_image {
+    width: 80px;
+    border-radius: 50% 50% 50% 50%;
+}
+
+#btn {
+    width: 50%;
+    margin-left: 25%;
 }

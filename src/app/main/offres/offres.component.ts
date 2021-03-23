@@ -16,6 +16,7 @@ export class OffresComponent implements OnInit {
   base_url="";
   searchKey: string;
   displayedColumns: string[] = ['index','Image','Titre','Texte','Lien','Action'];
+  showLoader: boolean;
   constructor(
       private dialog: MatDialog,
       private api:GlobaleService,
@@ -35,12 +36,14 @@ export class OffresComponent implements OnInit {
   }
 
   async recupListElement(){
+    this.showLoader = true;
       this.api.getOffres().subscribe((data: any) => { 
         if(data){
           /*  console.log(data); */
           this.listeelement = new MatTableDataSource(data);
           this.listeelement.sort = this.sort;
           this.listeelement.paginator = this.paginator;
+          this.showLoader = false;
         }
      });
     }

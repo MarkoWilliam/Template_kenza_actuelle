@@ -14,6 +14,7 @@ export class BanniereComponent implements OnInit {
   listeelement: MatTableDataSource<any>;
   base_url="";
   searchKey: string;
+  showLoader: boolean;
 displayedColumns: string[] = ['index','Image','N° banniere','Nom Page','Action'];
   
   constructor(
@@ -38,12 +39,14 @@ displayedColumns: string[] = ['index','Image','N° banniere','Nom Page','Action'
 
 
   async recupListElement(){
+    this.showLoader = true;
     this.api.getAllBan().subscribe((data: any) => { 
       if(data){
         /*  console.log(data); */
         this.listeelement = new MatTableDataSource(data);
         this.listeelement.sort = this.sort;
         this.listeelement.paginator = this.paginator;
+        this.showLoader = false;
       }
    });
   }

@@ -1,7 +1,10 @@
+<h1 mat-dialog-title class="titre">
 
-
-<h1 mat-dialog-title class="titre">Mon profile</h1>
+    Mon profile</h1>
 <div mat-dialog-content>
+    <!-- <div class="row_profile">
+        <img class="prof_image" src="{{base_url}}produit/imageban/{{nom_image}}">
+    </div>
     <div class="row_profile">
         <span class="titre_profile">Nom: </span><span>{{nom}}</span>
     </div>
@@ -10,13 +13,32 @@
         <span class="titre_profile">Prenom: </span><span>{{prenom}}</span>
     </div>
     <br>
-    <div  class="row_profile">
+    <div class="row_profile">
         <span class="titre_profile">Email: </span><span>{{email}}</span>
     </div>
-    <div  class="row_profile">
+    <div class="row_profile">
         <span class="titre_profile">Type: </span><span>{{type}}</span>
-    </div>
+    </div> -->
+    <mat-card class="example-card">
+        <mat-card-header>
+            <div mat-card-avatar>
+                <img class="prof_image" src="{{base_url}}produit/imageban/{{nom_image}}">
+
+            </div>
+            <mat-card-title>{{nom}}</mat-card-title>
+            <mat-card-subtitle>{{prenom}}</mat-card-subtitle>
+        </mat-card-header>
+        <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+        <mat-card-content>
+            <div class="row_profile">
+                <span class="titre_profile">Email: </span><span>{{email}}</span>
+            </div>
+            <div class="row_profile">
+                <span class="titre_profile">Role: </span><span>{{type}}</span>
+            </div>
+        </mat-card-content>
+    </mat-card>
 </div>
 <div mat-dialog-actions>
-    <button mat-button mat-dialog-close class="red">Fermer</button>
+    <button mat-button mat-dialog-close class="red" id="btn">Fermer</button>
 </div>

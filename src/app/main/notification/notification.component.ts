@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NotificationComponent implements OnInit{
    listnotif: MatTableDataSource<any>;
-  
+   showLoader: boolean;
    searchKey: string;
    displayedColumns: string[] = ['index','Date','Titre','Contenu','Produit','Action'];
   constructor(
@@ -36,11 +36,13 @@ export class NotificationComponent implements OnInit{
 
 
   async recupListNotification(){
+    this.showLoader = true;
     this.api.getAllNotification().pipe().subscribe((data: any) => { 
       if(data){
         this.listnotif = new MatTableDataSource(data.body);
         this.listnotif.sort = this.sort;
         this.listnotif.paginator = this.paginator;
+        this.showLoader = false;
       }
    });
   

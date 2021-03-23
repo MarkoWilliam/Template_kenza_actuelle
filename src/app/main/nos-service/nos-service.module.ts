@@ -5,6 +5,7 @@ import { AuthGuard } from '../service/auth/auth.guard';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { FuseSharedModule } from '@fuse/shared.module';
+import { NosServiceModalComponent } from '../modals/nos-service-modal/nos-service-modal.component';
 const routes = [
   {
       path     : 'nosService',
@@ -21,6 +22,6 @@ const routes = [
     TranslateModule,
     FuseSharedModule,
   ],
-  entryComponents:[NosServiceComponent]
+  entryComponents:[NosServiceModalComponent]
 })
 export class NosServiceModule { }

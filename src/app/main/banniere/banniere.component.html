@@ -22,6 +22,7 @@
         </div>
         <div class="content">
             <div class="mat-elevation-z8">
+                <mat-progress-bar mode='indeterminate' *ngIf="showLoader"></mat-progress-bar>
                 <table mat-table [dataSource]="listeelement" class="mat-elevation-z8" matSort>
 
                     <ng-container matColumnDef="index">

@@ -23,7 +23,7 @@ import { EventModule } from 'app/main/event/event.module';
 
 import { MessageModule } from 'app/main/message/message.module';
 import { NotificationModule } from 'app/main/notification/notification.module';
-import { MatCardModule, MatDialogModule, MatGridListModule, MatTableModule } from '@angular/material'  
+import { MatCardModule, MatDialogModule, MatGridListModule, MatOptionModule, MatSelectModule, MatTableModule } from '@angular/material'  
 import { UtilisateurModule } from './main/utilisateur/utilisateur.module';
 import { EmployerModule } from './main/employer/employer.module';
 import { AnalyticsDashboardModule } from './main/dashboards/analytics/analytics.module';
@@ -75,6 +75,9 @@ import { ProduitFilletteComponent } from './main/mide_en_avant/produit-fillette/
 import { ProduitCurvyModule } from './main/mide_en_avant/produit-curvy/produit-curvy.module';
 import { ProduitPromoModule } from './main/mide_en_avant/produit-promo/produit-promo.module';
 import { ProduitFilletteModule } from './main/mide_en_avant/produit-fillette/produit-fillette.module';
+import { MatProgressBarModule } from '@angular/material/progress-bar'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatSliderModule} from '@angular/material'
 
 const appRoutes: Routes = [
     {
@@ -104,9 +107,11 @@ const appRoutes: Routes = [
         NewUserModalComponent,
         BanniereComponent,
         NosServiceComponent,
+        DialogExampleComponent,
+        NosServiceModalComponent
     ],
     //-----Dialog---------
-    entryComponents: [DialogExampleComponent,NosServiceModalComponent],
+    entryComponents: [],
     imports     : [
         BrowserModule,
         BrowserAnimationsModule,
@@ -139,6 +144,11 @@ const appRoutes: Routes = [
         MatDialogModule,
         MatGridListModule,
         MatCardModule,
+        MatOptionModule,
+        MatSelectModule,
+        MatProgressSpinnerModule,
+        MatProgressBarModule,
+        MatSliderModule,
         
         // App modules
         LayoutModule,
@@ -154,7 +164,6 @@ const appRoutes: Routes = [
         LoginModule,
         AccueilModule,
         InscriptionModule,
-        DialogExampleModule,
         FileUploadModule,
         GpAccueilModule,
         CarteCadeauModule,
@@ -164,8 +173,7 @@ const appRoutes: Routes = [
         ProduitBebeModule,
         ProduitMfModule,
         BanniereModule,
-        NosServiceModule,
-        NosServiceModalModule,
+        NosServiceModule, 
         ProduitCurvyModule,
         ProduitPromoModule,
         ProduitFilletteModule

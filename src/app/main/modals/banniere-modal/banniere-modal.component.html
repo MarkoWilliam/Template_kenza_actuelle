@@ -1,12 +1,13 @@
 <h1 mat-dialog-title class="titre">banniere ou Image</h1>
 <div mat-dialog-content>
 
-    <div>        
-        <img style="width:200px;height:75px;" src="{{base_url}}produit/imageban/{{prod.nom_image}}">   
+    <div>
+        <img style="width:200px;height:75px;" src="{{base_url}}produit/imageban/{{prod.nom_image}}">
         <label>
+            <br>
             <input type="file"  value="url_img" (change)="onFileSelected($event)"/>
         </label>
-    </div> 
+    </div>
 
     <mat-form-field appearance="fill" class="example-full-width">
         <mat-label>Choix page</mat-label>

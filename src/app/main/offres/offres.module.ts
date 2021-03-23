@@ -6,6 +6,7 @@ import { FuseSharedModule } from '@fuse/shared.module';
 import { RouterModule } from '@angular/router';
 import { OffresComponent } from './offres.component';
 import { OffresModalComponent } from '../modals/offres-modal/offres-modal.component';
+import { DialogExampleComponent } from '../dialog-example/dialog-example.component';
 
 
 const routes = [
@@ -24,6 +25,6 @@ const routes = [
     TranslateModule,
     FuseSharedModule
   ],
-  entryComponents:[OffresModalComponent]
+  entryComponents:[DialogExampleComponent]
 })
 export class OffresModule { }

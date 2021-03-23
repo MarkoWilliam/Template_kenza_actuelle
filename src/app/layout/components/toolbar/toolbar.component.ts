@@ -11,6 +11,7 @@ import { navigation } from 'app/navigation/navigation';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { ProfileComponent } from 'app/main/modals/profile/profile.component';
+import { GlobaleService } from 'app/main/service/globale.service';
 
 @Component({
     selector     : 'toolbar',
@@ -31,6 +32,8 @@ export class ToolbarComponent implements OnInit, OnDestroy
     navigation: any;
     selectedLanguage: any;
     userStatusOptions: any[];
+    base_url = "";
+    nom_image:any;
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -49,6 +52,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
         private _translateService: TranslateService,
         public route : Router,
         private dialog: MatDialog,
+        private api:GlobaleService,
     )
     {
         // Set the defaults
@@ -107,6 +111,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
      * On init
      */
     ngOnInit(): void
+  
     {
         // Subscribe to the config changes
         this._fuseConfigService.config
@@ -115,11 +120,12 @@ export class ToolbarComponent implements OnInit, OnDestroy
                 this.horizontalNavbar = settings.layout.navbar.position === 'top';
                 this.rightNavbar = settings.layout.navbar.position === 'right';
                 this.hiddenNavbar = settings.layout.navbar.hidden === true;
-                this.Donner();
             });
 
         // Set the selected language from default languages
         this.selectedLanguage = _.find(this.languages, {id: this._translateService.currentLang});
+        this.base_url=this.api.base_Url_Api_Bo;
+        this.Donner();
     }
 
     /**
@@ -180,10 +186,12 @@ export class ToolbarComponent implements OnInit, OnDestroy
         this.nom =  sessionStorage.getItem('nom');
         this.prenom =  sessionStorage.getItem('prenom');
         this.id_user = sessionStorage.getItem('id');
+        this.nom_image =  sessionStorage.getItem('nom_image'); 
+        console.log("**Image name******",         this.nom_image)
     }
     afficheprofil(id_user){
         this.dialog.open(ProfileComponent,{
-            width:'35%',
+            width:'20%',
             data :{id_user}
         }); 
     }

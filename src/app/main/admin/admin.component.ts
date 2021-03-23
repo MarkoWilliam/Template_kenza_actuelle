@@ -12,7 +12,14 @@ import { NewUserModalComponent } from '../modals/new-user-modal/new-user-modal.c
 export class AdminComponent implements OnInit {
   listuser: MatTableDataSource<any>;
   searchKey: string;
-  displayedColumns: string[] = ['index','Nom','Prenom','Email','Type','Action'];
+  base_url="";
+  nom=null;
+  prenom=null;
+  email=null;
+  type=null;
+  nom_image=null;
+  showLoader: boolean;
+  displayedColumns: string[] = ['index','Nom','Prenom','Email','profil','Type','Action'];
   constructor(
     private dialog: MatDialog,
     private api:GlobaleService,
@@ -26,24 +33,29 @@ export class AdminComponent implements OnInit {
   paginator: MatPaginator;
 
   ngOnInit() {
+    this.base_url=this.api.base_Url_Api_Bo;
     this.recupListeUser();
+    this.Stor();
+
   }
 
   async recupListeUser(){
+    this.showLoader = true;
     this.api.listeUser().subscribe((data: any) => { 
      
       if(parseInt(data.length)>0){
-        //console.log(data);
+     console.log(data);
         this.listuser = new MatTableDataSource(data);
         this.listuser.sort = this.sort;
         this.listuser.paginator = this.paginator; 
+        this.showLoader = false;
       }
    });
   }
 
   newUser(){
     this.dialog.open(NewUserModalComponent,{
-      width:'35%',
+      width:'45%',
       data :{}
     }); 
   }
@@ -58,8 +70,7 @@ export class AdminComponent implements OnInit {
   }
 
 
-  majuser(user){
-    //console.log(user);
+  majuser(user){ 
     this.dialog.open(NewUserModalComponent,{
       width:'35%',
       data :{user}
@@ -80,4 +91,14 @@ export class AdminComponent implements OnInit {
         this.toastr.warning(error.message, 'Erreur');
     });
   }
+
+  Stor(){ 
+     this.nom =  sessionStorage.getItem('nom');
+     this.prenom =  sessionStorage.getItem('prenom');
+     this.email =  sessionStorage.getItem('email');
+     this.type =  sessionStorage.getItem('type');
+     this.nom_image =  sessionStorage.getItem('nom_image'); 
+     console.log(   this.type);
+     
+   }
 }

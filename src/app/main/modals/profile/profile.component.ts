@@ -12,13 +12,16 @@ export class ProfileComponent implements OnInit {
   prenom=null;
   email=null;
   type=null;
+  nom_image=null;
+  base_url = "";
   constructor(
     private api:GlobaleService,
     @Inject(MAT_DIALOG_DATA) public data: {id_user}
   ) {console.log(data)}
 
   ngOnInit() {
-    this.majStatUser()
+    this.majStatUser();
+    this.base_url=this.api.base_Url_Api_Bo;
   }
   majStatUser(){
    /*  sessionStorage.setItem('token', results.body.token);
@@ -42,7 +45,8 @@ export class ProfileComponent implements OnInit {
     this.nom =  sessionStorage.getItem('nom');
     this.prenom =  sessionStorage.getItem('prenom');
     this.email =  sessionStorage.getItem('email');
-    this.type =  sessionStorage.getItem('type_str');
+    this.type =  sessionStorage.getItem('type');
+    this.nom_image =  sessionStorage.getItem('nom_image'); 
     
   }
 }

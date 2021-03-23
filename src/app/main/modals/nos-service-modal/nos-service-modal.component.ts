@@ -45,9 +45,9 @@ export class NosServiceModalComponent implements OnInit {
 
   async Updatemodif(){
     if(this.mode==0){
-      this.api.uploadimage(this.images).pipe().subscribe((data: any) => { 
+      this.api.uploadimage(this.images).pipe().subscribe(async (data: any) => { 
         if(data){
-           this.offre.nom_image=data.name_img;
+           this.offre.nom_image=await data.file.filename;
         }
         this.api.insertService(this.offre).pipe().subscribe((data: any) => {
           if (data) {
@@ -69,9 +69,9 @@ export class NosServiceModalComponent implements OnInit {
             this.toastr.error(error.message,'Erreur'); 
           }); 
         }else{
-          this.api.uploadimage(this.images).pipe().subscribe((data: any) => { 
+          this.api.uploadimage(this.images).pipe().subscribe(async (data: any) => { 
             if(data){
-               this.offre.nom_image=data.name_img;
+               this.offre.nom_image=await data.file.filename;
             }
             this.api.updateService(this.offre).pipe().subscribe((data: any) => {
               if (data) {

@@ -114,7 +114,7 @@ export class LoginComponent implements OnInit {
 
   loginUser() {
   this.servInscr.Loginuser(this.modelCLient).subscribe(async results => {
-    console.log("Test");
+    console.log("Test",results);
     if(results.status == 200) {
       this.router.navigate(['/analytique'], {skipLocationChange: true});
       this.toastr.success('avec succès', 'Authentification');   
@@ -124,19 +124,23 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('email', results.body.reponse.email);
       sessionStorage.setItem('id', results.body.reponse.id);
       sessionStorage.setItem('prenom', results.body.reponse.prenom);
+      sessionStorage.setItem('type', results.body.reponse.nom_type);
+      sessionStorage.setItem('nom_image', results.body.reponse.nom_image);
     }else {
     await  this.toastr.error('Votre email ou mot de passe incorrectes !', 'Erreur');
      }
   },async (error) => {
 
-    if(error.status === 401) {
+    if(error.status == 401) {
       console.log("Erreur",  error.status)
      await this.toastr.error('Login ou mot de passe incorrectes !', 'Erreur'); 
-    } else if (error.status === 405) {
+    } else if (error.status == 405) {
     await  this.toastr.warning('Il y a une champ vide', 'Erreur'); 
-    } 
+    }  else if (error.status == 402) {
+      await  this.toastr.warning('Votre compte n\'est plus validé !!!', 'Erreur'); 
+      } 
     else {
-      console.log("Erreur Trover")
+      await  this.toastr.error('Votre email ou mot de passe incorrectes !', 'Erreur');
     }
 
   }
