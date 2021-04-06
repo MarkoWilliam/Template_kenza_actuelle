@@ -50,6 +50,7 @@ export const navigation: FuseNavigation[] = [
         id      : 'miseProduit',
         title   : 'Produits mis en avant',
         type    : 'collapsable',
+        icon: 'view_carousel',
         translate: 'NAV.APPLICATIONS',
         // icon    : 'import_contacts',
         children: [
@@ -57,36 +58,42 @@ export const navigation: FuseNavigation[] = [
                 id   : 'produitAll',
                 title: 'Produits nouveautés',
                 type : 'item',
+                icon : 'playlist_add_check',
                 url  : '/produitAll'
             },
             {
                 id   : 'produitCurvy',
                 title: 'Produits grande Taille',
                 type : 'item',
+                icon : 'playlist_add_check',
                 url  : '/produitCurvy'
             },
             {
                 id   : 'produitMf',
                 title: 'Produit mere et fille',
                 type : 'item',
+                icon : 'playlist_add_check',
                 url  : '/produitMf'
             },
             {
                 id   : 'produitPromo',
                 title: 'Produit promotion',
                 type : 'item',
+                icon : 'playlist_add_check',
                 url  : '/produitPromos'
             },
             {
                 id   : 'produitFillette',
                 title: 'Produit fillette',
                 type : 'item',
+                icon : 'playlist_add_check',
                 url  : '/produitFillette'
             },
             {
                 id   : 'produitBb',
                 title: 'Produit bebe',
                 type : 'item',
+                icon : 'playlist_add_check',
                 url  : '/produitBb'
             }
         ]
@@ -142,19 +149,22 @@ export const navigation: FuseNavigation[] = [
             {
                 id       : 'banniere',
                 title    : 'Banniere ou Image',                
-                type     : 'item',                
+                type     : 'item',    
+                icon     : 'image',            
                 url      : '/banniere',               
             },
             {
                 id       : 'event',
                 title    : 'Evenement',                
-                type     : 'item',                
+                type     : 'item',        
+                icon     : 'event',          
                 url      : '/event',               
             },         
             {
                 id       : 'chat',
                 title    : 'Push Notification',                
-                type     : 'item',                
+                type     : 'item',   
+                icon     : 'notifications',               
                 url      : '/notification',            
             }, 
             /*{
@@ -190,18 +200,20 @@ export const navigation: FuseNavigation[] = [
         title   : 'Offres',
         type    : 'collapsable',
         translate: 'NAV.APPLICATIONS',
-        // icon    : 'import_contacts',
+        icon    : 'local_offer',
         children: [
             {
                 id   : 'offres',
                 title: 'Nos offres',
                 type : 'item',
+                icon: 'card_giftcard',
                 url  : '/offres'
             },
             {
                 id   : 'nosService',
                 title: 'Nos service',
                 type : 'item',
+                icon : 'build',
                 url  : '/nosService'
             },
         ]
