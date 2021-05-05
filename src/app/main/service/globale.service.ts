@@ -244,7 +244,7 @@ export class GlobaleService {
       //-----------Produit Mise en avant 13-----------
   getAllProduit(): Observable<any> {
     const headers = new HttpHeaders({'content-type': 'application/json'});
-    return this.http.get(this.lien.lienPresta + `${this.produitMiseAvant}`,{headers, observe:'response'});
+    return this.http.get(this.lien.lienPresta + `${this.produitMiseAvant}`,{headers, observe:'response'}); 
   }
    
   getProduitMise(): Observable<any> {
@@ -358,6 +358,62 @@ creationTypeUser(ModelCLient: object): Observable<any> {
   const headers = new HttpHeaders();
   headers.append('Content-Type', 'application/json');
   return this.http.post(this.lien.lienCmd + `${this.CreationUser}`,ModelCLient, {headers, observe:'response'});
+}
+
+//------------------Texte button----------------
+getTexteButton(){
+  return this.http.get(`${this.lien.lienCmd}menuevent/listButton`);
+}
+
+//----------------Update button--------------
+updatButton(model: any): Observable<any> {
+  return this.http.post(`${this.lien.lienCmd}menuevent/update`,model);
+}
+
+insertButton(model: any): Observable<any> {
+  return this.http.post(`${this.lien.lienCmd}menuevent/insertion`,model);
+}
+
+//------------Titre button-------------
+getListTitre(){
+  return this.http.get(`${this.lien.lienCmd}menuevent/listTitre`);
+}
+
+//----------------Update button--------------
+updatTitre(model: any): Observable<any> {
+  return this.http.post(`${this.lien.lienCmd}menuevent/updateTitre`,model);
+}
+
+insertTittre(model: any): Observable<any> {
+  return this.http.post(`${this.lien.lienCmd}menuevent/insertionTitre`,model);
+}
+
+
+//--------------------device------------
+getAndroid(){
+  return this.http.get(`${this.lien.lienCmd}device/ListeAndroid`);
+}
+
+//--------------------device------------
+getIOS(){
+  return this.http.get(`${this.lien.lienCmd}device/ListeIos`);
+}
+
+
+
+//____________verion avec image ou pas___________________
+modeImage(model:any){
+  return this.http.post(`${this.lien.lienCmd}produit/image`,model);
+}
+
+//__________________Texte___________________
+//------------------Texte button----------------
+getTexteApk(){
+  return this.http.get(`${this.lien.lienCmd}translate/ListeText`);
+}
+
+updatText(model: any): Observable<any> {
+  return this.http.post(`${this.lien.lienCmd}translate/update`,model);
 }
 
 }

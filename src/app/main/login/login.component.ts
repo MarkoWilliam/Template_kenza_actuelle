@@ -113,8 +113,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser() {
-  this.servInscr.Loginuser(this.modelCLient).subscribe(async results => {
-    console.log("Test",results);
+  this.servInscr.Loginuser(this.modelCLient).subscribe(async results => { 
     if(results.status == 200) {
       this.router.navigate(['/analytique'], {skipLocationChange: true});
       this.toastr.success('avec succès', 'Authentification');   

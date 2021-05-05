@@ -1,19 +1,22 @@
 import { Component, OnInit ,ViewChild} from '@angular/core';
 import {MatSort,MatSortable,MatPaginator,MatTableDataSource,MatDialog,MatDialogConfig} from '@angular/material';
+import { ButtonTexteComponent } from 'app/main/modals/button-texte/button-texte.component';
 import { GlobaleService } from 'app/main/service/globale.service';
 import { ToastrService } from 'ngx-toastr';
-import { EventModalComponent } from '../modals/event-modal/event-modal.component';
+import { ModalTextApkComponent } from '../modals/modal-text-apk/modal-text-apk.component';
 
 @Component({
-  selector: 'app-event',
-  templateUrl: './event.component.html',
-  styleUrls: ['./event.component.scss']
+  selector: 'app-text-apk',
+  templateUrl: './text-apk.component.html',
+  styleUrls: ['./text-apk.component.scss']
 })
-export class EventComponent{
+export class TextAPKComponent implements OnInit {
+
+ 
   listeelement: MatTableDataSource<any>;
   base_url="";
   searchKey: string;
-  displayedColumns: string[] = ['index','Image','Titre','Texte','Lien','Nom_button', 'Condition','Libelle','message','Action'];
+  displayedColumns: string[] = ['index','Texte','Libelle' ,'Action'];
   showLoader: boolean;
   constructor(
     private dialog: MatDialog,
@@ -35,23 +38,17 @@ export class EventComponent{
 
   async recupListElement(){
     this.showLoader = true;
-      this.api.getevent().subscribe((data: any) => { 
-        if(data){
-          /*  console.log(data); */
+      this.api.getTexteApk().subscribe((data: any) => { 
+        if(data){ 
           this.listeelement = new MatTableDataSource(data);
           this.listeelement.sort = this.sort;
           this.listeelement.paginator = this.paginator;
           this.showLoader = false;
+          console.log("******",      this.listeelement)
         }
      });
   }
-
-  newnevent(){
-      this.dialog.open(EventModalComponent,{
-        width:'35%',
-        data :{}
-      }); 
-  } 
+ 
   applyFilter() {
     this.listeelement.filter =this.searchKey.trim().toLowerCase();
   }
@@ -62,27 +59,13 @@ export class EventComponent{
   }
   
   majevent(event){
-    this.dialog.open(EventModalComponent,{
+    this.dialog.open(ModalTextApkComponent,{
       width:'35%',
       data :{event}
     }); 
   }
 
 
-  majStatEvent(id,etat){
-    let newetat = !etat;
-    let model={
-      id:id,
-      etat:newetat
-    }
-    this.api.majEtatEvent(model).subscribe(results=> {
-      if(results) { 
-        this.toastr.success('Mis à jours effectuer', 'Success');
-      }
-    }, 
-    (error) => {
-        this.toastr.warning(error.message, 'Erreur');
-    });
-  }
-  
+ 
+
 }

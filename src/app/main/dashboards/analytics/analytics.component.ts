@@ -4,6 +4,8 @@ import { fuseAnimations } from '@fuse/animations';
 import * as CanvasJS from '../../../../assets/canvasjs.min.js';
 import { AnalyticsDashboardService } from 'app/main/dashboards/analytics/analytics.service';
 import * as Chart from 'chart.js';
+import { GlobaleService } from 'app/main/service/globale.service.js';
+import { ThemeService } from 'ng2-charts';
 
 @Component({
     selector     : 'analytics-dashboard',
@@ -14,6 +16,9 @@ import * as Chart from 'chart.js';
 })
 export class AnalyticsDashboardComponent implements OnInit
 {
+    liste: any;
+    list_ios: any;
+    adnroid: number
     widgets: any;
     widget1SelectedYear = '2016';
     widget5SelectedDay = 'today';
@@ -24,7 +29,8 @@ export class AnalyticsDashboardComponent implements OnInit
      * @param {AnalyticsDashboardService} _analyticsDashboardService
      */
     constructor(
-        private _analyticsDashboardService: AnalyticsDashboardService
+        private _analyticsDashboardService: AnalyticsDashboardService,
+        private globale: GlobaleService,
     )
     {
         // Register the custom chart.js plugin
@@ -40,6 +46,8 @@ export class AnalyticsDashboardComponent implements OnInit
      */
     ngOnInit(): void
     {
+    //    this.GetAndroid();
+    //    this.GetIOS() ;
         // Get the widgets from the service
         this.widgets = this._analyticsDashboardService.widgets;
         let chart = new CanvasJS.Chart("chartContainer2", {
@@ -69,7 +77,11 @@ export class AnalyticsDashboardComponent implements OnInit
         this.SpinSchar();
         }
 
-        SpinSchar() {
+        async SpinSchar() { 
+           await this.GetAndroid(); 
+           await this.GetIOS(); 
+            console.log("*Android***", this.liste)
+         console.log("Liste device IOS",    this.list_ios)
             let chart = new CanvasJS.Chart("chartContainer", {
                 theme: "light2",
                 animationEnabled: true,
@@ -83,13 +95,34 @@ export class AnalyticsDashboardComponent implements OnInit
                     toolTipContent: "<b>{name}</b>: ${y} (#percent%)",
                     indexLabel: "{name} - #percent%",
                     dataPoints: [
-                        { y: 450, name: "Android" },
-                        { y: 250, name: "IOS" },
+                        { y: this.liste, name: "Android" },
+                        { y:   this.list_ios, name: "IOS" },
                     ]
                 }]
             });
                 
             chart.render();
+        }
+
+
+        GetAndroid() {
+            return new Promise((resolve) => {
+                this.globale.getAndroid().subscribe(data => {
+                this.liste = data[0].ard;
+        //   console.log("Liste device ANDROID",        this.liste )
+                resolve(data);
+                })
+            })
+        }
+
+        GetIOS() {
+            return new Promise((resolve) => {
+                this.globale.getIOS().subscribe(data => {
+                this.list_ios = data[0].iphone;
+           //  console.log("Liste device IOS",        this.list_ios )
+                resolve(data);
+                })
+            })
         }
     }
 

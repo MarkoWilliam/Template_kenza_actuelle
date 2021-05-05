@@ -21,29 +21,6 @@ export const navigation: FuseNavigation[] = [
                 icon     : 'account_circle', 
                 url      : '/admin',
             },
-            
-           /*  {
-                id       : 'utilisateur',
-                title    : 'Gestion des clients',
-                type     : 'item',
-                icon     : 'people',
-                url      : '/utlisateur',
-            },
-
-            {
-                id       : 'employer',
-                title    : 'Gestion des employers',
-                type     : 'item',
-                icon     : 'account_circle',
-                url      : '/employer',
-            },
-            {
-                id       : 'principale',
-                title    : 'Principale',
-                type     : 'item',
-                icon     : 'account_circle',
-                url      : '/accueil',
-            }, */
         ]
     },
     {
@@ -52,7 +29,6 @@ export const navigation: FuseNavigation[] = [
         type    : 'collapsable',
         icon: 'view_carousel',
         translate: 'NAV.APPLICATIONS',
-        // icon    : 'import_contacts',
         children: [
             {
                 id   : 'produitAll',
@@ -98,48 +74,6 @@ export const navigation: FuseNavigation[] = [
             }
         ]
     },
-    /* {
-        id       : 'affichage',
-        title    : 'Gestion Affichage',
-        translate: 'NAV.APPLICATIONS',
-        type     : 'group',
-        children : [
-            {
-                id       : 'produits',
-                title    : 'Produits mis en avant',                
-                type     : 'item',                
-                url      : '/produits',               
-            }
-        ]
-    }, 
-    {
-        id       : 'applications',
-        title    : 'Utility',
-        translate: 'NAV.APPLICATIONS',
-        type     : 'group',
-        children : [
-           /*  {
-                id       : 'message',
-                title    : 'Message',                
-                type     : 'item',                
-                url      : '/message',               
-            }
-        ]
-    },
-   /*  {
-        id       : 'parametrages',
-        title    : 'Parametrage',
-        translate: 'NAV.APPLICATIONS',
-        type     : 'group',
-        children : [
-            {
-                id       : 'banniere',
-                title    : 'banniere',                
-                type     : 'item',                
-                url      : '/banniere',               
-            }
-        ]
-    }, */
     {
         id       : 'page',
         title    : 'Gestion Contenu Page',
@@ -155,44 +89,11 @@ export const navigation: FuseNavigation[] = [
             },
             {
                 id       : 'event',
-                title    : 'Evenement',                
+                title    : 'Évènement',                
                 type     : 'item',        
                 icon     : 'event',          
                 url      : '/event',               
-            },         
-            {
-                id       : 'chat',
-                title    : 'Push Notification',                
-                type     : 'item',   
-                icon     : 'notifications',               
-                url      : '/notification',            
-            }, 
-            /*{
-                id       : 'gpAccueil',
-                title    : 'Accueil',                
-                type     : 'item',                
-                url      : '/gp-accueil',               
-            },{
-                id       : 'carteCadeau',
-                title    : 'Carte cadeau',                
-                type     : 'item',                
-                url      : '/carte-cadeau',               
-            },{
-                id       : 'event',
-                title    : 'Evenement',                
-                type     : 'item',                
-                url      : '/event',               
-            }, {
-                id       : 'magasin',
-                title    : 'Magasins',                
-                type     : 'item',                
-                url      : '/magasin',               
-            },{
-                id       : 'offres',
-                title    : 'Offres',                
-                type     : 'item',                
-                url      : '/offres',               
-            }*/
+            },           
         ]
     },
     {
@@ -217,26 +118,79 @@ export const navigation: FuseNavigation[] = [
                 url  : '/nosService'
             },
         ]
+    }, 
+    {
+        id       : 'chat',
+        title    : 'Push Notification',                
+        type     : 'item',   
+        icon     : 'notifications',               
+        url      : '/notification',            
     },
-    /*{
-        id       : 'Parametrage',
-        title    : 'Parametrage',
+    {
+        id       : 'page',
+        title    : 'Gestion de texte',
         translate: 'NAV.APPLICATIONS',
         type     : 'group',
-        children : [
+        children : [     
+            // {
+                
+                
+            //     id      : 'event',
+            //     title   : 'Menu Évènement',
+            //     type    : 'collapsable',
+            //     translate: 'NAV.APPLICATIONS',
+            //     icon    : 'text_fields',
+            //     children: [
+            //         {
+            //             id   : 'button_text',
+            //             title: 'Button',
+            //             type : 'item',
+            //             icon: 'radio_button_checked',
+            //             url  : '/textButton'
+            //         },
+            //         {
+            //             id   : 'text_button',
+            //             title: 'Texte button ',
+            //             type : 'item',
+            //             icon : 'text_format',
+            //             url  : '/textButton'
+            //         },
+            //     ],
+                
+            // },  
             {
-                id       : 'parampage',
-                title    : 'Page APK Client',                
-                type     : 'item',                
-                url      : '/parampage',               
-            },{
-                id       : 'Type Utilisateur',
-                title    : 'Type Utilisateur',                
-                type     : 'item',                
-                url      : '/message',               
-            }
+                id      : 'event',
+                title   : 'Menu Évènement',
+                type    : 'collapsable',
+                translate: 'NAV.APPLICATIONS',
+                icon    : 'text_fields',
+                children: [
+                    {
+                        id   : 'bouton',
+                        title: 'Bouton',
+                        type : 'item',
+                        icon: 'radio_button_checked',
+                        url  : '/text'
+                    },
+                    {
+                        id   : 'texte',
+                        title: 'Texte',
+                        type : 'item',
+                        icon : 'short_text',
+                        url  : '/titre'
+                    },
+                ]
+            }, 
+            {
+                id       : 'chat',
+                title    : 'Titre & Label',                
+                type     : 'item',   
+                icon     : 'translate',               
+                url      : '/text_apk',            
+            },
         ]
-    },*/
+    },
+    
     {
         id       : 'deconnecter',
         title    : '',

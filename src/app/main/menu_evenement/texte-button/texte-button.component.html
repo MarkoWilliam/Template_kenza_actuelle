@@ -30,49 +30,11 @@
                         <td mat-cell *matCellDef="let element;index as i;"> {{i+1}} </td>
                     </ng-container>
 
-                    <ng-container matColumnDef="Image">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Image</th>
-                        <td mat-cell *matCellDef="let element">
-                            <img style="width:200px;height:75px;" src="{{base_url}}produit/imageban/{{element.nom_image}}">
-                        </td>
-                    </ng-container>
-
 
                     <ng-container matColumnDef="Titre">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Titre</th>
-                        <td mat-cell *matCellDef="let element"> {{element.titre}} </td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="Texte" style="width: 50%;">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>Texte</th>
-                        <td mat-cell *matCellDef="let element" style="width:50% !important"> {{element.texte}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.texte}} </td>
                     </ng-container>
-
-                    <ng-container matColumnDef="Lien">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Lien</th>
-                        <td mat-cell *matCellDef="let element"> {{element.lien}} </td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="Nom_button">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom boutton</th>
-                        <td mat-cell *matCellDef="let element"> {{element.nom_button}} </td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="Condition">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Condition</th>
-                        <td mat-cell *matCellDef="let element"> {{element.condition_event}} </td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="Libelle">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Libellée du condition</th>
-                        <td mat-cell *matCellDef="let element"> {{element.libellee}} </td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="message">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Message pour les participants</th>
-                        <td mat-cell *matCellDef="let element"> {{element.message_event}} </td>
-                    </ng-container>
-
 
                     <ng-container matColumnDef="Action">
                         <th class="th" mat-header-cell *matHeaderCellDef> Actions </th>
@@ -81,8 +43,6 @@
                             <button mat-icon-button (click)="majevent(element)">
                         <mat-icon>launch</mat-icon>
                     </button>
-                            <mat-label>Activer</mat-label>&nbsp;&nbsp;
-                            <mat-checkbox (click)="majStatEvent(element.id_event,element.etat)" [(ngModel)]="element.etat" class="checkBox-btn"></mat-checkbox>
                         </td>
                     </ng-container>
 

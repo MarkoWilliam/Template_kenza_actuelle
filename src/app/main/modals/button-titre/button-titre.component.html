@@ -1,0 +1,41 @@
+<h1 mat-dialog-title class="titre">Texte</h1>
+<div mat-dialog-content>
+
+    <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>Titre</mat-label>
+        <input matInput type="text" [(ngModel)]="prod.tittre" required>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>Libellée</mat-label>
+        <input matInput type="text" [(ngModel)]="prod.libelle">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Contenu Texte</mat-label>
+        <textarea rows="5" cols="40" matInput placeholder="....." [(ngModel)]="prod.texte" required></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>Bouton</mat-label>
+        <mat-select matNativeControl required [(ngModel)]="prod.bouton">
+            <mat-option *ngFor="let titre of listTitre" value=" {{titre.texte}}">
+                {{titre.texte}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>Lien</mat-label>
+        <input matInput type="text" [(ngModel)]="prod.lien" required>
+    </mat-form-field>
+
+
+
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close class="red">Fermer</button>
+    <button mat-button mat-dialog-close type="submit" (click)="Updatemodif()" color="warning" class="green">Enregistrer</button>
+</div>

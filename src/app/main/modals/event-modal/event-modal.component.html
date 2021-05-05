@@ -1,11 +1,11 @@
 <h1 mat-dialog-title class="titre">Evenement</h1>
 <div mat-dialog-content>
-    <div>       
-        <img style="width:200px;height:75px;" src="{{base_url}}produit/imageban/{{prod.nom_image}}">  
+    <div>
+        <img style="width:200px;height:75px;" src="{{base_url}}produit/imageban/{{prod.nom_image}}">
         <label>
             <input type="file"  value="url_img" (change)="onFileSelected($event)"/>
         </label>
-    </div> 
+    </div>
     <br>
 
     <mat-form-field appearance="fill" class="example-full-width">
@@ -16,13 +16,37 @@
     <mat-form-field class="example-full-width">
         <mat-label>Contenu Texte</mat-label>
         <textarea rows="5" cols="40" matInput placeholder="............." [(ngModel)]="prod.texte" required></textarea>
-    </mat-form-field>  
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>Nom du boutton </mat-label>
+        <input matInput type="text" [(ngModel)]="prod.nom_button">
+    </mat-form-field>
 
     <mat-form-field appearance="fill" class="example-full-width">
         <mat-label>Lien details</mat-label>
         <input matInput type="text" [(ngModel)]="prod.lien" placeholder="https://">
     </mat-form-field>
-  
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Condition</mat-label>
+        <textarea rows="5" cols="40" matInput placeholder="Si l' evènement à une condition" [(ngModel)]="prod.condition_event" required></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Libellée du condition</mat-label>
+        <textarea rows="5" cols="40" matInput placeholder="Libellé du condition" [(ngModel)]="prod.libellee" required></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Message pour les participants</mat-label>
+        <textarea rows="5" cols="40" matInput placeholder="Libellé du condition" [(ngModel)]="prod.message_event" required></textarea>
+    </mat-form-field>
+
+
+
+
+
 </div>
 <div mat-dialog-actions>
     <button mat-button mat-dialog-close class="red">Fermer</button>

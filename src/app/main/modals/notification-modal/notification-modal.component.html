@@ -1,28 +1,110 @@
-<h1 mat-dialog-title class="titre">Nouvel Notification</h1>
-<div mat-dialog-content>
-    <mat-form-field appearance="fill" class="example-full-width">
-        <mat-label>Produits Nouveauté</mat-label>
-        <mat-select matNativeControl required [(ngModel)]="notif.tmp">
-            <mat-option  *ngFor="let prod of listprod" value=" {{prod.name}}||{{prod.id_category}}||{{prod.id_image}}||{{prod.id_product}}||{{prod.id_attribute}}||{{prod.link_rewrite}}||{{prod.id_product_attribute}}">
-              {{prod.name}}
-            </mat-option>
-          </mat-select>
-    </mat-form-field>
+<div mat-dialog-content style="height: 55vh;">
+    <h1 mat-dialog-title class="titre">Nouvelle Notification</h1>
+
+    <div class="choix">
+
+        <table>
+            <thead>
+                <th> <label for="icon">Avec produit </label></th>
+                <th> <input matinput type="radio" [(ngModel)]="isimage" name="typeel" value="icon" (change)="Is_Image(0)" [checked]=true></th>
+                <th> <label for="image">Sans produit </label></th>
+                <th> <input matinput type="radio" [(ngModel)]="isimage" name="typeel" value="image" (change)="Is_Image(1)" [checked]=true></th>
+            </thead>
+        </table>
+    </div>
+    <br><br>
+
+    <div [hidden]="isImage">
+        <div mat-dialog-content>
+
+            <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>Produits Nouveauté</mat-label>
+                <mat-select matNativeControl required [(ngModel)]="notif.tmp">
+                    <mat-option *ngFor="let prod of listprod" value=" {{prod.name}}||{{prod.id_category}}||{{prod.id_image}}||{{prod.id_product}}||{{prod.id_attribute}}||{{prod.link_rewrite}}||{{prod.id_product_attribute}}">
+                        {{prod.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>Titre</mat-label>
+                <input matInput type="text" [(ngModel)]="notif.titre" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Contenu</mat-label>
+                <textarea matInput placeholder="....." [(ngModel)]="notif.contenu" required></textarea>
+            </mat-form-field>
+        </div>
+        <div mat-dialog-actions>
+            <button mat-button mat-dialog-close class="red">Fermer</button>
+            <button mat-button mat-dialog-close type="submit" (click)="Updatemodif()" color="warning" class="green">Enregistrer et Envoyer</button>
+        </div>
+    </div>
+
+    <div [hidden]="isLibre">
+        <div mat-dialog-content>
+            <div>
+                <img style="width:200px;height:75px;" src="{{base_url}}produit/imageban/{{notif.nom_image}}">
+                <label>
+                <br>
+                <input type="file"  value="url_img" (change)="onFileSelected($event)"/>
+            </label>
+            </div>
+            <br>
+
+            <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>Titre</mat-label>
+                <input matInput type="text" [(ngModel)]="notif.titre" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>Déscription</mat-label>
+                <input matInput type="text" [(ngModel)]="notif.contenu" required>
+            </mat-form-field>
+
+            <div>
+                <mat-label>Envoyer plus tard </mat-label>
+                <br>
+                <div>
+                    <table>
+                        <thead>
+                            <th class="envoyer"> <label for="oui">Oui </label></th>
+                            <th class="envoyer"> <input matinput type="radio" [(ngModel)]="idDateTime" name="typeel" value="oui" (change)="Is_Date(1)" [checked]=true></th>
+                            <th class="envoyer"> <label for="nom">Non</label></th>
+                            <th class="envoyer"> <input matinput type="radio" [(ngModel)]="idDateTime" name="typeel" value="nom" (change)="Is_Date(0)" [checked]=true></th>
+                        </thead>
+                    </table>
+                </div>
+
+            </div>
+
+            <div [hidden]="isDate">
+                <!-- <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field> -->
+
+                <mat-form-field class="example-full-width" appearance="fill" [formGroup]="range">
+                    <mat-label>Choose a date</mat-label>
+                    <input matStartDate formControlName="start" matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+                <p>Selected range: {{range.value | json}}</p>
+
+            </div>
 
 
 
 
-    <mat-form-field appearance="fill" class="example-full-width">
-        <mat-label>Titre</mat-label>
-        <input matInput type="text" [(ngModel)]="notif.titre" required>
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-        <mat-label>Contenu</mat-label>
-        <textarea matInput placeholder="....." [(ngModel)]="notif.contenu" required></textarea>
-    </mat-form-field>  
+
+
+        </div>
+        <div mat-dialog-actions style="width: 100%;">
+            <button mat-button mat-dialog-close class="red">Fermer</button>
+            <button mat-button mat-dialog-close type="submit" (click)="Updatemodif()" color="warning" class="green">Enregistrer et Envoyer</button>
+        </div>
+    </div>
 </div>
-<div mat-dialog-actions>
-    <button mat-button mat-dialog-close class="red">Fermer</button>
-    <button mat-button mat-dialog-close type="submit" (click)="Updatemodif()" color="warning" class="green">Enregistrer et Envoyer</button>
-</div>
-

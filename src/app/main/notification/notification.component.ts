@@ -3,7 +3,7 @@ import {MatSort,MatSortable,MatPaginator,MatTableDataSource,MatDialog,MatDialogC
 import { GlobaleService } from 'app/main/service/globale.service';
 import { NotificationModalComponent } from '../modals/notification-modal/notification-modal.component';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr'; 
 
 
 @Component({
@@ -15,7 +15,7 @@ export class NotificationComponent implements OnInit{
    listnotif: MatTableDataSource<any>;
    showLoader: boolean;
    searchKey: string;
-   displayedColumns: string[] = ['index','Date','Titre','Contenu','Produit','Action'];
+   displayedColumns: string[] = ['index','Date','Titre','Contenu','Produit','Avec image','Action'];
   constructor(
       private dialog: MatDialog,
       private api:GlobaleService,
@@ -42,7 +42,7 @@ export class NotificationComponent implements OnInit{
         this.listnotif = new MatTableDataSource(data.body);
         this.listnotif.sort = this.sort;
         this.listnotif.paginator = this.paginator;
-        this.showLoader = false;
+        this.showLoader = false; 
       }
    });
   
@@ -50,7 +50,7 @@ export class NotificationComponent implements OnInit{
 
   newnotification(){
       this.dialog.open(NotificationModalComponent,{
-        width:'35%',
+        width:'35%', 
         data :{}
       }); 
   }
@@ -102,5 +102,29 @@ export class NotificationComponent implements OnInit{
     }else{
       this.toastr.warning("Renvoie impossible,activer d'abord la notification", 'Erreur');
     }
+  }
+
+  checkValue(id,img) {
+console.log("***ID**", id)
+console.log("***IMAGE**", img)
+let model={
+  id:id,
+  image:img
+} 
+this.api.modeImage(model).subscribe(results => {
+  if(results) {
+    if(img == 1) {
+  this.toastr.success('Notification en version avec image.');
+} else  {
+  this.toastr.warning('Notification en version simple, sans image.');
+}
+  }
+
+} , 
+(error) => {
+    this.toastr.warning('Il a y une Erreur');
+}
+
+) 
   }
 }

@@ -23,7 +23,7 @@ import { EventModule } from 'app/main/event/event.module';
 
 import { MessageModule } from 'app/main/message/message.module';
 import { NotificationModule } from 'app/main/notification/notification.module';
-import { MatCardModule, MatDialogModule, MatGridListModule, MatOptionModule, MatSelectModule, MatTableModule } from '@angular/material'  
+import { MatCardModule, MatDatepickerModule, MatDialogModule, MatGridListModule, MatNativeDateModule, MatOptionModule, MatSelectModule, MatTableModule } from '@angular/material'  
 import { UtilisateurModule } from './main/utilisateur/utilisateur.module';
 import { EmployerModule } from './main/employer/employer.module';
 import { AnalyticsDashboardModule } from './main/dashboards/analytics/analytics.module';
@@ -77,7 +77,17 @@ import { ProduitPromoModule } from './main/mide_en_avant/produit-promo/produit-p
 import { ProduitFilletteModule } from './main/mide_en_avant/produit-fillette/produit-fillette.module';
 import { MatProgressBarModule } from '@angular/material/progress-bar'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import {MatSliderModule} from '@angular/material'
+import {MatSliderModule} from '@angular/material';
+import { TexteButtonComponent } from './main/menu_evenement/texte-button/texte-button.component'
+import { TexteButtonModule } from './main/menu_evenement/texte-button/texte-button.module';
+import { ButtonTexteComponent } from './main/modals/button-texte/button-texte.component';
+import { TitreButtonComponent } from './main/menu_evenement/titre-button/titre-button.component';
+import { TitreButtonModule } from './main/menu_evenement/titre-button/titre-button.module';
+import { ButtonTitreComponent } from './main/modals/button-titre/button-titre.component';
+import { TextAPKComponent } from './main/text-apk/text-apk.component';
+import { ModalTextApkComponent } from './main/modals/modal-text-apk/modal-text-apk.component';
+import { TextAPKModule } from './main/text-apk/text-apk.module';
+import { DatePipe } from '@angular/common';
 
 const appRoutes: Routes = [
     {
@@ -108,7 +118,13 @@ const appRoutes: Routes = [
         BanniereComponent,
         NosServiceComponent,
         DialogExampleComponent,
-        NosServiceModalComponent
+        NosServiceModalComponent, 
+        TexteButtonComponent,
+        ButtonTexteComponent,
+       TitreButtonComponent,
+       ButtonTitreComponent,
+       TextAPKComponent,
+       ModalTextApkComponent
     ],
     //-----Dialog---------
     entryComponents: [],
@@ -149,6 +165,8 @@ const appRoutes: Routes = [
         MatProgressSpinnerModule,
         MatProgressBarModule,
         MatSliderModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
         
         // App modules
         LayoutModule,
@@ -176,7 +194,10 @@ const appRoutes: Routes = [
         NosServiceModule, 
         ProduitCurvyModule,
         ProduitPromoModule,
-        ProduitFilletteModule
+        ProduitFilletteModule,
+        TexteButtonModule,
+        TitreButtonModule,
+        TextAPKModule
        
     ],
     bootstrap   : [
@@ -184,7 +205,8 @@ const appRoutes: Routes = [
     ],
     providers: [
         GlobaleService,
-        AuthGuard
+        AuthGuard, 
+        DatePipe
         //CryptHttpService
     ]
     

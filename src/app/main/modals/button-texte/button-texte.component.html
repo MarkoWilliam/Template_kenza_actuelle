@@ -1,0 +1,17 @@
+<h1 mat-dialog-title class="titre">Texte Bouton</h1>
+<div mat-dialog-content>
+
+    <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>Titre</mat-label>
+        <input matInput type="text" [(ngModel)]="prod.texte" required>
+    </mat-form-field>
+
+
+
+
+
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close class="red">Fermer</button>
+    <button mat-button mat-dialog-close type="submit" (click)="Updatemodif()" color="warning" class="green">Enregistrer</button>
+</div>

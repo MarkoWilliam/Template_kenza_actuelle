@@ -1,19 +1,18 @@
 import { Component, OnInit ,ViewChild} from '@angular/core';
 import {MatSort,MatSortable,MatPaginator,MatTableDataSource,MatDialog,MatDialogConfig} from '@angular/material';
+import { ButtonTitreComponent } from 'app/main/modals/button-titre/button-titre.component';
 import { GlobaleService } from 'app/main/service/globale.service';
 import { ToastrService } from 'ngx-toastr';
-import { EventModalComponent } from '../modals/event-modal/event-modal.component';
-
 @Component({
-  selector: 'app-event',
-  templateUrl: './event.component.html',
-  styleUrls: ['./event.component.scss']
+  selector: 'app-titre-button',
+  templateUrl: './titre-button.component.html',
+  styleUrls: ['./titre-button.component.scss']
 })
-export class EventComponent{
+export class TitreButtonComponent implements OnInit {
   listeelement: MatTableDataSource<any>;
   base_url="";
   searchKey: string;
-  displayedColumns: string[] = ['index','Image','Titre','Texte','Lien','Nom_button', 'Condition','Libelle','message','Action'];
+  displayedColumns: string[] = ['index', 'Titre','libellee','Texte','Bouton','lien', 'Action'];
   showLoader: boolean;
   constructor(
     private dialog: MatDialog,
@@ -35,7 +34,7 @@ export class EventComponent{
 
   async recupListElement(){
     this.showLoader = true;
-      this.api.getevent().subscribe((data: any) => { 
+      this.api.getListTitre().subscribe((data: any) => { 
         if(data){
           /*  console.log(data); */
           this.listeelement = new MatTableDataSource(data);
@@ -47,7 +46,7 @@ export class EventComponent{
   }
 
   newnevent(){
-      this.dialog.open(EventModalComponent,{
+      this.dialog.open(ButtonTitreComponent,{
         width:'35%',
         data :{}
       }); 
@@ -62,7 +61,7 @@ export class EventComponent{
   }
   
   majevent(event){
-    this.dialog.open(EventModalComponent,{
+    this.dialog.open(ButtonTitreComponent,{
       width:'35%',
       data :{event}
     }); 
@@ -84,5 +83,5 @@ export class EventComponent{
         this.toastr.warning(error.message, 'Erreur');
     });
   }
-  
+
 }

@@ -10,12 +10,16 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class EventModalComponent implements OnInit {
   prod={
-    id_event:null,
+    id_event:'',
     nom_image:'',
     titre:'',
     texte:'',
+    etat:1, 
     lien:'',
-    etat:1
+    nom_button: '', 
+    condition_event: '',
+    libellee	: '',
+    message_event: '',
   }
   mode=0;
   images=null;
@@ -25,15 +29,17 @@ export class EventModalComponent implements OnInit {
     private toastr: ToastrService,
     @Inject(MAT_DIALOG_DATA) public data: {event}
   ) {
-    if(data.event){
-      //console.log(data);
-     
+    if(data.event){   
+      this.prod.id_event = data.event.id_event;   
+      this.prod.nom_image = data.event.nom_image;   
+      this.prod.titre = data.event.titre;  
+      this.prod.texte = data.event.texte
       this.prod.etat = data.event.etat;
-      this.prod.id_event = data.event.id_event;
-      this.prod.lien = data.event.lien;
-      this.prod.nom_image = data.event.nom_image;     
-      this.prod.texte = data.event.texte;    
-      this.prod.titre = data.event.titre;    
+      this.prod.lien = data.event.lien;  
+      this.prod.nom_button = data.event.nom_button;  
+      this.prod.condition_event = data.event.condition_event;   
+      this.prod.libellee = data.event.libellee; 
+      this.prod.message_event = data.event.message_event; 
       this.mode = 1; 
       
     }
