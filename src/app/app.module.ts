@@ -24,6 +24,7 @@ import { EventModule } from 'app/main/event/event.module';
 import { MessageModule } from 'app/main/message/message.module';
 import { NotificationModule } from 'app/main/notification/notification.module';
 import { MatCardModule, MatDatepickerModule, MatDialogModule, MatGridListModule, MatNativeDateModule, MatOptionModule, MatSelectModule, MatTableModule } from '@angular/material'  
+import { MatRadioModule } from '@angular/material/radio'
 import { UtilisateurModule } from './main/utilisateur/utilisateur.module';
 import { EmployerModule } from './main/employer/employer.module';
 import { AnalyticsDashboardModule } from './main/dashboards/analytics/analytics.module';
@@ -170,6 +171,7 @@ const appRoutes: Routes = [
         MatDatepickerModule,
         MatNativeDateModule, 
         MatDatepickerModule , 
+        MatRadioModule,
         
         // App modules
         LayoutModule,
