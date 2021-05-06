@@ -51,7 +51,7 @@
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>Profile</th>
                         <td mat-cell *matCellDef="let element">
 
-                            <img class="prof_image" src="{{base_url}}produit/imageban/{{element.nom_image}}">
+                            <img class="prof_image" src="{{base_url}}produit/imageban/{{element.nom_image}}" onError="this.src='assets/img/fond_bo.png'">
                         </td>
                     </ng-container>
 

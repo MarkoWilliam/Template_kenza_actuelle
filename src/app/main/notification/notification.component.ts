@@ -4,6 +4,8 @@ import { GlobaleService } from 'app/main/service/globale.service';
 import { NotificationModalComponent } from '../modals/notification-modal/notification-modal.component';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr'; 
+import { result } from 'lodash';
+import { environment } from 'environments/environment';
 
 
 @Component({
@@ -15,7 +17,11 @@ export class NotificationComponent implements OnInit{
    listnotif: MatTableDataSource<any>;
    showLoader: boolean;
    searchKey: string;
-   displayedColumns: string[] = ['index','Date','Titre','Contenu','Produit','Avec image','Action'];
+   base_cmd : any;
+   domaine : any; 
+   physical: any;
+   base_url : any;
+   displayedColumns: string[] = ['index','Date','Titre','Contenu','Produit','Image','Avec image','Action'];
   constructor(
       private dialog: MatDialog,
       private api:GlobaleService,
@@ -32,17 +38,32 @@ export class NotificationComponent implements OnInit{
 
 
   ngOnInit() 
-  {this.recupListNotification()}
+  {this.recupListNotification();  
+    this.base_url=this.api.base_Url_Api_Bo;
+   
+  }
 
 
   async recupListNotification(){
-    this.showLoader = true;
+    this.showLoader = true; 
+  await  this.base_liste(); 
     this.api.getAllNotification().pipe().subscribe((data: any) => { 
       if(data){
         this.listnotif = new MatTableDataSource(data.body);
         this.listnotif.sort = this.sort;
         this.listnotif.paginator = this.paginator;
         this.showLoader = false; 
+        let results = data.body;
+        results.forEach((element, index) => {    
+          console.log("**1**", element );
+ if(results[index].nom_image) {
+  results[index]['nom_image']  =  this.base_url + 'produit/imageban/' + element.nom_image;
+  // console.log("**1**", results[index]['image'] );
+ } else {
+  results[index]['nom_image'] = 'https://' + this.base_cmd.domain + this.base_cmd.physical_uri + element.id_image + '-small_default/' + element.link_rewrite + '.jpg'
+  // console.log("**2**", results[index]['image'] ); 
+}    
+});
       }
    });
   
@@ -126,5 +147,16 @@ this.api.modeImage(model).subscribe(results => {
 }
 
 ) 
+  }
+
+  base_liste() {
+    return new Promise((resolve) => {
+      this.api.Base_lien().subscribe(data => {
+        console.log("****", data[0]);
+        this.base_cmd = data[0];
+        resolve(   this.base_cmd )
+            })
+    })
+
   }
 }

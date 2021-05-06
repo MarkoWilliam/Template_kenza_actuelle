@@ -9,6 +9,9 @@ export const environment = {
     // lienPresta : "http://localhost:8080/",
     lienCmd : "https://bo.test.kenza.re/",
     lienPresta : "https://apk.test.kenza.re/",
+
+    // lienCmd : "https://bo.test.kenza.re/",
+    // lienPresta : "https://apk.test.kenza.re/",
     // lienCmd : "https://bo.kenza.re/",
     // lienPresta : "https://apk.kenza.re/",
 };

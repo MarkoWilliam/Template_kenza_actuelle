@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FileUploadModule } from 'ng2-file-upload'; 
+import { FileUploadModule } from 'ng2-file-upload';  
 
 
 
@@ -8,7 +8,7 @@ import { FileUploadModule } from 'ng2-file-upload';
   declarations: [],
   imports: [
     CommonModule,
-    FileUploadModule, 
+    FileUploadModule,  
   ]
 })
 export class NotificationModalModule { }

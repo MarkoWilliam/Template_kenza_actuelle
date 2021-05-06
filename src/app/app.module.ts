@@ -87,7 +87,9 @@ import { ButtonTitreComponent } from './main/modals/button-titre/button-titre.co
 import { TextAPKComponent } from './main/text-apk/text-apk.component';
 import { ModalTextApkComponent } from './main/modals/modal-text-apk/modal-text-apk.component';
 import { TextAPKModule } from './main/text-apk/text-apk.module';
-import { DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common'; 
+
+  
 
 const appRoutes: Routes = [
     {
@@ -166,7 +168,8 @@ const appRoutes: Routes = [
         MatProgressBarModule,
         MatSliderModule,
         MatDatepickerModule,
-        MatNativeDateModule,
+        MatNativeDateModule, 
+        MatDatepickerModule , 
         
         // App modules
         LayoutModule,
@@ -202,7 +205,7 @@ const appRoutes: Routes = [
     ],
     bootstrap   : [
         AppComponent
-    ],
+    ], 
     providers: [
         GlobaleService,
         AuthGuard, 

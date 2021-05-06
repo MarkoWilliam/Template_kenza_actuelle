@@ -44,7 +44,7 @@
                 <ng-container matColumnDef="Image">
                     <th mat-header-cell *matHeaderCellDef style="width: 250px;"> Image</th>
                     <!-- <img style="width:200px;height:75px;" src={{element.link}}> -->
-                    <td mat-cell *matCellDef="let element"> <img style="height: 120px; width: 120px;" [src]=[element.link]></td>
+                    <td mat-cell *matCellDef="let element"> <img style="height: 120px; width: 120px;" [src]=[element.link] onError="this.src='assets/img/fond_bo.png'"> </td>
                 </ng-container>
                 <ng-container matColumnDef="actions1">
                     <th mat-header-cell *matHeaderCellDef style="width: 50px;"> Action</th>

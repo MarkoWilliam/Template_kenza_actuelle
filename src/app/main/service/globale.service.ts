@@ -58,6 +58,9 @@ export class GlobaleService {
   //-----------Type user------------
   private typeUser = "auth/typeUser";
   private CreationTypeUser = 'auth/typeUser';
+
+  //---base url ---------
+  private base_lien = "carousel/base_url";
   constructor(private http: HttpClient
               ) { }
 
@@ -415,5 +418,10 @@ getTexteApk(){
 updatText(model: any): Observable<any> {
   return this.http.post(`${this.lien.lienCmd}translate/update`,model);
 }
+
+    //------------------Login user------------------
+    Base_lien(): Observable<any> { 
+      return this.http.get(this.lien.lienPresta + `${this.base_lien}`,  );
+    }
 
 }
