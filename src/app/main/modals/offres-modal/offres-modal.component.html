@@ -38,7 +38,7 @@
     <div [hidden]="ishidden1">
         <div mat-dialog-content>
             <div>
-                <img style="width:200px;height:75px;" src="{{base_url}}produit/imageban/{{offre.nom_image}}">
+                <img style="width:160px;height:90px;" src="{{base_url}}produit/imageban/{{offre.nom_image}}" onError="this.src='assets/img/fond_bo.png'">
                 <label>
                     <input type="file"  value="url_img" (change)="onFileSelected($event)"/>
                 </label>

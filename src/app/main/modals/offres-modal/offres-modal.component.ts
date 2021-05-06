@@ -67,6 +67,12 @@ export class OffresModalComponent implements OnInit {
   onFileSelected(event){
     const file =event.target.files[0];
     this.images = file;
+    this.api.uploadimage(this.images).subscribe(async (data: any) => { 
+      console.log("File 1",this.images);
+      if(data){
+        console.log("************** image", data);
+          this.offre.nom_image=   data.file.filename;
+      }; } )
   }
 
 insertion() {

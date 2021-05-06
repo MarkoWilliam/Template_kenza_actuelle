@@ -71,7 +71,7 @@ titre: "titre"
   ngOnInit() 
   {
     this.ListeProduit();
-    this.isLibre= true; 
+    this.isImage= true; 
     this.base_url=this.api.base_Url_Api_Bo; 
   }
   async ListeProduit() {
@@ -101,24 +101,24 @@ titre: "titre"
     if(this.isImage == true ) {
       console.log("***this.isLibre 1*******", this.isLibre )
 
-  //     if(this.notif.contenu !== '' && this.notif.titre !== '') {  
-  //       const val = (this.notif.tmp).split('||');   
-  //  this.notif.nom=val[0]; 
-  //  this.notif.id_category=val[1];
-  //  this.notif.id_image=val[2];
-  //  this.notif.id_product=val[3];
-  //  this.notif.id_attribute=val[4];
-  //  this.notif.link_rewrite=val[5];
-  //  this.notif.id_product_attribute=val[6]; 
-  //  this.notif.nom_image = '';
-  //  this.api.insertnotif(this.notif).pipe().subscribe((data: any) => { 
-  //     if(data){
-  //      window.location.reload();
-  //     }
-  //  });
-  //     } else {
-  //       this.toastr.warning('Il y a un champ vide, veuillez réessayer s \' il vous plait', 'Erreur');
-  //     }
+      if(this.notif.contenu !== '' && this.notif.titre !== '') {  
+        const val = (this.notif.tmp).split('||');   
+   this.notif.nom=val[0]; 
+   this.notif.id_category=val[1];
+   this.notif.id_image=val[2];
+   this.notif.id_product=val[3];
+   this.notif.id_attribute=val[4];
+   this.notif.link_rewrite=val[5];
+   this.notif.id_product_attribute=val[6]; 
+   this.notif.nom_image = '';
+   this.api.insertnotif(this.notif).pipe().subscribe((data: any) => { 
+      if(data){
+       window.location.reload();
+      }
+   });
+      } else {
+        this.toastr.warning('Il y a un champ vide, veuillez réessayer s \' il vous plait', 'Erreur');
+      }
     
     } else {
 
@@ -126,32 +126,32 @@ titre: "titre"
 
 
 
-  // if(this.notif.contenu !== '' && this.notif.titre !== '') {
-//   this.api.uploadimage(this.images).pipe().subscribe((data: any) => { 
-//     if(data){
-//       this.notif.nom_image=data.file.filename;
-//     }
-//     this.notif.nom= ''; 
-//     this.notif.id_category='';
-//     this.notif.id_image='';
-//     this.notif.id_product='';
-//     this.notif.id_attribute= '';
-//     this.notif.link_rewrite= '';
-//     this.notif.id_product_attribute= ''; 
-//     this.notif.date_add = this.range.value.start; 
-//     this.notif.date_add = this.datepipe.transform(this.notif.date_add, 'yyyy/MM/dd ') + '' + this.notif.time;
-//     this.api.insertnotif(this.notif).pipe().subscribe((data: any) => {
-//       if (data) {
-//           this.toastr.success('enregistrer', 'Donnée');
-//           window.location.reload();
-//       }
-//     },(error) => {
-//       this.toastr.error(error.message,'Erreur'); 
-//     }); 
-//  });
-// } else {
-//   this.toastr.warning( 'Il y a un champ vide, veuillez réessayer s \' il vous plait', 'Erreur');
-// }
+  if(this.notif.contenu !== '' && this.notif.titre !== '') {
+  this.api.uploadimage(this.images).pipe().subscribe((data: any) => { 
+    if(data){
+      this.notif.nom_image=data.file.filename;
+    }
+    this.notif.nom= ''; 
+    this.notif.id_category='';
+    this.notif.id_image='';
+    this.notif.id_product='';
+    this.notif.id_attribute= '';
+    this.notif.link_rewrite= '';
+    this.notif.id_product_attribute= ''; 
+    this.notif.date_add = this.range.value.start; 
+    this.notif.date_add = this.datepipe.transform(this.notif.date_add, 'yyyy/MM/dd ') + '' + this.notif.time;
+    this.api.insertnotif(this.notif).pipe().subscribe((data: any) => {
+      if (data) {
+          this.toastr.success('enregistrer', 'Donnée');
+          window.location.reload();
+      }
+    },(error) => {
+      this.toastr.error(error.message,'Erreur'); 
+    }); 
+ });
+} else {
+  this.toastr.warning( 'Il y a un champ vide, veuillez réessayer s \' il vous plait', 'Erreur');
+}
 
      }
 

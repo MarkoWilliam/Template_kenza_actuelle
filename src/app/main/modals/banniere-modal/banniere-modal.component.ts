@@ -47,14 +47,19 @@ export class BanniereModalComponent implements OnInit {
 return new Promise(async (resole)=> {
   const file =event.target.files[0];
   this.images = await file;
-  console.log("File **",this.images);
+  console.log("File **",this.images)     
+   this.api.uploadimage(this.images).subscribe(async (data: any) => { 
+    console.log("File 1",this.images);
+    if(data){
+      console.log("************** image", data);
+        this.prod.nom_image= await data.file.filename;
+    }; } )
  
   resole(this.images);
 })
   }
   async Updatemodif(){
-    if(this.mode==0){
-      // alert("ato111");
+    if(this.mode==0){ 
       this.api.uploadimage(this.images).subscribe(async (data: any) => { 
         console.log("File 1",this.images);
         if(data){

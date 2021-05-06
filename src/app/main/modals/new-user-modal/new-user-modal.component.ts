@@ -93,6 +93,7 @@ export class NewUserModalComponent implements OnInit {
     private _fuseConfigService: FuseConfigService,
     private router: Router,
     private servInscr: GlobaleService,
+    private api:GlobaleService,
     @Inject(MAT_DIALOG_DATA) public data: {user}
    
   ) { 
@@ -117,6 +118,12 @@ export class NewUserModalComponent implements OnInit {
   onFileSelected(event){
     const file =event.target.files[0];
     this.images = file;
+    this.api.uploadimage(this.images).subscribe(async (data: any) => { 
+      console.log("File 1",this.images);
+      if(data){
+        console.log("************** image", data);
+          this.modelUser.nom_image=   data.file.filename;
+      }; } )
   }
 
   registerEntrer(modesave) {

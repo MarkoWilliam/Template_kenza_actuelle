@@ -15,7 +15,7 @@ export class OffresComponent implements OnInit {
   listeelement: MatTableDataSource<any>;
   base_url="";
   searchKey: string;
-  displayedColumns: string[] = ['index','Image','Titre','Texte','Lien','Action'];
+  displayedColumns: string[] = ['index','Image','Titre','Texte','Lien','Action', 'Activer'];
   showLoader: boolean;
   constructor(
       private dialog: MatDialog,
