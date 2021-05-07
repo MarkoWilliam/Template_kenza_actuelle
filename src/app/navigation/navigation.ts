@@ -119,7 +119,7 @@ export const navigation: FuseNavigation[] = [
             },
             {
                 id   : 'carte_metisse',
-                title: 'Carte Metisse',
+                title: 'Carte Métisse',
                 type : 'item',
                 icon : 'card_membership',
                 url  : '/carte_metisse'
