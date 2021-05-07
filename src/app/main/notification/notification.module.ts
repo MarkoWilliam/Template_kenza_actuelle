@@ -6,6 +6,7 @@ import { FuseSharedModule } from '@fuse/shared.module';
 import { RouterModule } from '@angular/router';
 import { NotificationComponent } from './notification.component';
 import { NotificationModalComponent } from '../modals/notification-modal/notification-modal.component';
+import {MatRadioModule} from '@angular/material/radio'
 
 
 
@@ -23,7 +24,8 @@ const routes = [
     CommonModule,
     RouterModule.forChild(routes),
     TranslateModule,
-    FuseSharedModule
+    FuseSharedModule,
+    MatRadioModule
   ],
   entryComponents:[NotificationModalComponent]
 })

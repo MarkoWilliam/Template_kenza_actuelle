@@ -424,4 +424,23 @@ updatText(model: any): Observable<any> {
       return this.http.get(this.lien.lienPresta + `${this.base_lien}`,  );
     }
 
+
+
+    inserCarte(model: any): Observable<any> {
+      return this.http.post(`${this.lien.lienCmd}produit/insertCarte`,model);
+    }
+
+//-----------------------Carte metisse--------------------
+    getCarteMetisse(){
+      return this.http.get(`${this.lien.lienCmd}produit/listeCarte`);
+    }
+
+    updateCarte(model: any): Observable<any> {
+      return this.http.post(`${this.lien.lienCmd}produit/updateCarte`,model);
+    }
+
+    majEtatCarte(model:any){
+      return this.http.post(`${this.lien.lienCmd}produit/majEtatCarte`,model);
+    }
+
 }

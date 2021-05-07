@@ -24,6 +24,7 @@ import { EventModule } from 'app/main/event/event.module';
 import { MessageModule } from 'app/main/message/message.module';
 import { NotificationModule } from 'app/main/notification/notification.module';
 import { MatCardModule, MatDatepickerModule, MatDialogModule, MatGridListModule, MatNativeDateModule, MatOptionModule, MatSelectModule, MatTableModule } from '@angular/material'  
+import { MatRadioModule } from '@angular/material/radio'
 import { UtilisateurModule } from './main/utilisateur/utilisateur.module';
 import { EmployerModule } from './main/employer/employer.module';
 import { AnalyticsDashboardModule } from './main/dashboards/analytics/analytics.module';
@@ -87,7 +88,10 @@ import { ButtonTitreComponent } from './main/modals/button-titre/button-titre.co
 import { TextAPKComponent } from './main/text-apk/text-apk.component';
 import { ModalTextApkComponent } from './main/modals/modal-text-apk/modal-text-apk.component';
 import { TextAPKModule } from './main/text-apk/text-apk.module';
-import { DatePipe } from '@angular/common'; 
+import { DatePipe } from '@angular/common';
+import { CarteMetisseComponent } from './main/carte-metisse/carte-metisse.component'; 
+import { CarteMetisseModule } from './main/carte-metisse/carte-metisse.module';
+import { CarteMetisseModalComponent } from './main/modals/carte-metisse-modal/carte-metisse-modal.component';
 
   
 
@@ -126,7 +130,9 @@ const appRoutes: Routes = [
        TitreButtonComponent,
        ButtonTitreComponent,
        TextAPKComponent,
-       ModalTextApkComponent
+       ModalTextApkComponent,
+       CarteMetisseComponent, 
+       CarteMetisseModalComponent
     ],
     //-----Dialog---------
     entryComponents: [],
@@ -170,6 +176,7 @@ const appRoutes: Routes = [
         MatDatepickerModule,
         MatNativeDateModule, 
         MatDatepickerModule , 
+        MatRadioModule,
         
         // App modules
         LayoutModule,
@@ -200,8 +207,8 @@ const appRoutes: Routes = [
         ProduitFilletteModule,
         TexteButtonModule,
         TitreButtonModule,
-        TextAPKModule
-       
+        TextAPKModule, 
+        CarteMetisseModule
     ],
     bootstrap   : [
         AppComponent

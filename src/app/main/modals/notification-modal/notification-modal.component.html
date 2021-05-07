@@ -1,79 +1,59 @@
 <div mat-dialog-content style="height: 55vh;">
     <h1 mat-dialog-title class="titre">Nouvelle Notification</h1>
 
-    <div class="choix">
+    <div mat-dialog-content>
+        <div class="radio">
+            <mat-radio-group [(ngModel)]="is_image">
+                <mat-radio-button [value]="1" [checked]="1">
+                    Avec produit
+                </mat-radio-button>
+                <mat-radio-button [value]="2" [checked]="2">
+                    Sans produit
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
 
-        <table>
-            <thead>
-                <th> <label for="icon">Avec produit </label></th>
-                <th> <input [(ngModel)]="image_1" type="radio" (change)="Is_Image(0)" [checked]="true"></th>
-                <th> <label for="image">Sans produit </label></th>
-                <th> <input matinput type="radio" [(ngModel)]="image_2" name="typeel" (change)="Is_Image(1)" [checked]="true"></th>
-            </thead>
-        </table>
-    </div>
 
-    <div [hidden]="isLibre">
-        <div mat-dialog-content>
-
+        <div *ngIf="is_image==1">
             <mat-form-field appearance="fill" class="example-full-width">
                 <mat-label>Produits Nouveauté</mat-label>
-                <mat-select matNativeControl required [(ngModel)]="notif.tmp">
+                <mat-select matNativeControl [required]="is_image==1" [(ngModel)]="notif.tmp">
+                    <mat-option value>-- Choisissez un produit --</mat-option>
                     <mat-option *ngFor="let prod of listprod" value=" {{prod.name}}||{{prod.id_category}}||{{prod.id_image}}||{{prod.id_product}}||{{prod.id_attribute}}||{{prod.link_rewrite}}||{{prod.id_product_attribute}}">
                         {{prod.name}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-            <mat-form-field appearance="fill" class="example-full-width">
-                <mat-label>Titre</mat-label>
-                <input matInput type="text" [(ngModel)]="notif.titre" required>
-            </mat-form-field>
-            <mat-form-field class="example-full-width">
-                <mat-label>Contenu</mat-label>
-                <textarea matInput placeholder="....." [(ngModel)]="notif.contenu" required></textarea>
-            </mat-form-field>
-        </div>
-    </div>
-
-    <div [hidden]="isImage">
-        <div mat-dialog-content>
-            <mat-form-field appearance="fill" class="example-full-width">
-                <mat-label>Titre</mat-label>
-                <input matInput type="text" [(ngModel)]="notif.titre" required>
-            </mat-form-field>
-
-            <mat-form-field appearance="fill" class="example-full-width">
-                <mat-label>Déscription</mat-label>
-                <input matInput type="text" [(ngModel)]="notif.contenu" required>
-            </mat-form-field>
-            <div>
-                <img style="width:200px;height:90px;" src="{{base_url}}produit/imageban/{{notif.nom_image}}" onError="this.src='assets/img/fond_bo.png'">
-                <label>
-                <br>
-                <input type="file"  value="url_img" (change)="onFileSelected($event)"/>
-            </label>
-            </div>
-            <br>
         </div>
 
+        <mat-form-field appearance="fill" class="example-full-width">
+            <mat-label>Titre</mat-label>
+            <input matInput type="text" [(ngModel)]="notif.titre" required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Contenu</mat-label>
+            <textarea matInput [(ngModel)]="notif.contenu" required></textarea>
+        </mat-form-field>
+        <div *ngIf="is_image==2">
+            <img style="width:200px;height:90px;" src="{{base_url}}produit/imageban/{{notif.nom_image}}" onError="this.src='assets/img/fond_bo.png'">
+            <input type="file" value="url_img" (change)="onFileSelected($event)" />
+        </div>
     </div>
 
     <div>
         <mat-label>Envoyer plus tard </mat-label>
-        <br>
-        <div>
-            <table>
-                <thead>
-                    <th class="envoyer"> <label for="oui">Oui </label></th>
-                    <th class="envoyer"> <input matinput type="radio" [(ngModel)]="idDateTime" name="typeel" value="oui" (change)="Is_Date(1)" [checked]=true></th>
-                    <th class="envoyer"> <label for="nom">Non</label></th>
-                    <th class="envoyer"> <input matinput type="radio" [(ngModel)]="idDateTime" name="typeel" value="nom" (change)="Is_Date(0)" [checked]=true></th>
-                </thead>
-            </table>
-        </div>
+        <mat-radio-group [(ngModel)]="idDateTime">
+            <mat-radio-button [value]="1" [checked]="1">
+                Oui
+            </mat-radio-button>
+            <mat-radio-button [value]="2" [checked]="1">
+                Non
+            </mat-radio-button>
+        </mat-radio-group>
     </div>
 
-    <div [hidden]="isDate">
+    <div *ngIf="idDateTime == 1">
         <div mat-dialog-content>
             <div>
                 <mat-form-field class="example-full-width" appearance="fill" [formGroup]="range">
@@ -87,7 +67,7 @@
             <div>
                 <mat-form-field appearance="fill" class="example-full-width">
                     <mat-label>Temps</mat-label>
-                    <input matInput type="time" [(ngModel)]="notif.time" required>
+                    <input matInput type="time" [(ngModel)]="notif.time" [required]="idDateTime === 1">
                 </mat-form-field>
             </div>
 

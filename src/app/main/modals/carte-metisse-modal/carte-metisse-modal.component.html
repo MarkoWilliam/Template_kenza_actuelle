@@ -1,0 +1,16 @@
+<h1 mat-dialog-title class="titre">Image du Carte metisse</h1>
+<div mat-dialog-content>
+    <div>
+        <img style="width:170px;height:100px;" src="{{base_url}}produit/imageban/{{prod.nom_image}}" onError="this.src='assets/img/fond_bo.png'">
+        <label>
+            <input type="file"  value="url_img" (change)="onFileSelected($event)"/>
+        </label>
+    </div>
+    <br>
+
+
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close class="red">Fermer</button>
+    <button mat-button mat-dialog-close type="submit" (click)="Updatemodif()" color="warning" class="green">Enregistrer</button>
+</div>

@@ -38,10 +38,15 @@ export class NotificationComponent implements OnInit{
 
 
   ngOnInit() 
-  {this.recupListNotification();  
+  {
+    this.recupListNotification();  
     this.base_url=this.api.base_Url_Api_Bo;
    
   }
+
+  // ngDoCheck() {
+  //  // this.recupListNotification();  
+  // }
 
 
   async recupListNotification(){

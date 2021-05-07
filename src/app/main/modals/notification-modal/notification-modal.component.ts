@@ -34,9 +34,8 @@ export class NotificationModalComponent implements OnInit {
   isImage = false;
   isLibre = false;
   isDate = true;
-  idDateTime = false;
-  image_1 = false;
-  image_2 = false
+  idDateTime = 1;
+  is_image = 1;
   base_url = null;
   images=null;
   minDate: Date;
@@ -58,14 +57,14 @@ export class NotificationModalComponent implements OnInit {
       this.maxDate = new Date(currentYear + 1, 11, 31);
       }
       id_attribute: 282
-id_category: 13
-id_image: 5945
-id_notification: 46
-id_product: 861
-id_product_attribute: 8385
-link_rewrite: "gilet-oriental-masque-"
-nom: " GILET ORIENTAL + MASQUE"
-titre: "titre"
+      id_category: 13
+      id_image: 5945
+      id_notification: 46
+      id_product: 861
+      id_product_attribute: 8385
+      link_rewrite: "gilet-oriental-masque-"
+      nom: " GILET ORIENTAL + MASQUE"
+      titre: "titre"
       
 
   ngOnInit() 
@@ -98,85 +97,56 @@ titre: "titre"
 
 
   async Updatemodif(){ 
-    if(this.isImage == true ) {
+    if(this.is_image == 1 ) {
       console.log("***this.isLibre 1*******", this.isLibre )
-
       if(this.notif.contenu !== '' && this.notif.titre !== '') {  
         const val = (this.notif.tmp).split('||');   
-   this.notif.nom=val[0]; 
-   this.notif.id_category=val[1];
-   this.notif.id_image=val[2];
-   this.notif.id_product=val[3];
-   this.notif.id_attribute=val[4];
-   this.notif.link_rewrite=val[5];
-   this.notif.id_product_attribute=val[6]; 
-   this.notif.nom_image = '';
-   this.api.insertnotif(this.notif).pipe().subscribe((data: any) => { 
-      if(data){
-       window.location.reload();
-      }
-   });
-      } else {
+        this.notif.nom=val[0]; 
+        this.notif.id_category=val[1];
+        this.notif.id_image=val[2];
+        this.notif.id_product=val[3];
+        this.notif.id_attribute=val[4];
+        this.notif.link_rewrite=val[5];
+        this.notif.id_product_attribute=val[6]; 
+        this.notif.nom_image = '';
+        this.notif.date_add = this.range.value.start; 
+        this.notif.date_add = this.datepipe.transform(this.notif.date_add, 'yyyy/MM/dd ') + '' + this.notif.time;
+        this.api.insertnotif(this.notif).pipe().subscribe((data: any) => { 
+          if(data){
+              // window.location.reload();
+          }
+        });
+      }else {
         this.toastr.warning('Il y a un champ vide, veuillez réessayer s \' il vous plait', 'Erreur');
-      }
-    
+      }    
     } else {
-
       console.log("***this.isLibre 2 *******", this.isLibre )
-
-
-
-  if(this.notif.contenu !== '' && this.notif.titre !== '') {
-  this.api.uploadimage(this.images).pipe().subscribe((data: any) => { 
-    if(data){
-      this.notif.nom_image=data.file.filename;
-    }
-    this.notif.nom= ''; 
-    this.notif.id_category='';
-    this.notif.id_image='';
-    this.notif.id_product='';
-    this.notif.id_attribute= '';
-    this.notif.link_rewrite= '';
-    this.notif.id_product_attribute= ''; 
-    this.notif.date_add = this.range.value.start; 
-    this.notif.date_add = this.datepipe.transform(this.notif.date_add, 'yyyy/MM/dd ') + '' + this.notif.time;
-    this.api.insertnotif(this.notif).pipe().subscribe((data: any) => {
-      if (data) {
-          this.toastr.success('enregistrer', 'Donnée');
-          window.location.reload();
+      if(this.notif.contenu !== '' && this.notif.titre !== '') {
+        this.api.uploadimage(this.images).pipe().subscribe((data: any) => { 
+          if(data){
+            this.notif.nom_image=data.file.filename;
+          }
+          this.notif.nom= ''; 
+          this.notif.id_category='';
+          this.notif.id_image='';
+          this.notif.id_product='';
+          this.notif.id_attribute= '';
+          this.notif.link_rewrite= '';
+          this.notif.id_product_attribute= ''; 
+          this.notif.date_add = this.range.value.start; 
+          this.notif.date_add = this.datepipe.transform(this.notif.date_add, 'yyyy/MM/dd ') + '' + this.notif.time;
+          this.api.insertnotif(this.notif).pipe().subscribe((data: any) => {
+            if (data) {
+              this.toastr.success('enregistrer', 'Donnée');
+              // window.location.reload();
+            }
+          },(error) => {
+            this.toastr.error(error.message,'Erreur'); 
+          }); 
+        });
+      } else {
+        this.toastr.warning( 'Il y a un champ vide, veuillez réessayer s \' il vous plait', 'Erreur');
       }
-    },(error) => {
-      this.toastr.error(error.message,'Erreur'); 
-    }); 
- });
-} else {
-  this.toastr.warning( 'Il y a un champ vide, veuillez réessayer s \' il vous plait', 'Erreur');
-}
-
-     }
-
-  }
-
-  Is_Image(tmp){
-    /*  alert(tmp); */
-     if(tmp==0){
-       this.isLibre=false;
-       this.isImage=true;
-       this.image_2 =false;
-     }else{
-       this.isImage=false;
-       this.isLibre=true;
-       this.image_1 = false;
-     }
-   }
-
-   Is_Date(a) {
-if(a == 1) {
-  this.isDate = false
-} else {
-  this.isDate = true
-}
-   }
-
-   
+    }
+  }   
 }
