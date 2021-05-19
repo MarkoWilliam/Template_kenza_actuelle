@@ -82,17 +82,23 @@ export class NotificationModalComponent implements OnInit {
     })
   }
 
-  onFileSelected(event):Promise<any>{
-    return new Promise(async (resole)=> {
-      const file =event.target.files[0];
-      this.images =   file;
-      console.log("File **",this.images);
-        this.api.uploadimage(this.images).pipe().subscribe((data: any) => { 
+  onFileSelected(event){
+    if(event) {
+      return new Promise(async (resole)=> {
+        const file =event.target.files[0];
+        this.images =   file;
+        console.log("File **",this.images);
+        if(file) {
+          this.api.uploadimage(this.images).pipe().subscribe((data: any) => { 
             if(data){
               this.notif.nom_image = data.file.filename; 
             } } )
-      resole(this.images);
-    })
+          resole(this.images);
+        }
+
+      })
+    }
+
       }
 
 
@@ -124,6 +130,7 @@ export class NotificationModalComponent implements OnInit {
       if(this.notif.contenu !== '' && this.notif.titre !== '') {
         this.api.uploadimage(this.images).pipe().subscribe((data: any) => { 
           if(data){
+            console.log("Data image", data)
             this.notif.nom_image=data.file.filename;
           }
           this.notif.nom= ''; 
@@ -137,8 +144,7 @@ export class NotificationModalComponent implements OnInit {
           this.notif.date_add = this.datepipe.transform(this.notif.date_add, 'yyyy/MM/dd ') + '' + this.notif.time;
           this.api.insertnotif(this.notif).pipe().subscribe((data: any) => {
             if (data) {
-              this.toastr.success('enregistrer', 'Donnée');
-              // window.location.reload();
+              this.toastr.success('enregistrer', 'Donnée'); 
             }
           },(error) => {
             this.toastr.error(error.message,'Erreur'); 

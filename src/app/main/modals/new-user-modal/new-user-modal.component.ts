@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./new-user-modal.component.scss']
 })
 export class NewUserModalComponent implements OnInit {
-  
+  employeeForm : FormGroup;
   modelUser = {
     id:null,
     nom: '',
@@ -29,6 +29,10 @@ export class NewUserModalComponent implements OnInit {
   typeUser: any;
   ishidden0=true;
   ishidden1=true;
+  is_image = 1;
+  modelType = {
+ nom_type: '',
+  }
   get pass() {
     return this.registrationForm.get('pass')
   }
@@ -44,11 +48,13 @@ export class NewUserModalComponent implements OnInit {
   get typeuser() {
     return this.registrationForm.get('typeuser');
   }
- 
-
 
   get message() {
     return this.registrationForm.get('message');
+  }
+
+  get type_nom() {
+    return this.Formregistration.get('type_nom');
   }
 
   public registrationForm = this.formBuilder.group({
@@ -61,6 +67,11 @@ export class NewUserModalComponent implements OnInit {
     ]],
   });
 
+  public Formregistration = this.formBuilder.group({
+    type_nom: ['', [Validators.required, Validators.maxLength(100)]], 
+  });
+
+ 
   public errorMessages = {
     message: [
       { type: 'required', message: 'Compléter le champ svp' },
@@ -68,22 +79,32 @@ export class NewUserModalComponent implements OnInit {
     ],
     name: [
       { type: 'required', message: 'Compléter le champ svp' },
-      { type: 'maxlength', message: 'Auw max 100 caractères' }
+      { type: 'maxlength', message: 'Aux max 100 caractères' }
     ],
     firstname: [
       { type: 'required', message: 'Compléter le champ svp' },
-      { type: 'maxlength', message: 'Auw max 100 caractères' }
+      { type: 'maxlength', message: 'Aux max 100 caractères' }
     ],
     typeuser: [
       { type: 'required', message: 'Compléter le champ svp' },
-      { type: 'maxlength', message: 'Auw max 100 caractères' }
+      { type: 'maxlength', message: 'Aux max 100 caractères' }
     ],
 
     pass: [
       { type: 'required', message: 'Compléter le champ svp' },
-      { type: 'maxlength', message: 'Auw max 100 caractères' }
+      { type: 'maxlength', message: 'Aux max 100 caractères' }
     ], 
   };
+
+  public MessageError = {
+    type_nom: [
+      { type: 'required', message: 'Compléter le champ svp' },
+      { type: 'pattern', message: 'Aux max 100 caractère' }
+    ],  
+  };
+
+  
+ 
 
   confirm_password = '';
   base_url=null;
@@ -112,9 +133,10 @@ export class NewUserModalComponent implements OnInit {
 
   ngOnInit() {
     this.base_url=this.servInscr.base_Url_Api_Bo;
-    this.ListeTypeUser();
+    this.ListeTypeUser(); 
   }
 
+ 
   onFileSelected(event){
     const file =event.target.files[0];
     this.images = file;
@@ -126,7 +148,8 @@ export class NewUserModalComponent implements OnInit {
       }; } )
   }
 
-  registerEntrer(modesave) {
+  registerEntrer(modesave) { 
+    if(this.is_image == 1) { 
     if(modesave == 0){ 
 this.servInscr.uploadimage(this.images).pipe().subscribe(async (data: any) => { 
   if(data){
@@ -172,6 +195,7 @@ else {
   });
 }
     }
+  } 
   }
 
 
@@ -193,5 +217,15 @@ console.log("Type user", this.typeUser);
      }
    }
  
+
+   TypeUser() {
+     if(this.is_image == 2) {
+      this.servInscr.creatioType(this.modelType).subscribe(data => {
+        console.log("****", this.modelType)
+        window.location.reload();
+      })
+    }
+     }
+
 }
 

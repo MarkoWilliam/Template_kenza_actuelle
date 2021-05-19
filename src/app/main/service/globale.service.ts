@@ -15,6 +15,7 @@ export class GlobaleService {
   public isUserLoggeIn = false;
   private CreationUser = 'auth/register';
   private LoginUser = 'auth/login';
+  private userType = 'auth/insertType';
   private ListeProduit = "produit/produitList";
   private UpadateProduitCheck = "produit/produits/";
   private insertban = "produit/insertban";
@@ -442,5 +443,13 @@ updatText(model: any): Observable<any> {
     majEtatCarte(model:any){
       return this.http.post(`${this.lien.lienCmd}produit/majEtatCarte`,model);
     }
+
+        //------------------Création user------------------
+  creatioType(ModelCLient: object): Observable<any> {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(this.lien.lienCmd + `${this.userType}`,ModelCLient, {headers, observe:'response'});
+  }
+
 
 }
