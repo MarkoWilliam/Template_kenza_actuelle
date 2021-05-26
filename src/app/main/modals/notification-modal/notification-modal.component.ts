@@ -104,7 +104,13 @@ export class NotificationModalComponent implements OnInit {
 
   async Updatemodif(){ 
     if(this.is_image == 1 ) {
+      // this.notif.date_add = this.range.value.start;
+      // this.notif.date_add = this.datepipe.transform(this.notif.date_add, 'yyyy/MM/dd ');
       console.log("***this.isLibre 1*******", this.isLibre )
+      console.log("***this.isLibre 1*******", this.notif   ) 
+      let date = new Date();
+      let data = this.datepipe.transform(date , 'yyyy/MM/dd')
+      console.log("***this.isLibre 1 date*******" ,data) ; 
       if(this.notif.contenu !== '' && this.notif.titre !== '') {  
         const val = (this.notif.tmp).split('||');   
         this.notif.nom=val[0]; 
@@ -115,8 +121,14 @@ export class NotificationModalComponent implements OnInit {
         this.notif.link_rewrite=val[5];
         this.notif.id_product_attribute=val[6]; 
         this.notif.nom_image = '';
-        this.notif.date_add = this.range.value.start; 
-        this.notif.date_add = this.datepipe.transform(this.notif.date_add, 'yyyy/MM/dd ') + '' + this.notif.time;
+        if(this.range.value.start) {
+          this.notif.date_add = this.range.value.start; 
+          this.notif.date_add = this.datepipe.transform(this.notif.date_add, 'yyyy/MM/dd ') ;
+        } else {
+          let date_test = '';
+          this.notif.date_add = '';
+        }
+
         this.api.insertnotif(this.notif).pipe().subscribe((data: any) => { 
           if(data){
               // window.location.reload();
@@ -126,12 +138,23 @@ export class NotificationModalComponent implements OnInit {
         this.toastr.warning('Il y a un champ vide, veuillez réessayer s \' il vous plait', 'Erreur');
       }    
     } else {
-      console.log("***this.isLibre 2 *******", this.isLibre )
-      if(this.notif.contenu !== '' && this.notif.titre !== '') {
-        this.api.uploadimage(this.images).pipe().subscribe((data: any) => { 
-          if(data){
-            console.log("Data image", data)
-            this.notif.nom_image=data.file.filename;
+      console.log("***this.isLibre 2 *******", this.isLibre ) 
+      if(this.notif.contenu !== '' && this.notif.titre !== '') 
+      {
+
+          if(this.images) 
+         {
+              this.api.uploadimage(this.images).pipe().subscribe((data: any) =>
+           { 
+              if(data)
+              { 
+                    this.notif.nom_image=data.file.filename;
+               }
+            })
+         } 
+          else 
+         {
+                  this.notif.nom_image= '';
           }
           this.notif.nom= ''; 
           this.notif.id_category='';
@@ -140,17 +163,23 @@ export class NotificationModalComponent implements OnInit {
           this.notif.id_attribute= '';
           this.notif.link_rewrite= '';
           this.notif.id_product_attribute= ''; 
-          this.notif.date_add = this.range.value.start; 
-          this.notif.date_add = this.datepipe.transform(this.notif.date_add, 'yyyy/MM/dd ') + '' + this.notif.time;
+          if(this.range.value.start) {
+            this.notif.date_add = this.range.value.start; 
+            this.notif.date_add = this.datepipe.transform(this.notif.date_add, 'yyyy/MM/dd ') ;
+          } else { 
+            this.notif.date_add = '' ;
+          }
+ 
+          console.log("***this.isLibre 2 data *******", this.notif ) 
           this.api.insertnotif(this.notif).pipe().subscribe((data: any) => {
             if (data) {
               this.toastr.success('enregistrer', 'Donnée'); 
             }
           },(error) => {
             this.toastr.error(error.message,'Erreur'); 
-          }); 
-        });
-      } else {
+          });
+      } 
+      else {
         this.toastr.warning( 'Il y a un champ vide, veuillez réessayer s \' il vous plait', 'Erreur');
       }
     }
